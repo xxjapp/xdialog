@@ -242,12 +242,12 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateZ(600px) rotateX(20deg);
     transform: translateZ(600px) rotateX(20deg);
     opacity: 0;
-}
-
-.md-show.md-effect-5 .md-content {
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
+}
+
+.md-show.md-effect-5 .md-content {
     -webkit-transform: translateZ(0px) rotateX(0deg);
     -moz-transform: translateZ(0px) rotateX(0deg);
     -ms-transform: translateZ(0px) rotateX(0deg);
@@ -273,12 +273,12 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translate(30%) translateZ(600px) rotate(10deg);
     transform: translate(30%) translateZ(600px) rotate(10deg);
     opacity: 0;
-}
-
-.md-show.md-effect-6 .md-content {
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
+}
+
+.md-show.md-effect-6 .md-content {
     -webkit-transform: translate(0%) translateZ(0) rotate(0deg);
     -moz-transform: translate(0%) translateZ(0) rotate(0deg);
     -ms-transform: translate(0%) translateZ(0) rotate(0deg);
@@ -656,6 +656,9 @@ perspective effects (not including the modals and the overlay).
     -moz-transform: translateY(200%);
     -ms-transform: translateY(200%);
     transform: translateY(200%);
+    -webkit-transition: all 0.3s 0.2s;
+    -moz-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
 }
 
 .md-show.md-effect-17 .md-content {
@@ -664,9 +667,6 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
-    -webkit-transition: all 0.3s 0.2s;
-    -moz-transition: all 0.3s 0.2s;
-    transition: all 0.3s 0.2s;
 }
 
 
@@ -731,6 +731,9 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateX(200%);
     transform: translateX(200%);
     opacity: 0;
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
 }
 
 .md-show.md-effect-18 .md-content {
@@ -739,9 +742,6 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
-    -webkit-transition: all 0.5s 0.1s;
-    -moz-transition: all 0.5s 0.1s;
-    transition: all 0.5s 0.1s;
 }
 
 
@@ -797,6 +797,9 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateY(-200%);
     transform: translateY(-200%);
     opacity: 0;
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
 }
 
 .md-show.md-effect-19 .md-content {
@@ -805,9 +808,6 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
-    -webkit-transition: all 0.5s 0.1s;
-    -moz-transition: all 0.5s 0.1s;
-    transition: all 0.5s 0.1s;
 }
 
 @media screen and (max-width: 32em) {
