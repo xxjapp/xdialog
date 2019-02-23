@@ -4,6 +4,7 @@
     init();
 
     function init() {
+        addOverlay();
         let overlay = document.querySelector('.md-overlay');
 
         [].slice.call(document.querySelectorAll('.md-trigger')).forEach(function(el, i) {
@@ -46,6 +47,11 @@
                 }
             });
         });
+    }
+
+    function addOverlay() {
+        let html = '<div class="md-overlay"></div>';
+        document.body.insertAdjacentHTML('beforeend', html);
     }
 
     /**
