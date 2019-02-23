@@ -189,10 +189,10 @@ perspective effects (not including the modals and the overlay).
 /* Effect 4: Newspaper */
 
 .md-effect-4 .md-content {
-    -webkit-transform: scale(0) rotate(720deg);
-    -moz-transform: scale(0) rotate(720deg);
-    -ms-transform: scale(0) rotate(720deg);
-    transform: scale(0) rotate(720deg);
+    -webkit-transform: scale(0) rotate(360deg);
+    -moz-transform: scale(0) rotate(360deg);
+    -ms-transform: scale(0) rotate(360deg);
+    transform: scale(0) rotate(360deg);
     opacity: 0;
 }
 

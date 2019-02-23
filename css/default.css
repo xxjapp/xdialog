@@ -98,53 +98,6 @@ a:hover, a:active {
 
 /* To Navigation Style */
 
-.codrops-top {
-    background: #000;
-    background: rgba(255, 255, 255, 0.2);
-    text-transform: uppercase;
-    width: 100%;
-    font-size: 0.69em;
-    line-height: 2.2;
-}
-
-.codrops-top a {
-    padding: 0 1em;
-    letter-spacing: 0.1em;
-    display: inline-block;
-}
-
-.codrops-top a:hover {
-    color: #fffffe;
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.codrops-top span.right {
-    float: right;
-}
-
-.codrops-top span.right a {
-    float: left;
-    display: block;
-}
-
-.codrops-icon:before {
-    margin: 0 4px;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-}
-
-.codrops-icon-drop:before {
-    content: "\e001";
-}
-
-.codrops-icon-prev:before {
-    content: "\e004";
-}
-
 button {
     border: none;
     padding: 0.6em 1.2em;
@@ -178,11 +131,5 @@ button:hover {
     }
     .column:nth-child(2) {
         box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-    }
-}
-
-@media screen and (max-width: 25em) {
-    .codrops-icon span {
-        display: none;
     }
 }
