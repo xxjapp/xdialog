@@ -55,7 +55,7 @@ perspective effects (not including the modals and the overlay).
 	left: 0;
 	z-index: 1000;
 	opacity: 0;
-	background: rgba(143,127,115,0.8);
+	background: rgba(11,11,11,0.8);
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
@@ -529,10 +529,6 @@ perspective effects (not including the modals and the overlay).
 }
 
 /* Effect 16:  Blur */
-.md-show.md-effect-16 ~ .md-overlay {
-	background: rgba(180,106,192,0.5);
-}
-
 .md-show.md-effect-16 ~ .container {
 	-webkit-filter: blur(3px);
 	-moz-filter: blur(3px);
@@ -611,7 +607,6 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-show.md-effect-18 ~ .md-overlay {
-	background: rgba(143,127,115,0.8);
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
