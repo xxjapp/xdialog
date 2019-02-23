@@ -23,9 +23,7 @@
                 overlay.addEventListener('click', removeModalHandler);
 
                 if (el.classList.contains('md-setperspective')) {
-                    setTimeout(function() {
-                        document.documentElement.classList.add('md-perspective');
-                    }, 25);
+                    document.documentElement.classList.add('md-perspective');
                 }
 
                 close.addEventListener('click', function(ev) {
@@ -41,9 +39,10 @@
                         document.documentElement.classList.remove('md-perspective');
                     }
 
-                    modal.addEventListener("transitionend", function(event) {
+                    // all transition should end in 1000ms
+                    setTimeout(function() {
                         modal.remove();
-                    }, false);
+                    }, 1000);
                 }
             });
         });
