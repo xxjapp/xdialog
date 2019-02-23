@@ -5,8 +5,8 @@
         var overlay = document.querySelector('.md-overlay');
 
         [].slice.call(document.querySelectorAll('.md-trigger')).forEach(function(el, i) {
-            var modal = document.querySelector('#' + el.getAttribute('data-modal')),
-                close = modal.querySelector('.md-close');
+            var modal = document.querySelector('#' + el.getAttribute('data-modal'));
+            var close = modal.querySelector('.md-close');
 
             function removeModal(hasPerspective) {
                 modal.classList.remove('md-show');
