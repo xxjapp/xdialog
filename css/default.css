@@ -21,12 +21,12 @@ body, html { font-size: 100%; padding: 0; margin: 0; }
 
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
-	color: #fff;
-	background: #e74c3c;
+	color: #000;
+	background: #fffffe;
 }
 
 a {
-	color: #c0392b;
+	color: #c0a99b;
 	text-decoration: none;
 }
 
@@ -44,7 +44,7 @@ a:active {
 
 .container > header {
 	text-align: center;
-	background: #d94839;
+	background: #d9c8b9;
 	padding: 3em;
 }
 
@@ -90,7 +90,7 @@ a:active {
 
 /* To Navigation Style */
 .codrops-top {
-	background: #fff;
+	background: #000;
 	background: rgba(255, 255, 255, 0.2);
 	text-transform: uppercase;
 	width: 100%;
@@ -105,7 +105,7 @@ a:active {
 }
 
 .codrops-top a:hover {
-	color: #e74c3c;
+	color: #fffffe;
 	background: rgba(255,255,255,0.6);
 }
 
@@ -141,8 +141,8 @@ a:active {
 button {
 	border: none;
 	padding: 0.6em 1.2em;
-	background: #c0392b;
-	color: #fff;
+	background: #c0a99b;
+	color: #000;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	font-size: 1em;
 	letter-spacing: 1px;
@@ -154,7 +154,7 @@ button {
 }
 
 button:hover {
-	background: #A5281B;
+	background: #A5988B;
 }
 
 @media screen and (max-width: 46.0625em) {
@@ -162,7 +162,7 @@ button:hover {
 		width: 100%;
 		min-width: auto;
 		min-height: auto;
-		padding: 1em; 
+		padding: 1em;
 	}
 
 	.column p {

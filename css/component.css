@@ -1,8 +1,8 @@
 /* General styles for the modal */
 
-/* 
+/*
 Styles for the html/body for special modal where we want 3d effects
-Note that we need a container wrapping all content on the page for the 
+Note that we need a container wrapping all content on the page for the
 perspective effects (not including the modals and the overlay).
 */
 .md-perspective,
@@ -19,7 +19,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 .container {
-	background: #e74c3c;
+	background: #fffffe;
 	min-height: 100%;
 }
 
@@ -55,7 +55,7 @@ perspective effects (not including the modals and the overlay).
 	left: 0;
 	z-index: 1000;
 	opacity: 0;
-	background: rgba(143,27,15,0.8);
+	background: rgba(143,127,115,0.8);
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
@@ -68,8 +68,8 @@ perspective effects (not including the modals and the overlay).
 
 /* Content styles */
 .md-content {
-	color: #fff;
-	background: #e74c3c;
+	color: #000;
+	background: #fffffe;
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
@@ -210,10 +210,10 @@ perspective effects (not including the modals and the overlay).
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	-webkit-transform: translateZ(600px) rotateX(20deg); 
-	-moz-transform: translateZ(600px) rotateX(20deg); 
-	-ms-transform: translateZ(600px) rotateX(20deg); 
-	transform: translateZ(600px) rotateX(20deg); 
+	-webkit-transform: translateZ(600px) rotateX(20deg);
+	-moz-transform: translateZ(600px) rotateX(20deg);
+	-ms-transform: translateZ(600px) rotateX(20deg);
+	transform: translateZ(600px) rotateX(20deg);
 	opacity: 0;
 }
 
@@ -224,7 +224,7 @@ perspective effects (not including the modals and the overlay).
 	-webkit-transform: translateZ(0px) rotateX(0deg);
 	-moz-transform: translateZ(0px) rotateX(0deg);
 	-ms-transform: translateZ(0px) rotateX(0deg);
-	transform: translateZ(0px) rotateX(0deg); 
+	transform: translateZ(0px) rotateX(0deg);
 	opacity: 1;
 }
 
@@ -239,10 +239,10 @@ perspective effects (not including the modals and the overlay).
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	transform-style: preserve-3d;
-	-webkit-transform: translate(30%) translateZ(600px) rotate(10deg); 
+	-webkit-transform: translate(30%) translateZ(600px) rotate(10deg);
 	-moz-transform: translate(30%) translateZ(600px) rotate(10deg);
 	-ms-transform: translate(30%) translateZ(600px) rotate(10deg);
-	transform: translate(30%) translateZ(600px) rotate(10deg); 
+	transform: translate(30%) translateZ(600px) rotate(10deg);
 	opacity: 0;
 }
 
@@ -409,8 +409,8 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-show.md-effect-12 ~ .md-overlay {
-	background: #e74c3c;
-} 
+	background: #fffffe;
+}
 
 .md-effect-12 .md-content h3,
 .md-effect-12 .md-content {
@@ -530,7 +530,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 16:  Blur */
 .md-show.md-effect-16 ~ .md-overlay {
-	background: rgba(180,46,32,0.5);
+	background: rgba(180,106,192,0.5);
 }
 
 .md-show.md-effect-16 ~ .container {
@@ -569,7 +569,7 @@ perspective effects (not including the modals and the overlay).
 	-webkit-transition: -webkit-transform 0.3s;
 	-moz-transition: -moz-transform 0.3s;
 	transition: transform 0.3s;
-}	
+}
 
 .md-show.md-effect-17 ~ .container,
 .md-show.md-effect-17 ~ .md-overlay  {
@@ -611,7 +611,7 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-show.md-effect-18 ~ .md-overlay {
-	background: rgba(143,27,15,0.8);
+	background: rgba(143,127,115,0.8);
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
@@ -690,23 +690,23 @@ perspective effects (not including the modals and the overlay).
 }
 
 @-webkit-keyframes OpenTop {
-	50% { 
-		-webkit-transform: rotateX(10deg); 
-		-webkit-animation-timing-function: ease-out; 
+	50% {
+		-webkit-transform: rotateX(10deg);
+		-webkit-animation-timing-function: ease-out;
 	}
 }
 
 @-moz-keyframes OpenTop {
-	50% { 
-		-moz-transform: rotateX(10deg); 
-		-moz-animation-timing-function: ease-out; 
+	50% {
+		-moz-transform: rotateX(10deg);
+		-moz-animation-timing-function: ease-out;
 	}
 }
 
 @keyframes OpenTop {
-	50% { 
-		transform: rotateX(10deg); 
-		animation-timing-function: ease-out; 
+	50% {
+		transform: rotateX(10deg);
+		animation-timing-function: ease-out;
 	}
 }
 
