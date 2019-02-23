@@ -111,9 +111,23 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-content button {
+    border: none;
+    padding: 0.6em 1.2em;
+    background: #c0a99b;
+    color: #000;
+    font-family: 'Lato', Calibri, Arial, sans-serif;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
     display: block;
     margin: 0 auto;
-    font-size: 0.8em;
+    border-radius: 2px;
+    outline: none;
+}
+
+.md-content button:hover {
+    background: #A5988B;
 }
 
 
