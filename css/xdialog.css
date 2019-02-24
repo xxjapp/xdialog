@@ -524,8 +524,8 @@ perspective effects (not including the dialogs and the overlay).
 @keyframes slit {
     50% {
         transform: translateZ(-250px) rotateY(89deg);
-        opacity: 1;
-        animation-timing-function: ease-in;
+        opacity: .5;
+        animation-timing-function: ease-out;
     }
     100% {
         transform: translateZ(0) rotateY(0deg);
