@@ -1,18 +1,18 @@
-/* General styles for the modal */
+/* General styles for dialogs */
 
 
 /*
-Styles for the html/body for special modal where we want 3d effects
+Styles for the html/body for special dialog where we want 3d effects
 Note that we need a container wrapping all content on the page for the
-perspective effects (not including the modals and the overlay).
+perspective effects (not including the dialogs and the overlay).
 */
 
-.md-perspective, .md-perspective body {
+.xd-perspective, .xd-perspective body {
     height: 100%;
     overflow: hidden;
 }
 
-.md-perspective body {
+.xd-perspective body {
     background: #222;
     -webkit-perspective: 600px;
     -moz-perspective: 600px;
@@ -24,7 +24,7 @@ perspective effects (not including the modals and the overlay).
     min-height: 100%;
 }
 
-.md-modal {
+.xd-dialog {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -43,11 +43,11 @@ perspective effects (not including the modals and the overlay).
     transform: translateX(-50%) translateY(-50%);
 }
 
-.md-show {
+.xd-show {
     visibility: visible;
 }
 
-.md-overlay {
+.xd-overlay {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -62,7 +62,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show~.md-overlay {
+.xd-show~.xd-overlay {
     opacity: 1;
     visibility: visible;
 }
@@ -70,7 +70,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Content styles */
 
-.md-content {
+.xd-content {
     color: #000;
     background: #fffffe;
     position: relative;
@@ -78,7 +78,7 @@ perspective effects (not including the modals and the overlay).
     margin: 0 auto;
 }
 
-.md-content h3 {
+.xd-content h3 {
     margin: 0;
     padding: 0.4em;
     text-align: center;
@@ -89,28 +89,28 @@ perspective effects (not including the modals and the overlay).
     border-radius: 3px 3px 0 0;
 }
 
-.md-content>div {
+.xd-content>div {
     padding: 15px 40px 30px;
     margin: 0;
     font-weight: 300;
     font-size: 1.15em;
 }
 
-.md-content>div p {
+.xd-content>div p {
     margin: 0;
     padding: 10px 0;
 }
 
-.md-content>div ul {
+.xd-content>div ul {
     margin: 0;
     padding: 0 0 30px 20px;
 }
 
-.md-content>div ul li {
+.xd-content>div ul li {
     padding: 5px 0;
 }
 
-.md-content button {
+.xd-content button {
     border: none;
     padding: 0.6em 1.2em;
     background: #c0a99b;
@@ -126,17 +126,17 @@ perspective effects (not including the modals and the overlay).
     outline: none;
 }
 
-.md-content button:hover {
+.xd-content button:hover {
     background: #A5988B;
 }
 
 
-/* Individual modal styles with animations/transitions */
+/* Individual dialog styles with animations/transitions */
 
 
 /* Effect 1: Fade in and scale up */
 
-.md-effect-1 .md-content {
+.xd-effect-1 .xd-content {
     -webkit-transform: scale(0.7);
     -moz-transform: scale(0.7);
     -ms-transform: scale(0.7);
@@ -147,7 +147,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show.md-effect-1 .md-content {
+.xd-show.xd-effect-1 .xd-content {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -158,7 +158,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 2: Slide from the right */
 
-.md-effect-2 .md-content {
+.xd-effect-2 .xd-content {
     -webkit-transform: translateX(20%);
     -moz-transform: translateX(20%);
     -ms-transform: translateX(20%);
@@ -169,7 +169,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 
-.md-show.md-effect-2 .md-content {
+.xd-show.xd-effect-2 .xd-content {
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -180,7 +180,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 3: Slide from the bottom */
 
-.md-effect-3 .md-content {
+.xd-effect-3 .xd-content {
     -webkit-transform: translateY(20%);
     -moz-transform: translateY(20%);
     -ms-transform: translateY(20%);
@@ -191,7 +191,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show.md-effect-3 .md-content {
+.xd-show.xd-effect-3 .xd-content {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
@@ -202,7 +202,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 4: Newspaper */
 
-.md-effect-4 .md-content {
+.xd-effect-4 .xd-content {
     -webkit-transform: scale(0) rotate(360deg);
     -moz-transform: scale(0) rotate(360deg);
     -ms-transform: scale(0) rotate(360deg);
@@ -210,13 +210,13 @@ perspective effects (not including the modals and the overlay).
     opacity: 0;
 }
 
-.md-show.md-effect-4~.md-overlay, .md-effect-4 .md-content {
+.xd-show.xd-effect-4~.xd-overlay, .xd-effect-4 .xd-content {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
 }
 
-.md-show.md-effect-4 .md-content {
+.xd-show.xd-effect-4 .xd-content {
     -webkit-transform: scale(1) rotate(0deg);
     -moz-transform: scale(1) rotate(0deg);
     -ms-transform: scale(1) rotate(0deg);
@@ -227,13 +227,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 5: fall */
 
-.md-effect-5.md-modal {
+.xd-effect-5.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-5 .md-content {
+.xd-effect-5 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -247,7 +247,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s ease-in;
 }
 
-.md-show.md-effect-5 .md-content {
+.xd-show.xd-effect-5 .xd-content {
     -webkit-transform: translateZ(0px) rotateX(0deg);
     -moz-transform: translateZ(0px) rotateX(0deg);
     -ms-transform: translateZ(0px) rotateX(0deg);
@@ -258,13 +258,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 6: side fall */
 
-.md-effect-6.md-modal {
+.xd-effect-6.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-6 .md-content {
+.xd-effect-6 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -278,7 +278,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s ease-in;
 }
 
-.md-show.md-effect-6 .md-content {
+.xd-show.xd-effect-6 .xd-content {
     -webkit-transform: translate(0%) translateZ(0) rotate(0deg);
     -moz-transform: translate(0%) translateZ(0) rotate(0deg);
     -ms-transform: translate(0%) translateZ(0) rotate(0deg);
@@ -289,7 +289,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 7:  slide and stick to top */
 
-.md-effect-7 {
+.xd-effect-7 {
     top: 0;
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -297,7 +297,7 @@ perspective effects (not including the modals and the overlay).
     transform: translateX(-50%);
 }
 
-.md-effect-7 .md-content {
+.xd-effect-7 .xd-content {
     -webkit-transform: translateY(-200%);
     -moz-transform: translateY(-200%);
     -ms-transform: translateY(-200%);
@@ -308,7 +308,7 @@ perspective effects (not including the modals and the overlay).
     opacity: 0;
 }
 
-.md-show.md-effect-7 .md-content {
+.xd-show.xd-effect-7 .xd-content {
     -webkit-transform: translateY(0%);
     -moz-transform: translateY(0%);
     -ms-transform: translateY(0%);
@@ -320,13 +320,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 8: 3D flip horizontal */
 
-.md-effect-8.md-modal {
+.xd-effect-8.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-8 .md-content {
+.xd-effect-8 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -340,7 +340,7 @@ perspective effects (not including the modals and the overlay).
     opacity: 0;
 }
 
-.md-show.md-effect-8 .md-content {
+.xd-show.xd-effect-8 .xd-content {
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
@@ -351,13 +351,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 9: 3D flip vertical */
 
-.md-effect-9.md-modal {
+.xd-effect-9.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-9 .md-content {
+.xd-effect-9 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -371,7 +371,7 @@ perspective effects (not including the modals and the overlay).
     opacity: 0;
 }
 
-.md-show.md-effect-9 .md-content {
+.xd-show.xd-effect-9 .xd-content {
     -webkit-transform: rotateX(0deg);
     -moz-transform: rotateX(0deg);
     -ms-transform: rotateX(0deg);
@@ -382,13 +382,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 10: 3D sign */
 
-.md-effect-10.md-modal {
+.xd-effect-10.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-10 .md-content {
+.xd-effect-10 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -405,7 +405,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show.md-effect-10 .md-content {
+.xd-show.xd-effect-10 .xd-content {
     -webkit-transform: rotateX(0deg);
     -moz-transform: rotateX(0deg);
     -ms-transform: rotateX(0deg);
@@ -416,7 +416,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 11: Super scaled */
 
-.md-effect-11 .md-content {
+.xd-effect-11 .xd-content {
     -webkit-transform: scale(2);
     -moz-transform: scale(2);
     -ms-transform: scale(2);
@@ -427,7 +427,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show.md-effect-11 .md-content {
+.xd-show.xd-effect-11 .xd-content {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -438,7 +438,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 12:  Just me */
 
-.md-effect-12 .md-content {
+.xd-effect-12 .xd-content {
     -webkit-transform: scale(0.8);
     -moz-transform: scale(0.8);
     -ms-transform: scale(0.8);
@@ -449,15 +449,15 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show.md-effect-12~.md-overlay {
+.xd-show.xd-effect-12~.xd-overlay {
     background: #fffffe;
 }
 
-.md-effect-12 .md-content h3, .md-effect-12 .md-content {
+.xd-effect-12 .xd-content h3, .xd-effect-12 .xd-content {
     background: transparent;
 }
 
-.md-show.md-effect-12 .md-content {
+.xd-show.xd-effect-12 .xd-content {
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
@@ -468,13 +468,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 13: 3D slit */
 
-.md-effect-13.md-modal {
+.xd-effect-13.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-13 .md-content {
+.xd-effect-13 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -485,7 +485,7 @@ perspective effects (not including the modals and the overlay).
     opacity: 0;
 }
 
-.md-show.md-effect-13 .md-content {
+.xd-show.xd-effect-13 .xd-content {
     -webkit-animation: slit .7s forwards ease-out;
     -moz-animation: slit .7s forwards ease-out;
     animation: slit .7s forwards ease-out;
@@ -530,13 +530,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 14:  3D Rotate from bottom */
 
-.md-effect-14.md-modal {
+.xd-effect-14.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-14 .md-content {
+.xd-effect-14 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -553,7 +553,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s ease-out;
 }
 
-.md-show.md-effect-14 .md-content {
+.xd-show.xd-effect-14 .xd-content {
     -webkit-transform: translateY(0%) rotateX(0deg);
     -moz-transform: translateY(0%) rotateX(0deg);
     -ms-transform: translateY(0%) rotateX(0deg);
@@ -564,13 +564,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 15:  3D Rotate in from left */
 
-.md-effect-15.md-modal {
+.xd-effect-15.xd-dialog {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
 }
 
-.md-effect-15 .md-content {
+.xd-effect-15 .xd-content {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -587,7 +587,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s;
 }
 
-.md-show.md-effect-15 .md-content {
+.xd-show.xd-effect-15 .xd-content {
     -webkit-transform: translateZ(0px) translateX(0%) rotateY(0deg);
     -moz-transform: translateZ(0px) translateX(0%) rotateY(0deg);
     -ms-transform: translateZ(0px) translateX(0%) rotateY(0deg);
@@ -598,13 +598,13 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 16:  Blur */
 
-.md-show.md-effect-16~.container {
+.xd-show.xd-effect-16~.container {
     -webkit-filter: blur(3px);
     -moz-filter: blur(3px);
     filter: blur(3px);
 }
 
-.md-effect-16 .md-content {
+.xd-effect-16 .xd-content {
     -webkit-transform: translateY(-5%);
     -moz-transform: translateY(-5%);
     -ms-transform: translateY(-5%);
@@ -612,13 +612,13 @@ perspective effects (not including the modals and the overlay).
     opacity: 0;
 }
 
-.md-show.md-effect-16~.container, .md-effect-16 .md-content {
+.xd-show.xd-effect-16~.container, .xd-effect-16 .xd-content {
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
 }
 
-.md-show.md-effect-16 .md-content {
+.xd-show.xd-effect-16 .xd-content {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
@@ -629,7 +629,7 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 17:  Slide in from bottom with perspective on container */
 
-.md-show.md-effect-17~.container {
+.xd-show.xd-effect-17~.container {
     height: 100%;
     overflow: hidden;
     -webkit-transition: -webkit-transform 0.3s;
@@ -637,7 +637,7 @@ perspective effects (not including the modals and the overlay).
     transition: transform 0.3s;
 }
 
-.md-show.md-effect-17~.container, .md-show.md-effect-17~.md-overlay {
+.xd-show.xd-effect-17~.container, .xd-show.xd-effect-17~.xd-overlay {
     -webkit-transform: rotateX(-2deg);
     -moz-transform: rotateX(-2deg);
     -ms-transform: rotateX(-2deg);
@@ -650,7 +650,7 @@ perspective effects (not including the modals and the overlay).
     transform-style: preserve-3d;
 }
 
-.md-effect-17 .md-content {
+.xd-effect-17 .xd-content {
     opacity: 0;
     -webkit-transform: translateY(200%);
     -moz-transform: translateY(200%);
@@ -661,7 +661,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.3s 0.2s;
 }
 
-.md-show.md-effect-17 .md-content {
+.xd-show.xd-effect-17 .xd-content {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
@@ -672,18 +672,18 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 18:  Slide from right with perspective on container */
 
-.md-show.md-effect-18~.container {
+.xd-show.xd-effect-18~.container {
     height: 100%;
     overflow: hidden;
 }
 
-.md-show.md-effect-18~.md-overlay {
+.xd-show.xd-effect-18~.xd-overlay {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
 }
 
-.md-show.md-effect-18~.container, .md-show.md-effect-18~.md-overlay {
+.xd-show.xd-effect-18~.container, .xd-show.xd-effect-18~.xd-overlay {
     -webkit-transform-style: preserve-3d;
     -webkit-transform-origin: 0% 50%;
     -webkit-animation: rotateRightSideFirst 0.5s forwards ease-in;
@@ -725,7 +725,7 @@ perspective effects (not including the modals and the overlay).
     }
 }
 
-.md-effect-18 .md-content {
+.xd-effect-18 .xd-content {
     -webkit-transform: translateX(200%);
     -moz-transform: translateX(200%);
     -ms-transform: translateX(200%);
@@ -736,7 +736,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.5s 0.1s;
 }
 
-.md-show.md-effect-18 .md-content {
+.xd-show.xd-effect-18 .xd-content {
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -747,18 +747,18 @@ perspective effects (not including the modals and the overlay).
 
 /* Effect 19:  Slip in from the top with perspective on container */
 
-.md-show.md-effect-19~.container {
+.xd-show.xd-effect-19~.container {
     height: 100%;
     overflow: hidden;
 }
 
-.md-show.md-effect-19~.md-overlay {
+.xd-show.xd-effect-19~.xd-overlay {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
 }
 
-.md-show.md-effect-19~.container, .md-show.md-effect-19~.md-overlay {
+.xd-show.xd-effect-19~.container, .xd-show.xd-effect-19~.xd-overlay {
     -webkit-transform-style: preserve-3d;
     -webkit-transform-origin: 50% 100%;
     -webkit-animation: OpenTop 0.5s forwards ease-in;
@@ -791,7 +791,7 @@ perspective effects (not including the modals and the overlay).
     }
 }
 
-.md-effect-19 .md-content {
+.xd-effect-19 .xd-content {
     -webkit-transform: translateY(-200%);
     -moz-transform: translateY(-200%);
     -ms-transform: translateY(-200%);
@@ -802,7 +802,7 @@ perspective effects (not including the modals and the overlay).
     transition: all 0.5s 0.1s;
 }
 
-.md-show.md-effect-19 .md-content {
+.xd-show.xd-effect-19 .xd-content {
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
