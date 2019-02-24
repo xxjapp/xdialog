@@ -3,10 +3,10 @@
 /**
  * Usage:
  *
- * let dialog = xdialog.open('modal-0', 'md-effect-0', perspective);
+ * let dialog = xdialog.open({effect: 'md-effect-1'});
  * dialog.close();
  *
- * let dialog2 = xdialog.create('modal-0', 'md-effect-0', perspective);
+ * let dialog2 = xdialog.create({effect: 'md-effect-1'});
  * dialog2.show();
  * dialog2.hide();
  * dialog2.destroy();
@@ -25,9 +25,63 @@ let xdialog = (function() {
         return document.querySelector('.md-overlay');
     }
 
-    function create(modalId, effectClass, perspective) {
+    let defaultOptions = {
+        effect: 'fade_in_and_scale'
+    };
+
+    function getEffect(effectName) {
+        switch (effectName) {
+            case 'fade_in_and_scale':
+                return { class: 'md-effect-1', perspective: false };
+            case 'slide_in_right':
+                return { class: 'md-effect-2', perspective: false };
+            case 'slide_in_bottom':
+                return { class: 'md-effect-3', perspective: false };
+            case 'newspaper':
+                return { class: 'md-effect-4', perspective: false };
+            case 'fall':
+                return { class: 'md-effect-5', perspective: false };
+            case 'side_fall':
+                return { class: 'md-effect-6', perspective: false };
+            case 'sticky_up':
+                return { class: 'md-effect-7', perspective: false };
+            case '3d_flip_horizontal':
+                return { class: 'md-effect-8', perspective: false };
+            case '3d_flip_vertical':
+                return { class: 'md-effect-9', perspective: false };
+            case '3d_sign':
+                return { class: 'md-effect-10', perspective: false };
+            case 'super_scaled':
+                return { class: 'md-effect-11', perspective: false };
+            case 'just_me':
+                return { class: 'md-effect-12', perspective: false };
+            case '3d_slit':
+                return { class: 'md-effect-13', perspective: false };
+            case '3d_rotate_bottom':
+                return { class: 'md-effect-14', perspective: false };
+            case '3d_rotate_in_left':
+                return { class: 'md-effect-15', perspective: false };
+            case 'blur':
+                return { class: 'md-effect-16', perspective: false };
+            case 'let_me_in':
+                return { class: 'md-effect-17', perspective: true };
+            case 'make_way':
+                return { class: 'md-effect-18', perspective: true };
+            case 'slip_from_top':
+                return { class: 'md-effect-19', perspective: true };
+            default:
+                return { class: 'md-effect-1', perspective: false };
+        }
+    }
+
+    function create(options) {
+        options = Object.assign(defaultOptions, options);
+
+        let modalId = 'md_' + Math.random().toString(36).substring(2);
+        let effect = getEffect(options.effect);
+
         let html = '\
-        <div class="md-modal ' + effectClass + '" id="' + modalId + '">\
+        <div class="md-modal ' + effect.class + '" id="' + modalId + '">\
             <div class="md-content">\
                 <h3>Modal Dialog</h3>\
                 <div>\
@@ -55,13 +109,13 @@ let xdialog = (function() {
                 modalElement.classList.add('md-show');
             }, 0);
 
-            if (perspective) {
+            if (effect.perspective) {
                 document.documentElement.classList.add('md-perspective');
             }
         }
 
         function hide() {
-            if (perspective) {
+            if (effect.perspective) {
                 // TODO: not work when 17
                 // setTimeout(function() {
                 document.documentElement.classList.remove('md-perspective');
@@ -94,8 +148,8 @@ let xdialog = (function() {
         };
     }
 
-    function open(modalId, effectClass, perspective) {
-        let dialog = create(modalId, effectClass, perspective);
+    function open(options) {
+        let dialog = create(options);
         dialog.show();
     }
 
