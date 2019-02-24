@@ -110,6 +110,11 @@ perspective effects (not including the dialogs and the overlay).
     padding: 5px 0;
 }
 
+.xd-content .xd-buttons {
+    display: flex;
+    justify-content: center;
+}
+
 .xd-content button {
     border: none;
     padding: 0.6em 1.2em;
@@ -121,7 +126,8 @@ perspective effects (not including the dialogs and the overlay).
     text-transform: uppercase;
     cursor: pointer;
     display: block;
-    margin: 0 auto;
+    min-width: 10em;
+    margin: 0 2em;
     border-radius: 2px;
     outline: none;
 }

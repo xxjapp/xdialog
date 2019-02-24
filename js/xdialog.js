@@ -91,16 +91,21 @@ let xdialog = (function() {
                         <li><strong>Look:</strong> a dialog enjoys a certain kind of attention; just look at it and appreciate its presence.</li>\
                         <li><strong>Close:</strong> click on the button below to close the dialog.</li>\
                     </ul>\
-                    <button class="xd-close">Close me!</button>\
+                    <div class="xd-buttons">\
+                        <button class="xd-ok">OK</button>\
+                        <button class="xd-close">Close</button>\
+                    </div>\
                 </div>\
             </div>\
         </div>';
         document.body.insertAdjacentHTML('afterbegin', html);
 
         let dialogElement = document.querySelector('#' + dialogId);
+        let okElement = dialogElement.querySelector('.xd-ok');
         let closeElement = dialogElement.querySelector('.xd-close');
 
         overlay.addEventListener('click', close);
+        okElement.addEventListener('click', close);
         closeElement.addEventListener('click', close);
 
         function show() {
@@ -126,6 +131,7 @@ let xdialog = (function() {
         }
 
         function destroy() {
+            okElement.removeEventListener('click', close);
             closeElement.removeEventListener('click', close);
             overlay.removeEventListener('click', close);
 
