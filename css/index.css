@@ -30,15 +30,6 @@ body {
     background: #fffffe;
 }
 
-a {
-    color: #c0a99b;
-    text-decoration: none;
-}
-
-a:hover, a:active {
-    color: #333;
-}
-
 
 /* Header Style */
 
