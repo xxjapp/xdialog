@@ -121,10 +121,10 @@ let xdialog = (function() {
 
         function hide() {
             if (effect.perspective) {
-                // TODO: not work when 17
-                // setTimeout(function() {
-                document.documentElement.classList.remove('xd-perspective');
-                // }, 0);
+                // all transition should end in 1000 ms
+                setTimeout(function() {
+                    document.documentElement.classList.remove('xd-perspective');
+                }, 1000);
             }
 
             dialogElement.classList.remove('xd-show');
@@ -135,7 +135,7 @@ let xdialog = (function() {
             closeElement.removeEventListener('click', close);
             overlay.removeEventListener('click', close);
 
-            // all transition should end in 1000ms
+            // all transition should end in 1000 ms
             setTimeout(function() {
                 dialogElement.remove();
             }, 1000);

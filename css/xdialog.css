@@ -635,19 +635,19 @@ perspective effects (not including the dialogs and the overlay).
 
 /* Effect 17:  Slide in from bottom with perspective on container */
 
-.xd-show.xd-effect-17~.container {
+.xd-effect-17~.container {
     height: 100%;
     overflow: hidden;
-    -webkit-transition: -webkit-transform 0.3s;
-    -moz-transition: -moz-transform 0.3s;
-    transition: transform 0.3s;
+    -webkit-transition: -webkit-transform 0.3s 0.2s;
+    -moz-transition: -moz-transform 0.3s 0.2s;
+    transition: transform 0.3s 0.2s;
 }
 
-.xd-show.xd-effect-17~.container, .xd-show.xd-effect-17~.xd-overlay {
-    -webkit-transform: rotateX(-2deg);
-    -moz-transform: rotateX(-2deg);
-    -ms-transform: rotateX(-2deg);
-    transform: rotateX(-2deg);
+.xd-effect-17~.container, .xd-effect-17~.xd-overlay {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
     transform-origin: 50% 0%;
@@ -662,17 +662,39 @@ perspective effects (not including the dialogs and the overlay).
     -moz-transform: translateY(200%);
     -ms-transform: translateY(200%);
     transform: translateY(200%);
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.xd-show.xd-effect-17~.xd-overlay {
     -webkit-transition: all 0.3s 0.2s;
     -moz-transition: all 0.3s 0.2s;
     transition: all 0.3s 0.2s;
 }
 
+.xd-show.xd-effect-17~.container {
+    -webkit-transition: -webkit-transform 0.3s;
+    -moz-transition: -moz-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.xd-show.xd-effect-17~.container, .xd-show.xd-effect-17~.xd-overlay {
+    -webkit-transform: rotateX(-2deg);
+    -moz-transform: rotateX(-2deg);
+    -ms-transform: rotateX(-2deg);
+    transform: rotateX(-2deg);
+}
+
 .xd-show.xd-effect-17 .xd-content {
+    opacity: 1;
     -webkit-transform: translateY(0);
     -moz-transform: translateY(0);
     -ms-transform: translateY(0);
     transform: translateY(0);
-    opacity: 1;
+    -webkit-transition: all 0.3s 0.2s;
+    -moz-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
 }
 
 
