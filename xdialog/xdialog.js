@@ -30,6 +30,8 @@ window.xdialog = (function() {
         body: '<p>Dialog body<p>',
         style: '',
         effect: 'fade_in_and_scale',
+        onok: null,
+        oncancel: null,
         ondestroy: null
     };
 
@@ -112,9 +114,9 @@ window.xdialog = (function() {
         let cancelButton = dialogElement.querySelector('.xd-cancel');
 
         dragElement(dialogElement)
-        overlay.addEventListener('click', close);
-        okButton.addEventListener('click', close);
-        cancelButton.addEventListener('click', close);
+        okButton.addEventListener('click', ok);
+        cancelButton.addEventListener('click', cancel);
+        overlay.addEventListener('click', cancel);
 
         function show() {
             // use setTimeout to enable css transition
@@ -136,6 +138,25 @@ window.xdialog = (function() {
             }
 
             dialogElement.classList.remove('xd-show');
+        }
+
+        function ok(e) {
+            // return false onok to avoid close
+            if (options.onok && options.onok(e) === false) {
+                return;
+            }
+
+
+            close();
+        }
+
+        function cancel(e) {
+            // return false oncancel to avoid close
+            if (options.oncancel && options.oncancel(e) === false) {
+                return;
+            }
+
+            close();
         }
 
         function destroy() {

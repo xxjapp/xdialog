@@ -14,7 +14,13 @@
             xdialog.open({
                 title: 'Title',
                 body: body,
-                effect: effect
+                effect: effect,
+                onok: function(e) {
+                    alert('OK');
+                },
+                oncancel: function(e) {
+                    alert('Cancel');
+                }
             });
         });
     });
