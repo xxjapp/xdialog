@@ -174,8 +174,18 @@ window.xdialog = (function() {
                 // otherwise, move the DIV from anywhere inside the DIV:
                 element.onmousedown = dragMouseDown;
                 element.style.cursor = 'move';
-
             }
+
+            // NOTE: fix for chrome blur on transform when dragging
+
+            // 1. keep current position
+            // SEE: https://stackoverflow.com/a/11396681/1440174
+            let rect = element.getBoundingClientRect();
+            element.style.top = rect.top + 'px';
+            element.style.left = rect.left + 'px';
+
+            // 2. remove class xd-center (includes 'transform' which let dialog blur in chrome)
+            element.classList.remove('xd-center');
 
             function dragMouseDown(e) {
                 e = e || window.event;
