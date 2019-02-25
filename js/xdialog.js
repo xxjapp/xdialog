@@ -27,6 +27,7 @@ let xdialog = (function() {
 
     let defaultOptions = {
         title: 'Dialog Title',
+        body: '<p>Dialog body<p>',
         effect: 'fade_in_and_scale'
     };
 
@@ -89,14 +90,13 @@ let xdialog = (function() {
             html += '<h3>' + options.title + '</h3>';
         }
 
-        html += '<div>\
-                    <p>This is a dialog. You can do the following things with it:</p>\
-                    <ul>\
-                        <li><strong>Read:</strong> dialogs will probably tell you something important so don\'t forget to read what they say.</li>\
-                        <li><strong>Look:</strong> a dialog enjoys a certain kind of attention; just look at it and appreciate its presence.</li>\
-                        <li><strong>Close:</strong> click on the button below to close the dialog.</li>\
-                    </ul>\
-                    <div class="xd-buttons">\
+        html += '<div>';
+
+        if (options.body) {
+            html += options.body;
+        }
+
+        html += '<div class="xd-buttons">\
                         <button class="xd-ok">OK</button>\
                         <button class="xd-close">Close</button>\
                     </div>\
