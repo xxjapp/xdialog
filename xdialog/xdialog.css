@@ -28,8 +28,6 @@ perspective effects (not including the dialogs and the overlay).
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50%;
-    max-width: 630px;
     min-width: 320px;
     height: auto;
     z-index: 2000;
