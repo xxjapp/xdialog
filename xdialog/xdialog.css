@@ -27,6 +27,7 @@ perspective effects (not including the dialogs and the overlay).
 .xd-dialog {
     position: fixed;
     min-width: 320px;
+    width: 50%;
     height: auto;
     z-index: 2000;
     visibility: hidden;

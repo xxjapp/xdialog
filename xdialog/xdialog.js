@@ -28,6 +28,7 @@ window.xdialog = (function() {
     let defaultOptions = {
         title: 'Dialog Title',
         body: '<p>Dialog body<p>',
+        style: '',
         effect: 'fade_in_and_scale',
         ondestroy: null
     };
@@ -84,7 +85,7 @@ window.xdialog = (function() {
         let effect = getEffect(options.effect);
 
         let html = '\
-        <div class="xd-dialog xd-center ' + effect.class + '" id="' + dialogId + '">\
+        <div class="xd-dialog xd-center ' + effect.class + '" id="' + dialogId + '" style="' + options.style + '">\
             <div class="xd-content">';
 
         if (options.title) {
