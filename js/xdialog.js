@@ -98,7 +98,7 @@ let xdialog = (function() {
 
         html += '<div class="xd-buttons">\
                         <button class="xd-ok">OK</button>\
-                        <button class="xd-close">Close</button>\
+                        <button class="xd-cancel">Cancel</button>\
                     </div>\
                 </div>\
             </div>\
@@ -106,12 +106,12 @@ let xdialog = (function() {
         document.body.insertAdjacentHTML('afterbegin', html);
 
         let dialogElement = document.querySelector('#' + dialogId);
-        let okElement = dialogElement.querySelector('.xd-ok');
-        let closeElement = dialogElement.querySelector('.xd-close');
+        let okButton = dialogElement.querySelector('.xd-ok');
+        let cancelButton = dialogElement.querySelector('.xd-cancel');
 
         overlay.addEventListener('click', close);
-        okElement.addEventListener('click', close);
-        closeElement.addEventListener('click', close);
+        okButton.addEventListener('click', close);
+        cancelButton.addEventListener('click', close);
 
         function show() {
             // use setTimeout to enable css transition
@@ -136,8 +136,8 @@ let xdialog = (function() {
         }
 
         function destroy() {
-            okElement.removeEventListener('click', close);
-            closeElement.removeEventListener('click', close);
+            okButton.removeEventListener('click', close);
+            cancelButton.removeEventListener('click', close);
             overlay.removeEventListener('click', close);
 
             // all transition should end in 1000 ms

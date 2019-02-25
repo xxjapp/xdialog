@@ -9,7 +9,6 @@
             <ul>\
                 <li><strong>Read:</strong> dialogs will probably tell you something important so don\'t forget to read what they say.</li>\
                 <li><strong>Look:</strong> a dialog enjoys a certain kind of attention; just look at it and appreciate its presence.</li>\
-                <li><strong>Close:</strong> click on the button below to close the dialog.</li>\
             </ul>';
 
             xdialog.open({

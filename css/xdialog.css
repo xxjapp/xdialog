@@ -118,9 +118,8 @@ perspective effects (not including the dialogs and the overlay).
 .xd-content button {
     border: none;
     padding: 0.6em 1.2em;
-    background: #c0a99b;
-    color: #000;
-    font-family: 'Lato', Calibri, Arial, sans-serif;
+    background: #a4a8a4;
+    color: #ffffff;
     font-size: 0.8em;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -132,8 +131,12 @@ perspective effects (not including the dialogs and the overlay).
     outline: none;
 }
 
+.xd-content button.xd-ok {
+    background: #4caf50;
+}
+
 .xd-content button:hover {
-    background: #A5988B;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 
