@@ -26,6 +26,7 @@ let xdialog = (function() {
     }
 
     let defaultOptions = {
+        title: 'Dialog Title',
         effect: 'fade_in_and_scale'
     };
 
@@ -82,9 +83,13 @@ let xdialog = (function() {
 
         let html = '\
         <div class="xd-dialog ' + effect.class + '" id="' + dialogId + '">\
-            <div class="xd-content">\
-                <h3>Dialog</h3>\
-                <div>\
+            <div class="xd-content">';
+
+        if (options.title) {
+            html += '<h3>' + options.title + '</h3>';
+        }
+
+        html += '<div>\
                     <p>This is a dialog. You can do the following things with it:</p>\
                     <ul>\
                         <li><strong>Read:</strong> dialogs will probably tell you something important so don\'t forget to read what they say.</li>\

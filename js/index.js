@@ -5,6 +5,7 @@
         el.addEventListener('click', function() {
             let effect = el.getAttribute('data-effect');
             xdialog.open({
+                title: 'Title',
                 effect: effect
             });
         });
