@@ -14,14 +14,58 @@
 window.xdialog = (function() {
     function defaultOptions() {
         return {
+            // dialog title
+            // use null value to remove title
             title: 'Dialog Title',
+
+            // dialog body
+            // use null value to remove body
             body: '<p>Dialog body</p>',
-            style: '',
-            effect: 'fade_in_and_scale',
+
+            // dialog buttons,
+            // valid values is 'ok' and 'cancel' and
+            // html like '<button id="my-button-id" class="my-button-class">Button-text</button>'
             buttons: ['ok', 'cancel'],
+
+            // dialog extra style
+            // for example 'width: auto'
+            style: '',
+
+            // dialog show/hide effect, one of the following values
+            // - fade_in_and_scale'
+            // - slide_in_right'
+            // - slide_in_bottom'
+            // - newspaper'
+            // - fall'
+            // - side_fall'
+            // - sticky_up'
+            // - 3d_flip_horizontal'
+            // - 3d_flip_vertical'
+            // - 3d_sign'
+            // - super_scaled'
+            // - just_me'
+            // - 3d_slit'
+            // - 3d_rotate_bottom'
+            // - 3d_rotate_in_left'
+            // - blur'
+            // - let_me_in'
+            // - make_way'
+            // - slip_from_top'
+            //
+            // use null value to disable effect
+            effect: 'fade_in_and_scale',
+
+            // callback when OK button pressed
+            // return false to avoid to be closed
             onok: null,
+
+            // callback when Cancel button pressed
+            // return false to avoid to be closed
             oncancel: null,
-            ondestroy: null
+
+            // callback when dialog is about to be destroyed
+            // return false to avoid to be destroyed
+            ondestroy: null,
         };
     }
 
@@ -29,13 +73,17 @@ window.xdialog = (function() {
         return {
             title: null,
             body: '<p style="text-align: center">' + text + '</p>',
+            buttons: ['ok'],
             style: 'width: auto;',
             effect: 'sticky_up',
-            buttons: ['ok']
         };
     };
 
     function getEffect(effectName) {
+        if (!effectName) {
+            return { class: '', perspective: false };
+        }
+
         switch (effectName) {
             case 'fade_in_and_scale':
                 return { class: 'xd-effect-1', perspective: false };
@@ -186,7 +234,6 @@ window.xdialog = (function() {
         }
 
         function ok(e) {
-            // return false onok to avoid close
             if (options.onok && options.onok(e) === false) {
                 return;
             }
@@ -195,7 +242,6 @@ window.xdialog = (function() {
         }
 
         function cancel(e) {
-            // return false oncancel to avoid close
             if (options.oncancel && options.oncancel(e) === false) {
                 return;
             }
@@ -204,7 +250,6 @@ window.xdialog = (function() {
         }
 
         function destroy() {
-            // return false ondestroy to avoid destroy
             if (options.ondestroy && options.ondestroy() === false) {
                 return;
             }
