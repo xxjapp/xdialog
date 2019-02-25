@@ -97,7 +97,7 @@ window.xdialog = (function() {
         let id = newId();
         let html = '<div class="xd-overlay" id="' + id + '" style="z-index: ' + newZIndex() + '"></div>';
         document.body.insertAdjacentHTML('beforeend', html);
-        return document.querySelector('#' + id);
+        return document.getElementById(id);
     }
 
     function createDialog(options) {
@@ -136,7 +136,7 @@ window.xdialog = (function() {
         html += '</div></div>';
         document.body.insertAdjacentHTML('afterbegin', html);
 
-        let dialogElement = document.querySelector('#' + id);
+        let dialogElement = document.getElementById(id);
         dialogElement.effect = effect;
         return dialogElement;
     }
@@ -216,11 +216,11 @@ window.xdialog = (function() {
             }
 
             overlayElement.removeEventListener('click', close);
-            overlayElement.remove();
+            document.body.removeChild(overlayElement);
 
             // all transition should end in 1000 ms
             setTimeout(function() {
-                dialogElement.remove();
+                document.body.removeChild(dialogElement);
             }, 1000);
         }
 
