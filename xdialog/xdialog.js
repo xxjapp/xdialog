@@ -165,6 +165,7 @@ window.xdialog = (function() {
             // use setTimeout to enable css transition
             setTimeout(function() {
                 dialogElement.classList.add('xd-show');
+                overlayElement.classList.add('xd-show-overlay');
             }, 0);
 
             if (dialogElement.effect.perspective) {
@@ -181,6 +182,7 @@ window.xdialog = (function() {
             }
 
             dialogElement.classList.remove('xd-show');
+            overlayElement.classList.remove('xd-show-overlay');
         }
 
         function ok(e) {
@@ -216,11 +218,11 @@ window.xdialog = (function() {
             }
 
             overlayElement.removeEventListener('click', close);
-            document.body.removeChild(overlayElement);
 
             // all transition should end in 1000 ms
             setTimeout(function() {
                 document.body.removeChild(dialogElement);
+                document.body.removeChild(overlayElement);
             }, 1000);
         }
 

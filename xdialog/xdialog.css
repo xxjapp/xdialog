@@ -62,7 +62,7 @@ perspective effects (not including the dialogs and the overlay).
     transition: all 0.3s;
 }
 
-.xd-show~.xd-overlay {
+.xd-show-overlay {
     opacity: 1;
     visibility: visible;
 }
