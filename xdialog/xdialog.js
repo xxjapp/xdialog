@@ -217,20 +217,20 @@ window.xdialog = (function() {
         }
 
         // SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
-        function dragElement(element) {
+        function dragElement(dialogElement) {
             let pos1 = 0,
                 pos2 = 0,
                 pos3 = 0,
                 pos4 = 0;
-            let titleElement = document.querySelector('#' + element.id + ' .xd-title');
+            let titleElement = document.querySelector('#' + dialogElement.id + ' .xd-title');
 
             if (titleElement) {
                 // if present, the header is where you move the DIV from:
                 titleElement.onmousedown = dragMouseDown;
             } else {
                 // otherwise, move the DIV from anywhere inside the DIV:
-                element.onmousedown = dragMouseDown;
-                element.style.cursor = 'move';
+                dialogElement.onmousedown = dragMouseDown;
+                dialogElement.style.cursor = 'move';
             }
 
             function dragMouseDown(e) {
@@ -259,9 +259,9 @@ window.xdialog = (function() {
                 pos3 = e.clientX;
                 pos4 = e.clientY;
 
-                // set the element's new position:
-                element.style.top = (element.offsetTop - pos2) + 'px';
-                element.style.left = (element.offsetLeft - pos1) + 'px';
+                // set the dialogElement's new position:
+                dialogElement.style.top = (dialogElement.offsetTop - pos2) + 'px';
+                dialogElement.style.left = (dialogElement.offsetLeft - pos1) + 'px';
             }
 
             function closeDragElement() {
@@ -272,19 +272,19 @@ window.xdialog = (function() {
 
             // NOTE: fix for chrome blur on transform when dragging
             function fixChromeBlurOnDrag() {
-                if (element.style.transform === 'none') {
+                if (dialogElement.style.transform === 'none') {
                     return;
                 }
 
                 // 1. keep current position
                 // SEE: https://stackoverflow.com/a/11396681/1440174
-                let rect = element.getBoundingClientRect();
-                element.style.top = rect.top + 'px';
-                element.style.left = rect.left + 'px';
+                let rect = dialogElement.getBoundingClientRect();
+                dialogElement.style.top = rect.top + 'px';
+                dialogElement.style.left = rect.left + 'px';
 
                 // 2. set 'transform' to none, which let dialog blur in chrome)
-                // do not use element.classList.remove('xd-center'), other effects may also has transforms
-                element.style.transform = 'none';
+                // do not use dialogElement.classList.remove('xd-center'), other effects may also has transforms
+                dialogElement.style.transform = 'none';
             }
         }
 

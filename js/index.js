@@ -16,10 +16,10 @@
                 body: body,
                 effect: effect,
                 onok: function(e) {
-                    xdialog.alert('OK');
+                    xdialog.alert('OK button pressed');
                 },
                 oncancel: function(e) {
-                    xdialog.alert('Cancel');
+                    xdialog.alert('Cancel button pressed');
                 }
             });
         });
