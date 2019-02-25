@@ -42,6 +42,7 @@ window.xdialog = (function() {
         return {
             title: null,
             body: '<p style="text-align: center">' + text + '</p>',
+            style: 'width: auto;',
             effect: 'sticky_up',
             buttons: ['ok']
         };
@@ -224,17 +225,27 @@ window.xdialog = (function() {
                 pos4 = 0;
             let titleElement = document.querySelector('#' + dialogElement.id + ' .xd-title');
 
-            if (titleElement) {
-                // if present, the header is where you move the DIV from:
-                titleElement.onmousedown = dragMouseDown;
-            } else {
-                // otherwise, move the DIV from anywhere inside the DIV:
-                dialogElement.onmousedown = dragMouseDown;
-                dialogElement.style.cursor = 'move';
+            // if titleElement present, the header is where you move the dialog,
+            // otherwise, move the dialog from anywhere inside the dialog
+            let dragTarget = titleElement || dialogElement;
+
+            dragTarget.onmousedown = dragMouseDown;
+            dragTarget.style.cursor = 'move';
+
+            function isDraggableElement(element) {
+                // do not start drag when click on buttons and ...
+                if (element.tagName === 'BUTTON') {
+                    return false;
+                }
+
+                return dragTarget.contains(element);
             }
 
             function dragMouseDown(e) {
-                e = e || window.event;
+                if (!isDraggableElement(e.target)) {
+                    return;
+                }
+
                 e.preventDefault();
 
                 // get the mouse cursor position at startup:
@@ -250,7 +261,6 @@ window.xdialog = (function() {
             }
 
             function elementDrag(e) {
-                e = e || window.event;
                 e.preventDefault();
 
                 // calculate the new cursor position:
