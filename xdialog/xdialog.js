@@ -176,17 +176,6 @@ window.xdialog = (function() {
                 element.style.cursor = 'move';
             }
 
-            // NOTE: fix for chrome blur on transform when dragging
-
-            // 1. keep current position
-            // SEE: https://stackoverflow.com/a/11396681/1440174
-            let rect = element.getBoundingClientRect();
-            element.style.top = rect.top + 'px';
-            element.style.left = rect.left + 'px';
-
-            // 2. remove class xd-center (includes 'transform' which let dialog blur in chrome)
-            element.classList.remove('xd-center');
-
             function dragMouseDown(e) {
                 e = e || window.event;
                 e.preventDefault();
@@ -198,6 +187,9 @@ window.xdialog = (function() {
 
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
+
+                // lazy fix to keep dialog center when no drag
+                fixChromeBlurOnDrag();
             }
 
             function elementDrag(e) {
@@ -219,6 +211,23 @@ window.xdialog = (function() {
                 // stop moving when mouse button is released:
                 document.onmouseup = null;
                 document.onmousemove = null;
+            }
+
+            // NOTE: fix for chrome blur on transform when dragging
+            function fixChromeBlurOnDrag() {
+                if (element.style.transform === 'none') {
+                    return;
+                }
+
+                // 1. keep current position
+                // SEE: https://stackoverflow.com/a/11396681/1440174
+                let rect = element.getBoundingClientRect();
+                element.style.top = rect.top + 'px';
+                element.style.left = rect.left + 'px';
+
+                // 2. set 'transform' to none, which let dialog blur in chrome)
+                // do not use element.classList.remove('xd-center'), other effects may also has transforms
+                element.style.transform = 'none';
             }
         }
 
