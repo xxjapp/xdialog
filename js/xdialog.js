@@ -87,7 +87,7 @@ let xdialog = (function() {
             <div class="xd-content">';
 
         if (options.title) {
-            html += '<h3>' + options.title + '</h3>';
+            html += '<div class="xd-title">' + options.title + '</div>';
         }
 
         html += '<div>';

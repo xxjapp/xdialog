@@ -78,11 +78,11 @@ perspective effects (not including the dialogs and the overlay).
     margin: 0 auto;
 }
 
-.xd-content h3 {
+.xd-content .xd-title {
     margin: 0;
     padding: 0.4em;
     text-align: center;
-    font-size: 2.4em;
+    font-size: 1.6em;
     font-weight: 300;
     opacity: 0.8;
     background: rgba(0, 0, 0, 0.1);
@@ -462,7 +462,7 @@ perspective effects (not including the dialogs and the overlay).
     background: #fffffe;
 }
 
-.xd-effect-12 .xd-content h3, .xd-effect-12 .xd-content {
+.xd-effect-12 .xd-content .xd-title, .xd-effect-12 .xd-content {
     background: transparent;
 }
 
