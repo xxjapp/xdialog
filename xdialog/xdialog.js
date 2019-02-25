@@ -11,7 +11,7 @@
  * dialog2.hide();
  * dialog2.destroy();
  */
-let xdialog = (function() {
+window.xdialog = (function() {
     let overlay = null;
     init();
 
