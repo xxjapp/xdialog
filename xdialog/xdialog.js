@@ -93,6 +93,54 @@ window.xdialog = (function() {
         };
     })();
 
+    function createOverlay() {
+        let id = newId();
+        let html = '<div class="xd-overlay" id="' + id + '" style="z-index: ' + newZIndex() + '"></div>';
+        document.body.insertAdjacentHTML('beforeend', html);
+        return document.querySelector('#' + id);
+    }
+
+    function createDialog(options) {
+        let id = newId();
+        let effect = getEffect(options.effect);
+        let html = '<div class="xd-dialog xd-center ' + effect.class + '" id="' + id + '" style="z-index:' + newZIndex()  + ';' + options.style + '"><div class="xd-content">';
+
+        if (options.title) {
+            html += '<div class="xd-title">' + options.title + '</div>';
+        }
+
+        if (options.body) {
+            html += '<div class="xd-body">' + options.body + '</div>';
+        }
+
+        if (options.buttons) {
+            html += '<div class="xd-buttons">';
+
+            options.buttons.forEach(function(b) {
+                switch (b) {
+                    case 'ok':
+                        html += '<button class="xd-ok">OK</button>';
+                        break;
+                    case 'cancel':
+                        html += '<button class="xd-cancel">Cancel</button>';
+                        break;
+                    default:
+                        html += b;
+                        break;
+                }
+            })
+
+            html += '</div>';
+        }
+
+        html += '</div></div>';
+        document.body.insertAdjacentHTML('afterbegin', html);
+
+        let dialogElement = document.querySelector('#' + id);
+        dialogElement.effect = effect;
+        return dialogElement;
+    }
+
     function create(options) {
         options = Object.assign(defaultOptions(), options);
 
@@ -268,56 +316,6 @@ window.xdialog = (function() {
             destroy: destroy,
             close: close
         };
-    }
-
-    function createOverlay() {
-        let id = newId();
-        let html = '<div class="xd-overlay" id="' + id + '" style="z-index: ' + newZIndex() + '"></div>';
-        document.body.insertAdjacentHTML('beforeend', html);
-        return document.querySelector('#' + id);
-    }
-
-    function createDialog(options) {
-        let id = newId();
-        let effect = getEffect(options.effect);
-        let html = '<div class="xd-dialog xd-center ' + effect.class + '" id="' + id + '" style="z-index:' + newZIndex()  + ';' + options.style + '"><div class="xd-content">';
-
-        if (options.title) {
-            html += '<div class="xd-title">' + options.title + '</div>';
-        }
-
-        html += '<div>';
-
-        if (options.body) {
-            html += options.body;
-        }
-
-        if (options.buttons) {
-            html += '<div class="xd-buttons">';
-
-            options.buttons.forEach(function(b) {
-                switch (b) {
-                    case 'ok':
-                        html += '<button class="xd-ok">OK</button>';
-                        break;
-                    case 'cancel':
-                        html += '<button class="xd-cancel">Cancel</button>';
-                        break;
-                    default:
-                        html += b;
-                        break;
-                }
-            })
-
-            html += '</div>';
-        }
-
-        html += '</div></div></div>';
-        document.body.insertAdjacentHTML('afterbegin', html);
-
-        let dialogElement = document.querySelector('#' + id);
-        dialogElement.effect = effect;
-        return dialogElement;
     }
 
     function open(options) {

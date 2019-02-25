@@ -83,7 +83,7 @@ perspective effects (not including the dialogs and the overlay).
     margin: 0;
     padding: 0.4em;
     text-align: center;
-    font-size: 1.6em;
+    font-size: 1.25em;
     font-weight: 300;
     opacity: 0.8;
     background: rgba(0, 0, 0, 0.1);
@@ -91,28 +91,13 @@ perspective effects (not including the dialogs and the overlay).
     border-bottom: #ccc 1px solid;
 }
 
-.xd-content>div {
-    padding: 15px 40px 30px;
-    margin: 0;
+.xd-content .xd-body {
+    padding: 1em 2em;
     font-weight: 300;
-    font-size: 1.15em;
-}
-
-.xd-content>div p {
-    margin: 0;
-    padding: 10px 0;
-}
-
-.xd-content>div ul {
-    margin: 0;
-    padding: 0 0 30px 20px;
-}
-
-.xd-content>div ul li {
-    padding: 5px 0;
 }
 
 .xd-content .xd-buttons {
+    padding-bottom: 2em;
     display: flex;
     justify-content: center;
 }
