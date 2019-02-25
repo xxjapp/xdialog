@@ -25,14 +25,24 @@ window.xdialog = (function() {
         return document.querySelector('.xd-overlay');
     }
 
-    let defaultOptions = {
-        title: 'Dialog Title',
-        body: '<p>Dialog body<p>',
-        style: '',
-        effect: 'fade_in_and_scale',
-        onok: null,
-        oncancel: null,
-        ondestroy: null
+    function defaultOptions() {
+        return {
+            title: 'Dialog Title',
+            body: '<p>Dialog body</p>',
+            style: '',
+            effect: 'fade_in_and_scale',
+            onok: null,
+            oncancel: null,
+            ondestroy: null
+        };
+    }
+
+    function defaultAlertOptions(text) {
+        return {
+            title: null,
+            body: '<p style="text-align: center">' + text + '</p>',
+            effect: 'sticky_up'
+        };
     };
 
     function getEffect(effectName) {
@@ -81,7 +91,7 @@ window.xdialog = (function() {
     }
 
     function create(options) {
-        options = Object.assign(defaultOptions, options);
+        options = Object.assign(defaultOptions(), options);
 
         let dialogId = 'xd_' + Math.random().toString(36).substring(2);
         let effect = getEffect(options.effect);
@@ -266,9 +276,15 @@ window.xdialog = (function() {
         return dialog;
     }
 
+    function alert(text, options) {
+        options = Object.assign(defaultAlertOptions(text), options);
+        return open(options);
+    }
+
     return {
         create: create,
-        open: open
+        open: open,
+        alert: alert
     };
 })();
 
