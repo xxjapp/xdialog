@@ -28,7 +28,7 @@ window.xdialog = (function() {
             buttons: ['ok', 'cancel'],
 
             // dialog extra style
-            // for example 'width: auto'
+            // for example 'width: auto;'
             style: '',
 
             // dialog show/hide effect, one of the following values
