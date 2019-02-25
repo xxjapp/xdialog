@@ -84,7 +84,7 @@ window.xdialog = (function() {
         let effect = getEffect(options.effect);
 
         let html = '\
-        <div class="xd-dialog ' + effect.class + '" id="' + dialogId + '">\
+        <div class="xd-dialog xd-center ' + effect.class + '" id="' + dialogId + '">\
             <div class="xd-content">';
 
         if (options.title) {
