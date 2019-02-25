@@ -28,7 +28,8 @@ window.xdialog = (function() {
     let defaultOptions = {
         title: 'Dialog Title',
         body: '<p>Dialog body<p>',
-        effect: 'fade_in_and_scale'
+        effect: 'fade_in_and_scale',
+        ondestroy: null
     };
 
     function getEffect(effectName) {
@@ -137,6 +138,11 @@ window.xdialog = (function() {
         }
 
         function destroy() {
+            // return false ondestroy to avoid destroy
+            if (options.ondestroy && options.ondestroy() === false) {
+                return;
+            }
+
             okButton.removeEventListener('click', close);
             cancelButton.removeEventListener('click', close);
             overlay.removeEventListener('click', close);
@@ -216,6 +222,7 @@ window.xdialog = (function() {
     function open(options) {
         let dialog = create(options);
         dialog.show();
+        return dialog;
     }
 
     return {
