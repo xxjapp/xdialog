@@ -109,6 +109,7 @@ let xdialog = (function() {
         let okButton = dialogElement.querySelector('.xd-ok');
         let cancelButton = dialogElement.querySelector('.xd-cancel');
 
+        dragElement(dialogElement)
         overlay.addEventListener('click', close);
         okButton.addEventListener('click', close);
         cancelButton.addEventListener('click', close);
@@ -151,6 +152,59 @@ let xdialog = (function() {
             destroy();
         }
 
+        // SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
+        function dragElement(element) {
+            let pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
+            let titleElement = document.querySelector('#' + element.id + ' .xd-title');
+
+            if (titleElement) {
+                // if present, the header is where you move the DIV from:
+                titleElement.onmousedown = dragMouseDown;
+            } else {
+                // otherwise, move the DIV from anywhere inside the DIV:
+                element.onmousedown = dragMouseDown;
+                element.style.cursor = 'move';
+
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+
+                // set the element's new position:
+                element.style.top = (element.offsetTop - pos2) + 'px';
+                element.style.left = (element.offsetLeft - pos1) + 'px';
+            }
+
+            function closeDragElement() {
+                // stop moving when mouse button is released:
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
         return {
             show: show,
             hide: hide,
@@ -175,20 +229,20 @@ let xdialog = (function() {
 // SEE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
 if (typeof Object.assign != 'function') {
     // Must be writable: true, enumerable: false, configurable: true
-    Object.defineProperty(Object, "assign", {
+    Object.defineProperty(Object, 'assign', {
         value: function assign(target, varArgs) { // .length of function is 2
             'use strict';
             if (target == null) { // TypeError if undefined or null
                 throw new TypeError('Cannot convert undefined or null to object');
             }
 
-            var to = Object(target);
+            let to = Object(target);
 
-            for (var index = 1; index < arguments.length; index++) {
-                var nextSource = arguments[index];
+            for (let index = 1; index < arguments.length; index++) {
+                let nextSource = arguments[index];
 
                 if (nextSource != null) { // Skip over if undefined or null
-                    for (var nextKey in nextSource) {
+                    for (let nextKey in nextSource) {
                         // Avoid bugs when hasOwnProperty is shadowed
                         if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
                             to[nextKey] = nextSource[nextKey];

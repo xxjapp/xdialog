@@ -80,6 +80,7 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 .xd-content .xd-title {
+    cursor: move;
     margin: 0;
     padding: 0.4em;
     text-align: center;
