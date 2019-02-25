@@ -31,6 +31,7 @@ window.xdialog = (function() {
             body: '<p>Dialog body</p>',
             style: '',
             effect: 'fade_in_and_scale',
+            buttons: ['ok', 'cancel'],
             onok: null,
             oncancel: null,
             ondestroy: null
@@ -41,7 +42,8 @@ window.xdialog = (function() {
         return {
             title: null,
             body: '<p style="text-align: center">' + text + '</p>',
-            effect: 'sticky_up'
+            effect: 'sticky_up',
+            buttons: ['ok']
         };
     };
 
@@ -96,9 +98,7 @@ window.xdialog = (function() {
         let dialogId = 'xd_' + Math.random().toString(36).substring(2);
         let effect = getEffect(options.effect);
 
-        let html = '\
-        <div class="xd-dialog xd-center ' + effect.class + '" id="' + dialogId + '" style="' + options.style + '">\
-            <div class="xd-content">';
+        let html = '<div class="xd-dialog xd-center ' + effect.class + '" id="' + dialogId + '" style="' + options.style + '"><div class="xd-content">';
 
         if (options.title) {
             html += '<div class="xd-title">' + options.title + '</div>';
@@ -110,13 +110,27 @@ window.xdialog = (function() {
             html += options.body;
         }
 
-        html += '<div class="xd-buttons">\
-                        <button class="xd-ok">OK</button>\
-                        <button class="xd-cancel">Cancel</button>\
-                    </div>\
-                </div>\
-            </div>\
-        </div>';
+        if (options.buttons) {
+            html += '<div class="xd-buttons">';
+
+            options.buttons.forEach(function(b) {
+                switch (b) {
+                    case 'ok':
+                        html += '<button class="xd-ok">OK</button>';
+                        break;
+                    case 'cancel':
+                        html += '<button class="xd-cancel">Cancel</button>';
+                        break;
+                    default:
+                        html += b;
+                        break;
+                }
+            })
+
+            html += '</div>';
+        }
+
+        html += '</div></div></div>';
         document.body.insertAdjacentHTML('afterbegin', html);
 
         let dialogElement = document.querySelector('#' + dialogId);
@@ -124,8 +138,15 @@ window.xdialog = (function() {
         let cancelButton = dialogElement.querySelector('.xd-cancel');
 
         dragElement(dialogElement)
-        okButton.addEventListener('click', ok);
-        cancelButton.addEventListener('click', cancel);
+
+        if (okButton) {
+            okButton.addEventListener('click', ok);
+        }
+
+        if (cancelButton) {
+            cancelButton.addEventListener('click', cancel);
+        }
+
         overlay.addEventListener('click', cancel);
 
         function show() {
@@ -156,7 +177,6 @@ window.xdialog = (function() {
                 return;
             }
 
-
             close();
         }
 
@@ -175,8 +195,14 @@ window.xdialog = (function() {
                 return;
             }
 
-            okButton.removeEventListener('click', close);
-            cancelButton.removeEventListener('click', close);
+            if (okButton) {
+                okButton.removeEventListener('click', close);
+            }
+
+            if (cancelButton) {
+                cancelButton.removeEventListener('click', close);
+            }
+
             overlay.removeEventListener('click', close);
 
             // all transition should end in 1000 ms
