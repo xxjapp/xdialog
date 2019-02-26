@@ -273,9 +273,16 @@ window.xdialog = (function() {
 
             // all transition should end in 1000 ms
             setTimeout(function() {
+                let index = dialogs.indexOf(dialog);
+
+                if (index === -1) {
+                    // user may call destroy() or click OK/Cancle button multi times
+                    return;
+                }
+
+                dialogs.splice(index, 1);
                 document.body.removeChild(dialogElement);
                 document.body.removeChild(overlayElement);
-                dialogs.splice(dialogs.indexOf(dialog), 1);
             }, 1000);
         }
 
