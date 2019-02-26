@@ -12,6 +12,8 @@
  * dialog2.destroy();
  */
 window.xdialog = (function() {
+    let dialogs = [];
+
     function defaultOptions() {
         return {
             // dialog title
@@ -273,6 +275,7 @@ window.xdialog = (function() {
             setTimeout(function() {
                 document.body.removeChild(dialogElement);
                 document.body.removeChild(overlayElement);
+                dialogs.splice(dialogs.indexOf(dialog), 1);
             }, 1000);
         }
 
@@ -359,13 +362,17 @@ window.xdialog = (function() {
             dialogElement.style.transform = 'none';
         }
 
-        return {
+        let dialog = {
+            element: dialogElement,
             show: show,
             hide: hide,
             destroy: destroy,
             close: close,
             fixChromeTransformBlur: fixChromeTransformBlur
         };
+
+        dialogs.push(dialog);
+        return dialog;
     }
 
     function open(options) {
@@ -382,7 +389,8 @@ window.xdialog = (function() {
     return {
         create: create,
         open: open,
-        alert: alert
+        alert: alert,
+        dialogs: dialogs
     };
 })();
 
