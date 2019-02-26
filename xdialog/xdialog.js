@@ -151,7 +151,7 @@ window.xdialog = (function() {
     function createDialog(options) {
         let id = newId();
         let effect = getEffect(options.effect);
-        let html = '<div class="xd-dialog xd-center ' + effect.class + '" id="' + id + '" style="z-index:' + newZIndex()  + ';' + options.style + '"><div class="xd-content">';
+        let html = '<div class="xd-dialog xd-center ' + effect.class + '" id="' + id + '" style="z-index:' + newZIndex() + ';' + options.style + '"><div class="xd-content">';
 
         if (options.title) {
             html += '<div class="xd-title">' + options.title + '</div>';
@@ -219,6 +219,11 @@ window.xdialog = (function() {
             if (dialogElement.effect.perspective) {
                 document.documentElement.classList.add('xd-perspective');
             }
+
+            // all transition should end in 1000 ms
+            setTimeout(function() {
+                fixChromeTransformBlur();
+            }, 1000);
         }
 
         function hide() {
@@ -314,9 +319,6 @@ window.xdialog = (function() {
 
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
-
-                // lazy fix to keep dialog center when no drag
-                fixChromeBlurOnDrag();
             }
 
             function elementDrag(e) {
@@ -338,30 +340,31 @@ window.xdialog = (function() {
                 document.onmouseup = null;
                 document.onmousemove = null;
             }
+        }
 
-            // NOTE: fix for chrome blur on transform when dragging
-            function fixChromeBlurOnDrag() {
-                if (dialogElement.style.transform === 'none') {
-                    return;
-                }
-
-                // 1. keep current position
-                // SEE: https://stackoverflow.com/a/11396681/1440174
-                let rect = dialogElement.getBoundingClientRect();
-                dialogElement.style.top = rect.top + 'px';
-                dialogElement.style.left = rect.left + 'px';
-
-                // 2. set 'transform' to none, which let dialog blur in chrome)
-                // do not use dialogElement.classList.remove('xd-center'), other effects may also has transforms
-                dialogElement.style.transform = 'none';
+        // NOTE: fix chrome transform blur
+        function fixChromeTransformBlur() {
+            if (dialogElement.style.transform === 'none') {
+                return;
             }
+
+            // 1. keep current position
+            // SEE: https://stackoverflow.com/a/11396681/1440174
+            let rect = dialogElement.getBoundingClientRect();
+            dialogElement.style.top = rect.top + 'px';
+            dialogElement.style.left = rect.left + 'px';
+
+            // 2. set 'transform' to none, which let dialog blur in chrome)
+            // do not use dialogElement.classList.remove('xd-center'), other effects may also has transforms
+            dialogElement.style.transform = 'none';
         }
 
         return {
             show: show,
             hide: hide,
             destroy: destroy,
-            close: close
+            close: close,
+            fixChromeTransformBlur: fixChromeTransformBlur
         };
     }
 
