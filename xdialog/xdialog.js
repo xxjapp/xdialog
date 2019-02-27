@@ -259,12 +259,12 @@ window.xdialog = (function() {
                 if (buttonInfo) {
                     // predefined
                     if (typeof value === 'string' || value instanceof String) {
-                        // value is a string
+                        // value is a string, set text attribute
                         buttonInfo.text = value;
                         buttonInfos[name] = buttonInfo;
                     } else {
-                        // value is an object
-                        buttonInfos[name] = value;
+                        // value is an object, merge attributes
+                        buttonInfos[name] = Object.assign(buttonInfo, value);
                     }
                 } else {
                     // non-predefined
