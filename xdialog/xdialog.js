@@ -374,10 +374,24 @@ window.xdialog = (function() {
         }
 
         let dialog = {
+            // dialog.element
+            // dialog html element
             element: dialogElement,
+
+            // dialog.show()
+            // show dialog
             show: show,
+
+            // dialog.hide()
+            // hide dialog
             hide: hide,
+
+            // dialog.destroy()
+            // destroy dialog
             destroy: destroy,
+
+            // dialog.close()
+            // hide dialog and destory it
             close: close
         };
 
@@ -397,9 +411,20 @@ window.xdialog = (function() {
     }
 
     return {
+        // xdialog.create(options)
+        // create a dialog
         create: create,
+
+        // xdialog.open(options)
+        // create a dialog and show it
         open: open,
+
+        // xdialog.alert(text, options)
+        // create an alert dialog and show it
         alert: alert,
+
+        // xdialog.dialogs
+        // access all dialog instances
         dialogs: dialogs
     };
 })();
