@@ -76,6 +76,8 @@ window.xdialog = (function() {
             // true: force to fix
             // false: force not to fix (in some case dialog will be blur if fixed)
             // null: auto
+            //
+            // use may need to set this option when use user defined style
             fixChromeTransformBlur: null,
 
             // callback when OK button pressed
