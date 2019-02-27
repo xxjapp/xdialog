@@ -71,14 +71,12 @@ window.xdialog = (function() {
             // use null value to disable effect
             effect: 'fade_in_and_scale',
 
-            // fix dialog blur for chrome browser on transform
+            // fix dialog blur for chrome browser with/without transform and/or with/without perspective
             //
-            // true: force to fix
-            // false: force not to fix (in some case dialog will be blur if fixed)
-            // null: auto
+            // true: to fix
+            // false: not to fix
             //
-            // use may need to set this option when use user defined style
-            fixChromeTransformBlur: null,
+            fixChromeBlur: true,
 
             // callback when OK button pressed
             // return false to avoid to be closed
@@ -128,49 +126,49 @@ window.xdialog = (function() {
 
     function getEffect(effectName) {
         if (!effectName) {
-            return { class: '', perspective: false, fixChromeTransformBlur: true };
+            return { class: '', perspective: false };
         }
 
         switch (effectName) {
             case 'fade_in_and_scale':
             default:
-                return { class: 'xd-effect-1', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-1', perspective: false };
             case 'slide_in_right':
-                return { class: 'xd-effect-2', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-2', perspective: false };
             case 'slide_in_bottom':
-                return { class: 'xd-effect-3', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-3', perspective: false };
             case 'newspaper':
-                return { class: 'xd-effect-4', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-4', perspective: false };
             case 'fall':
-                return { class: 'xd-effect-5', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-5', perspective: false };
             case 'side_fall':
-                return { class: 'xd-effect-6', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-6', perspective: false };
             case 'sticky_up':
-                return { class: 'xd-effect-7', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-7', perspective: false };
             case '3d_flip_horizontal':
-                return { class: 'xd-effect-8', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-8', perspective: false };
             case '3d_flip_vertical':
-                return { class: 'xd-effect-9', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-9', perspective: false };
             case '3d_sign':
-                return { class: 'xd-effect-10', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-10', perspective: false };
             case 'super_scaled':
-                return { class: 'xd-effect-11', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-11', perspective: false };
             case 'just_me':
-                return { class: 'xd-effect-12', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-12', perspective: false };
             case '3d_slit':
-                return { class: 'xd-effect-13', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-13', perspective: false };
             case '3d_rotate_bottom':
-                return { class: 'xd-effect-14', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-14', perspective: false };
             case '3d_rotate_in_left':
-                return { class: 'xd-effect-15', perspective: false, fixChromeTransformBlur: false };
+                return { class: 'xd-effect-15', perspective: false };
             case 'blur':
-                return { class: 'xd-effect-16', perspective: false, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-16', perspective: false };
             case 'let_me_in':
-                return { class: 'xd-effect-17', perspective: true, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-17', perspective: true };
             case 'make_way':
-                return { class: 'xd-effect-18', perspective: true, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-18', perspective: true };
             case 'slip_from_top':
-                return { class: 'xd-effect-19', perspective: true, fixChromeTransformBlur: true };
+                return { class: 'xd-effect-19', perspective: true };
         }
     }
 
@@ -336,17 +334,18 @@ window.xdialog = (function() {
                 document.documentElement.classList.add('xd-perspective');
             }
 
-            if (options.fixChromeTransformBlur === true || options.fixChromeTransformBlur === null && dialogElement.effect.fixChromeTransformBlur) {
+            // NOTE: fix chrome blur
+            if (options.fixChromeBlur) {
                 if (!dialogElement.effect.class) {
-                    // fix chrome transform blur for no effect dialog
-                    fixChromeTransformBlur();
+                    // dialogs without effect
+                    fixChromeBlur();
                 } else {
                     dialogElement.addEventListener('transitionend', function listener(ev) {
                         if (ev.propertyName === 'transform') {
                             dialogElement.removeEventListener('transitionend', listener);
 
-                            // fix chrome transform blur on transform end
-                            fixChromeTransformBlur();
+                            // dialogs with effect on transform end
+                            fixChromeBlur();
                         }
                     });
                 }
@@ -354,6 +353,8 @@ window.xdialog = (function() {
         }
 
         function hide() {
+            unfixChromeBlur();
+
             if (dialogElement.effect.perspective) {
                 // all transition should end in 1000 ms
                 setTimeout(function() {
@@ -363,6 +364,26 @@ window.xdialog = (function() {
 
             dialogElement.classList.remove('xd-show');
             overlayElement.classList.remove('xd-show-overlay');
+        }
+
+        function fixChromeBlur() {
+            // 1. keep current position
+            // SEE: https://stackoverflow.com/a/11396681/1440174
+            let rect = dialogElement.getBoundingClientRect();
+            dialogElement.style.top = rect.top + 'px';
+            dialogElement.style.left = rect.left + 'px';
+
+            // 2. set 'transform' and 'perspective' to none, which may make dialog blurry in chrome browser
+            dialogElement.style.transform = 'none';
+            dialogElement.style.perspective = 'none';
+        }
+
+        function unfixChromeBlur() {
+            // remove inline transform and perspective
+            dialogElement.style.removeProperty('top');
+            dialogElement.style.removeProperty('left');
+            dialogElement.style.removeProperty('transform');
+            dialogElement.style.removeProperty('perspective');
         }
 
         function doOk(e) {
@@ -489,23 +510,6 @@ window.xdialog = (function() {
             }
         }
 
-        // NOTE: fix chrome transform blur
-        function fixChromeTransformBlur() {
-            if (dialogElement.style.transform === 'none') {
-                return;
-            }
-
-            // 1. keep current position
-            // SEE: https://stackoverflow.com/a/11396681/1440174
-            let rect = dialogElement.getBoundingClientRect();
-            dialogElement.style.top = rect.top + 'px';
-            dialogElement.style.left = rect.left + 'px';
-
-            // 2. set 'transform' to none, which let dialog blur in chrome)
-            // do not use dialogElement.classList.remove('xd-center'), other effects may also has transforms
-            dialogElement.style.transform = 'none';
-        }
-
         let dialog = {
             // dialog.element
             // dialog html element
@@ -527,9 +531,13 @@ window.xdialog = (function() {
             // hide dialog and destory it
             close: close,
 
-            // dialog.fixChromeTransformBlur()
-            // try to fix chrome transform blur
-            fixChromeTransformBlur: fixChromeTransformBlur
+            // dialog.fixChromeBlur()
+            // fix chrome blur
+            fixChromeBlur: fixChromeBlur,
+
+            // dialog.unfixChromeBlur()
+            // unfix chrome blur
+            unfixChromeBlur: unfixChromeBlur
         };
 
         dialogs.push(dialog);
