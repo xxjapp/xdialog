@@ -222,7 +222,7 @@ window.xdialog = (function() {
                 document.documentElement.classList.add('xd-perspective');
             }
 
-            // all transition should end in 1000 ms
+            // all transition should end in 1000 ms, timing?
             setTimeout(function() {
                 fixChromeTransformBlur();
             }, 1000);
@@ -374,8 +374,7 @@ window.xdialog = (function() {
             show: show,
             hide: hide,
             destroy: destroy,
-            close: close,
-            fixChromeTransformBlur: fixChromeTransformBlur
+            close: close
         };
 
         dialogs.push(dialog);
