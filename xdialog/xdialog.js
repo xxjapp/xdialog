@@ -31,9 +31,12 @@ window.xdialog = (function() {
             //  - predefined button name or user defined button html like
             //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
             // - object
-            //  - button name to button text(predefined) or button html(user defined) map like
+            //  - button name to button text(predefined) or button html(user defined) or attribute object map like
             // {
-            //     ok: '更新',
+            //     ok: {
+            //         name: '削除',
+            //         style: 'background:#f44336;'
+            //     },
             //     delete: '削除',
             //     cancel: 'キャンセル',
             //     other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
@@ -197,51 +200,7 @@ window.xdialog = (function() {
         }
 
         if (options.buttons) {
-            let buttonInfos = null;
-
-            if (Array.isArray(options.buttons)) {
-                buttonInfos = {};
-
-                options.buttons.forEach(function(name, i) {
-                    switch (name) {
-                        case 'ok':
-                            buttonInfos[name] = 'OK';
-                            break;
-                        case 'cancel':
-                            buttonInfos[name] = 'Cancel';
-                            break;
-                        case 'delete':
-                            buttonInfos[name] = 'Delete';
-                            break;
-                        default:
-                            buttonInfos['button' + i] = name;
-                            break;
-                    }
-                });
-            } else {
-                buttonInfos = options.buttons;
-            }
-
-            html += '<div class="xd-buttons">';
-
-            Object.keys(buttonInfos).forEach(function(name) {
-                switch (name) {
-                    case 'ok':
-                        html += '<button class="xd-ok">' + buttonInfos[name] + '</button>';
-                        break;
-                    case 'cancel':
-                        html += '<button class="xd-cancel">' + buttonInfos[name] + '</button>';
-                        break;
-                    case 'delete':
-                        html += '<button class="xd-delete">' + buttonInfos[name] + '</button>';
-                        break;
-                    default:
-                        html += buttonInfos[name];
-                        break;
-                }
-            });
-
-            html += '</div>';
+            html += createButtons(options);
         }
 
         html += '</div></div>';
@@ -250,6 +209,87 @@ window.xdialog = (function() {
         let dialogElement = document.getElementById(id);
         dialogElement.effect = effect;
         return dialogElement;
+    }
+
+    function predefinedButtonInfo(name) {
+        switch (name) {
+            case 'ok':
+                return {
+                    text: 'OK',
+                    class: 'xd-ok'
+                };
+            case 'cancel':
+                return {
+                    text: 'Cancel',
+                    class: 'xd-cancel'
+                };
+            case 'delete':
+                return {
+                    text: 'Delete',
+                    class: 'xd-delete'
+                };
+            default:
+                return null;
+        }
+    }
+
+    function createButtons(options) {
+        let html = '';
+        let buttonInfos = {};
+
+        if (Array.isArray(options.buttons)) {
+            options.buttons.forEach(function(name, i) {
+                let buttonInfo = predefinedButtonInfo(name);
+
+                if (buttonInfo) {
+                    // predefined
+                    buttonInfos[name] = buttonInfo;
+                } else {
+                    // non-predefined
+                    buttonInfos['button' + i] = {
+                        html: name // name is html
+                    };
+                }
+            });
+        } else {
+            Object.keys(options.buttons).forEach(function(name) {
+                let buttonInfo = predefinedButtonInfo(name);
+                let value = options.buttons[name];
+
+                if (buttonInfo) {
+                    // predefined
+                    if (typeof value === 'string' || value instanceof String) {
+                        // value is a string
+                        buttonInfo.text = value;
+                        buttonInfos[name] = buttonInfo;
+                    } else {
+                        // value is an object
+                        buttonInfos[name] = value;
+                    }
+                } else {
+                    // non-predefined
+                    buttonInfos[name] = {
+                        html: value
+                    };
+                }
+            });
+        }
+
+        html += '<div class="xd-buttons">';
+
+        Object.keys(buttonInfos).forEach(function(name) {
+            if (buttonInfos[name].html) {
+                // html defined
+                html += buttonInfos[name].html;
+            } else {
+                let style = buttonInfos[name].style || '';
+                html += '<button style="' + style + '" class="' + buttonInfos[name].class + '">' + buttonInfos[name].text + '</button>';
+            }
+        });
+
+        html += '</div>';
+
+        return html;
     }
 
     function create(options) {

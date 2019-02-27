@@ -81,7 +81,7 @@ perspective effects (not including the dialogs and the overlay).
 
 .xd-content .xd-title {
     margin: 0;
-    padding: 0.4em;
+    padding: 0.6em;
     text-align: center;
     font-size: 1.25em;
     font-weight: 300;
@@ -108,7 +108,6 @@ perspective effects (not including the dialogs and the overlay).
     padding: 0.6em 1.2em;
     background: #9e9e9e;
     color: #ffffff;
-    font-size: 0.8em;
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
