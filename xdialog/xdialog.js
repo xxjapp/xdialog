@@ -91,12 +91,28 @@ window.xdialog = (function() {
 
         return {
             title: null,
-            body: '<p style="text-align: center">' + text + '</p>',
+            body: '<p style="text-align:center;">' + text + '</p>',
             buttons: ['ok'],
-            style: 'width: auto;',
+            style: 'width:auto;',
             effect: 'sticky_up',
         };
-    };
+    }
+
+    function defaultConfirmOptions(text, onyes) {
+        text = text || 'Are you sure?';
+
+        return {
+            title: 'Confirm',
+            body: '<p style="text-align:center;">' + text + '</p>',
+            buttons: {
+                ok: 'Yes',
+                cancel: 'No'
+            },
+            style: 'width:auto;',
+            effect: '3d_sign',
+            onok: onyes,
+        };
+    }
 
     function getEffect(effectName) {
         if (!effectName) {
@@ -162,7 +178,7 @@ window.xdialog = (function() {
 
     function createOverlay() {
         let id = newId();
-        let html = '<div class="xd-overlay" id="' + id + '" style="z-index: ' + newZIndex() + '"></div>';
+        let html = '<div class="xd-overlay" id="' + id + '" style="z-index:' + newZIndex() + ';"></div>';
         document.body.insertAdjacentHTML('beforeend', html);
         return document.getElementById(id);
     }
@@ -472,6 +488,11 @@ window.xdialog = (function() {
         return open(options);
     }
 
+    function confirm(text, onyes, options) {
+        options = Object.assign(defaultConfirmOptions(text, onyes), options);
+        return open(options);
+    }
+
     return {
         // xdialog.create(options)
         // create a dialog
@@ -484,6 +505,10 @@ window.xdialog = (function() {
         // xdialog.alert(text, options)
         // create an alert dialog and show it
         alert: alert,
+
+        // xdialog.confirm(text, onyes, options)
+        // create a confirm dialog and show it
+        confirm: confirm,
 
         // xdialog.dialogs
         // access all dialog instances
