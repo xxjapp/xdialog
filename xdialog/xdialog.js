@@ -72,6 +72,8 @@ window.xdialog = (function() {
     }
 
     function defaultAlertOptions(text) {
+        text = text || 'alert text';
+
         return {
             title: null,
             body: '<p style="text-align: center">' + text + '</p>',
