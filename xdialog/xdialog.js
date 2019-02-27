@@ -224,7 +224,7 @@ window.xdialog = (function() {
 
             dialogElement.addEventListener('transitionend', function listener(ev) {
                 if (ev.propertyName === 'transform') {
-                    dialogElement.removeEventListener(listener);
+                    dialogElement.removeEventListener('transitionend', listener);
 
                     // fix chrome transform blur on transform end
                     fixChromeTransformBlur();
