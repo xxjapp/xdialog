@@ -353,7 +353,7 @@ window.xdialog = (function() {
         }
 
         function hide() {
-            unfixChromeBlur();
+            restorePerspectiive();
 
             if (dialogElement.effect.perspective) {
                 // all transition should end in 1000 ms
@@ -378,11 +378,10 @@ window.xdialog = (function() {
             dialogElement.style.perspective = 'none';
         }
 
-        function unfixChromeBlur() {
-            // remove inline transform and perspective
-            dialogElement.style.removeProperty('top');
-            dialogElement.style.removeProperty('left');
-            dialogElement.style.removeProperty('transform');
+        // restore perspective to enable 3D transform
+        function restorePerspectiive() {
+            // remove inline perspective
+            // NOTE: do not remove 'top', 'left' and 'transform' to keep dialog position after user's drag
             dialogElement.style.removeProperty('perspective');
         }
 
@@ -533,11 +532,7 @@ window.xdialog = (function() {
 
             // dialog.fixChromeBlur()
             // fix chrome blur
-            fixChromeBlur: fixChromeBlur,
-
-            // dialog.unfixChromeBlur()
-            // unfix chrome blur
-            unfixChromeBlur: unfixChromeBlur
+            fixChromeBlur: fixChromeBlur
         };
 
         dialogs.push(dialog);
