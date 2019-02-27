@@ -25,8 +25,19 @@ window.xdialog = (function() {
             body: '<p>Dialog body</p>',
 
             // dialog buttons,
-            // valid values is 'ok' and 'cancel' and
-            // html like '<button id="my-button-id" class="my-button-class">Button-text</button>'
+            //
+            // valid values:
+            // - array
+            //  - predefined button name or user defined button html like
+            //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
+            // - object
+            //  - button name to button text(predefined) or button html(user defined) map like
+            // {
+            //     ok: '更新',
+            //     delete: '削除',
+            //     cancel: 'キャンセル',
+            //     other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
+            // }
             buttons: ['ok', 'cancel'],
 
             // dialog extra style
@@ -64,6 +75,10 @@ window.xdialog = (function() {
             // callback when Cancel button pressed
             // return false to avoid to be closed
             oncancel: null,
+
+            // callback when Delete button pressed
+            // return false to avoid to be closed
+            ondelete: null,
 
             // callback when dialog is about to be destroyed
             // return false to avoid to be destroyed
@@ -166,21 +181,49 @@ window.xdialog = (function() {
         }
 
         if (options.buttons) {
+            let buttonInfos = null;
+
+            if (Array.isArray(options.buttons)) {
+                buttonInfos = {};
+
+                options.buttons.forEach(function(name, i) {
+                    switch (name) {
+                        case 'ok':
+                            buttonInfos[name] = 'OK';
+                            break;
+                        case 'cancel':
+                            buttonInfos[name] = 'Cancel';
+                            break;
+                        case 'delete':
+                            buttonInfos[name] = 'Delete';
+                            break;
+                        default:
+                            buttonInfos['button' + i] = name;
+                            break;
+                    }
+                });
+            } else {
+                buttonInfos = options.buttons;
+            }
+
             html += '<div class="xd-buttons">';
 
-            options.buttons.forEach(function(b) {
-                switch (b) {
+            Object.keys(buttonInfos).forEach(function(name) {
+                switch (name) {
                     case 'ok':
-                        html += '<button class="xd-ok">OK</button>';
+                        html += '<button class="xd-ok">' + buttonInfos[name] + '</button>';
                         break;
                     case 'cancel':
-                        html += '<button class="xd-cancel">Cancel</button>';
+                        html += '<button class="xd-cancel">' + buttonInfos[name] + '</button>';
+                        break;
+                    case 'delete':
+                        html += '<button class="xd-delete">' + buttonInfos[name] + '</button>';
                         break;
                     default:
-                        html += b;
+                        html += buttonInfos[name];
                         break;
                 }
-            })
+            });
 
             html += '</div>';
         }
@@ -200,18 +243,23 @@ window.xdialog = (function() {
         let dialogElement = createDialog(options);
         let okButton = dialogElement.querySelector('.xd-ok');
         let cancelButton = dialogElement.querySelector('.xd-cancel');
+        let deleteButton = dialogElement.querySelector('.xd-delete');
 
         dragElement(dialogElement)
 
         if (okButton) {
-            okButton.addEventListener('click', ok);
+            okButton.addEventListener('click', doOk);
         }
 
         if (cancelButton) {
-            cancelButton.addEventListener('click', cancel);
+            cancelButton.addEventListener('click', doCancel);
         }
 
-        overlayElement.addEventListener('click', cancel);
+        if (deleteButton) {
+            deleteButton.addEventListener('click', doDelete);
+        }
+
+        overlayElement.addEventListener('click', doCancel);
 
         function show() {
             // use setTimeout to enable css transition
@@ -246,7 +294,7 @@ window.xdialog = (function() {
             overlayElement.classList.remove('xd-show-overlay');
         }
 
-        function ok(e) {
+        function doOk(e) {
             if (options.onok && options.onok(e) === false) {
                 return;
             }
@@ -254,8 +302,16 @@ window.xdialog = (function() {
             close();
         }
 
-        function cancel(e) {
+        function doCancel(e) {
             if (options.oncancel && options.oncancel(e) === false) {
+                return;
+            }
+
+            close();
+        }
+
+        function doDelete(e) {
+            if (options.ondelete && options.ondelete(e) === false) {
                 return;
             }
 
@@ -268,21 +324,25 @@ window.xdialog = (function() {
             }
 
             if (okButton) {
-                okButton.removeEventListener('click', close);
+                okButton.removeEventListener('click', doOk);
             }
 
             if (cancelButton) {
-                cancelButton.removeEventListener('click', close);
+                cancelButton.removeEventListener('click', doCancel);
             }
 
-            overlayElement.removeEventListener('click', close);
+            if (deleteButton) {
+                deleteButton.removeEventListener('click', doDelete);
+            }
+
+            overlayElement.removeEventListener('click', doCancel);
 
             // all transition should end in 1000 ms
             setTimeout(function() {
                 let index = dialogs.indexOf(dialog);
 
                 if (index === -1) {
-                    // user may call destroy() or click OK/Cancle button multi times
+                    // user may call destroy() or click OK/Cancle/Delete button multi times
                     return;
                 }
 
