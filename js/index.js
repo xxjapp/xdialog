@@ -12,7 +12,7 @@
             </ul>';
 
             xdialog.open({
-                title: 'Title',
+                title: el.textContent,
                 body: body,
                 effect: effect,
                 onok: function(e) {
