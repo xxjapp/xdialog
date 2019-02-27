@@ -17,9 +17,7 @@
                 effect: effect,
                 onok: function(e) {
                     xdialog.alert('OK button pressed');
-                },
-                oncancel: function(e) {
-                    xdialog.alert('Cancel button pressed');
+                    return false;
                 }
             });
         });
