@@ -336,19 +336,11 @@ window.xdialog = (function() {
 
             // NOTE: fix chrome blur
             if (options.fixChromeBlur) {
-                if (!dialogElement.effect.class) {
-                    // dialogs without effect
+                // all transition should end in 1000 ms
+                // event transitionend not always usable, so use setTimeout
+                setTimeout(function() {
                     fixChromeBlur();
-                } else {
-                    dialogElement.addEventListener('transitionend', function listener(ev) {
-                        if (ev.propertyName === 'transform') {
-                            dialogElement.removeEventListener('transitionend', listener);
-
-                            // dialogs with effect on transform end
-                            fixChromeBlur();
-                        }
-                    });
-                }
+                }, 1000);
             }
         }
 
