@@ -456,7 +456,7 @@ window.xdialog = (function() {
                 pos2 = 0,
                 pos3 = 0,
                 pos4 = 0;
-            let titleElement = document.querySelector('#' + dialogElement.id + ' .xd-title');
+            let titleElement = dialogElement.querySelector('.xd-title');
 
             // if titleElement present, the header is where you move the dialog,
             // otherwise, move the dialog from anywhere inside the dialog
