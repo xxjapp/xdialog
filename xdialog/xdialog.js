@@ -126,49 +126,49 @@ window.xdialog = (function() {
 
     function getEffect(effectName) {
         if (!effectName) {
-            return { class: '', perspective: false };
+            return { clazz: '', perspective: false };
         }
 
         switch (effectName) {
             case 'fade_in_and_scale':
             default:
-                return { class: 'xd-effect-1', perspective: false };
+                return { clazz: 'xd-effect-1', perspective: false };
             case 'slide_in_right':
-                return { class: 'xd-effect-2', perspective: false };
+                return { clazz: 'xd-effect-2', perspective: false };
             case 'slide_in_bottom':
-                return { class: 'xd-effect-3', perspective: false };
+                return { clazz: 'xd-effect-3', perspective: false };
             case 'newspaper':
-                return { class: 'xd-effect-4', perspective: false };
+                return { clazz: 'xd-effect-4', perspective: false };
             case 'fall':
-                return { class: 'xd-effect-5', perspective: false };
+                return { clazz: 'xd-effect-5', perspective: false };
             case 'side_fall':
-                return { class: 'xd-effect-6', perspective: false };
+                return { clazz: 'xd-effect-6', perspective: false };
             case 'sticky_up':
-                return { class: 'xd-effect-7', perspective: false };
+                return { clazz: 'xd-effect-7', perspective: false };
             case '3d_flip_horizontal':
-                return { class: 'xd-effect-8', perspective: false };
+                return { clazz: 'xd-effect-8', perspective: false };
             case '3d_flip_vertical':
-                return { class: 'xd-effect-9', perspective: false };
+                return { clazz: 'xd-effect-9', perspective: false };
             case '3d_sign':
-                return { class: 'xd-effect-10', perspective: false };
+                return { clazz: 'xd-effect-10', perspective: false };
             case 'super_scaled':
-                return { class: 'xd-effect-11', perspective: false };
+                return { clazz: 'xd-effect-11', perspective: false };
             case 'just_me':
-                return { class: 'xd-effect-12', perspective: false };
+                return { clazz: 'xd-effect-12', perspective: false };
             case '3d_slit':
-                return { class: 'xd-effect-13', perspective: false };
+                return { clazz: 'xd-effect-13', perspective: false };
             case '3d_rotate_bottom':
-                return { class: 'xd-effect-14', perspective: false };
+                return { clazz: 'xd-effect-14', perspective: false };
             case '3d_rotate_in_left':
-                return { class: 'xd-effect-15', perspective: false };
+                return { clazz: 'xd-effect-15', perspective: false };
             case 'blur':
-                return { class: 'xd-effect-16', perspective: false };
+                return { clazz: 'xd-effect-16', perspective: false };
             case 'let_me_in':
-                return { class: 'xd-effect-17', perspective: true };
+                return { clazz: 'xd-effect-17', perspective: true };
             case 'make_way':
-                return { class: 'xd-effect-18', perspective: true };
+                return { clazz: 'xd-effect-18', perspective: true };
             case 'slip_from_top':
-                return { class: 'xd-effect-19', perspective: true };
+                return { clazz: 'xd-effect-19', perspective: true };
         }
     }
 
@@ -202,7 +202,7 @@ window.xdialog = (function() {
 
         dialogElement.id = newId();
         dialogElement.effect = effect;
-        dialogElement.setAttribute('class', 'xd-dialog xd-center ' + effect.class);
+        dialogElement.setAttribute('class', 'xd-dialog xd-center ' + effect.clazz);
         dialogElement.setAttribute('style', 'z-index:' + newZIndex() + ';' + options.style);
 
         // create innerHTML
@@ -232,17 +232,17 @@ window.xdialog = (function() {
             case 'ok':
                 return {
                     text: 'OK',
-                    class: 'xd-ok'
+                    clazz: 'xd-ok'
                 };
             case 'cancel':
                 return {
                     text: 'Cancel',
-                    class: 'xd-cancel'
+                    clazz: 'xd-cancel'
                 };
             case 'delete':
                 return {
                     text: 'Delete',
-                    class: 'xd-delete'
+                    clazz: 'xd-delete'
                 };
             default:
                 return null;
@@ -299,7 +299,7 @@ window.xdialog = (function() {
                 html += buttonInfos[name].html;
             } else {
                 let style = buttonInfos[name].style || '';
-                html += '<button style="' + style + '" class="' + buttonInfos[name].class + '">' + buttonInfos[name].text + '</button>';
+                html += '<button style="' + style + '" class="' + buttonInfos[name].clazz + '">' + buttonInfos[name].text + '</button>';
             }
         });
 
