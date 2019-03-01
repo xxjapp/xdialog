@@ -196,27 +196,34 @@ window.xdialog = (function() {
     }
 
     function createDialog(options) {
-        let id = newId();
+        // create element
+        let dialogElement = document.createElement('div');
         let effect = getEffect(options.effect);
-        let html = '<div class="xd-dialog xd-center ' + effect.class + '" id="' + id + '" style="z-index:' + newZIndex() + ';' + options.style + '"><div class="xd-content">';
+
+        dialogElement.id = newId();
+        dialogElement.effect = effect;
+        dialogElement.setAttribute('class', 'xd-dialog xd-center ' + effect.class);
+        dialogElement.setAttribute('style', 'z-index:' + newZIndex() + ';' + options.style);
+
+        // create innerHTML
+        let innerHTML = '<div class="xd-content">';
 
         if (options.title) {
-            html += '<div class="xd-title">' + options.title + '</div>';
+            innerHTML += '<div class="xd-title">' + options.title + '</div>';
         }
 
         if (options.body) {
-            html += '<div class="xd-body">' + options.body + '</div>';
+            innerHTML += '<div class="xd-body">' + options.body + '</div>';
         }
 
         if (options.buttons) {
-            html += createButtons(options);
+            innerHTML += createButtons(options);
         }
 
-        html += '</div></div>';
-        document.body.insertAdjacentHTML('afterbegin', html);
+        innerHTML += '</div>';
+        dialogElement.innerHTML = innerHTML;
 
-        let dialogElement = document.getElementById(id);
-        dialogElement.effect = effect;
+        document.body.insertAdjacentElement('afterbegin', dialogElement);
         return dialogElement;
     }
 
