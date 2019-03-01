@@ -388,11 +388,25 @@ window.xdialog = (function() {
 
                 // NOTE: fix chrome blur
                 if (options.fixChromeBlur) {
-                    // all transition should end in 1000 ms
-                    // event transitionend not always usable, so use setTimeout
-                    setTimeout(function() {
+                    if (!dialogElement.effect.clazz) {
+                        // dialogs without effect
                         fixChromeBlur();
-                    }, 1000);
+                    } else {
+                        dialogElement.addEventListener('transitionend', function listener(ev) {
+                            if (ev.propertyName === 'transform') {
+                                dialogElement.removeEventListener('transitionend', listener);
+
+                                // dialogs with effect on transform end
+                                fixChromeBlur();
+                            }
+                        });
+
+                        // event transitionend not always reliable, so also use setTimeout
+                        // all transition should end in 1000 ms
+                        setTimeout(function() {
+                            fixChromeBlur();
+                        }, 1000);
+                    }
                 }
             }
         }
@@ -412,6 +426,10 @@ window.xdialog = (function() {
         }
 
         function fixChromeBlur() {
+            if (dialogElement.style.transform === 'none') {
+                return;
+            }
+
             // 1. keep current position
             // SEE: https://stackoverflow.com/a/11396681/1440174
             let rect = dialogElement.getBoundingClientRect();
