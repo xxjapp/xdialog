@@ -186,10 +186,13 @@ window.xdialog = (function() {
     })();
 
     function createOverlay() {
-        let id = newId();
-        let html = '<div class="xd-overlay" id="' + id + '" style="z-index:' + newZIndex() + ';"></div>';
-        document.body.insertAdjacentHTML('beforeend', html);
-        return document.getElementById(id);
+        let overlayElement = document.createElement('div');
+
+        overlayElement.classList.add('xd-overlay');
+        overlayElement.style['z-index'] = newZIndex();
+
+        document.body.insertAdjacentElement('beforeend', overlayElement);
+        return overlayElement;
     }
 
     function createDialog(options) {
