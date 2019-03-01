@@ -333,24 +333,67 @@ window.xdialog = (function() {
 
         overlayElement.addEventListener('click', doCancel);
 
-        function show() {
-            // use setTimeout to enable css transition
-            setTimeout(function() {
-                dialogElement.classList.add('xd-show');
-                overlayElement.classList.add('xd-show-overlay');
-            }, 0);
+        // load all iframes before showing
+        let preparedForShow = false;
+        handleIFrame();
 
-            if (dialogElement.effect.perspective) {
-                document.documentElement.classList.add('xd-perspective');
+        function handleIFrame() {
+            let iframes = dialogElement.querySelectorAll('iframe');
+
+            if (iframes.length === 0) {
+                preparedForShow = true;
+                return;
             }
 
-            // NOTE: fix chrome blur
-            if (options.fixChromeBlur) {
-                // all transition should end in 1000 ms
-                // event transitionend not always usable, so use setTimeout
+            let loadCount = 0;
+
+            [].slice.call(iframes).forEach(function(iframe) {
+                iframe.addEventListener('load', function listener(ev) {
+                    iframe.removeEventListener('load', listener);
+                    loadCount += 1;
+
+                    if (loadCount === iframes.length) {
+                        preparedForShow = true;
+                    }
+                })
+            });
+        }
+
+        function show() {
+            if (preparedForShow) {
+                showMe();
+            } else {
+                // wait for preparedForShow
+                setTimeout(checkStatus, 0);
+            }
+
+            function checkStatus() {
+                if (preparedForShow) {
+                    showMe();
+                } else {
+                    setTimeout(checkStatus, 0);
+                }
+            }
+
+            function showMe() {
+                // use setTimeout to enable css transition
                 setTimeout(function() {
-                    fixChromeBlur();
-                }, 1000);
+                    dialogElement.classList.add('xd-show');
+                    overlayElement.classList.add('xd-show-overlay');
+                }, 0);
+
+                if (dialogElement.effect.perspective) {
+                    document.documentElement.classList.add('xd-perspective');
+                }
+
+                // NOTE: fix chrome blur
+                if (options.fixChromeBlur) {
+                    // all transition should end in 1000 ms
+                    // event transitionend not always usable, so use setTimeout
+                    setTimeout(function() {
+                        fixChromeBlur();
+                    }, 1000);
+                }
             }
         }
 
