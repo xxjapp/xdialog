@@ -13,6 +13,7 @@
  */
 window.xdialog = (function() {
     let dialogs = [];
+    let perspectiveCounter = 0;
 
     function defaultOptions() {
         return {
@@ -383,7 +384,11 @@ window.xdialog = (function() {
                 }, 0);
 
                 if (dialogElement.effect.perspective) {
-                    document.documentElement.classList.add('xd-perspective');
+                    perspectiveCounter++;
+
+                    if (perspectiveCounter === 1) {
+                        document.documentElement.classList.add('xd-perspective');
+                    }
                 }
 
                 // NOTE: fix chrome blur
@@ -417,7 +422,11 @@ window.xdialog = (function() {
             if (dialogElement.effect.perspective) {
                 // all transition should end in 1000 ms
                 setTimeout(function() {
-                    document.documentElement.classList.remove('xd-perspective');
+                    if (perspectiveCounter === 1) {
+                        document.documentElement.classList.remove('xd-perspective');
+                    }
+
+                    perspectiveCounter--;
                 }, 1000);
             }
 
