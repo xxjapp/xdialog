@@ -905,9 +905,15 @@ perspective effects (not including the dialogs and the overlay).
 
 /* Effect 19:  Slip in from the top with perspective on xd-container */
 
-.xd-show.xd-effect-19~.xd-container {
+.xd-effect-19~.xd-container {
     height: 100%;
     overflow: hidden;
+}
+
+.xd-effect-19~.xd-overlay {
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
 }
 
 .xd-show.xd-effect-19~.xd-overlay {
@@ -916,16 +922,44 @@ perspective effects (not including the dialogs and the overlay).
     transition: all 0.5s;
 }
 
-.xd-show.xd-effect-19~.xd-container, .xd-show.xd-effect-19~.xd-overlay {
+.xd-effect-19~.xd-container, .xd-effect-19~.xd-overlay {
     -webkit-transform-style: preserve-3d;
-    -webkit-transform-origin: 50% 100%;
-    -webkit-animation: OpenTop 0.5s forwards ease-in;
     -moz-transform-style: preserve-3d;
-    -moz-transform-origin: 50% 100%;
-    -moz-animation: OpenTop 0.5s forwards ease-in;
     transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 100%;
+    -moz-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
+    -webkit-animation: OpenTop2 0.5s 0.1s backwards ease-out;
+    -moz-animation: OpenTop2 0.5s 0.1s backwards ease-out;
+    animation: OpenTop2 0.5s 0.1s backwards ease-out;
+}
+
+.xd-show.xd-effect-19~.xd-container, .xd-show.xd-effect-19~.xd-overlay {
+    -webkit-animation: OpenTop 0.5s forwards ease-in;
+    -moz-animation: OpenTop 0.5s forwards ease-in;
     animation: OpenTop 0.5s forwards ease-in;
+}
+
+.xd-effect-19 .xd-content {
+    -webkit-transform: translateY(-200%);
+    -moz-transform: translateY(-200%);
+    -ms-transform: translateY(-200%);
+    transform: translateY(-200%);
+    opacity: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.xd-show.xd-effect-19 .xd-content {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
 }
 
 @-webkit-keyframes OpenTop {
@@ -949,23 +983,33 @@ perspective effects (not including the dialogs and the overlay).
     }
 }
 
-.xd-effect-19 .xd-content {
-    -webkit-transform: translateY(-200%);
-    -moz-transform: translateY(-200%);
-    -ms-transform: translateY(-200%);
-    transform: translateY(-200%);
-    opacity: 0;
-    -webkit-transition: all 0.5s 0.1s;
-    -moz-transition: all 0.5s 0.1s;
-    transition: all 0.5s 0.1s;
+@-webkit-keyframes OpenTop2 {
+    0% {
+        -webkit-animation-timing-function: ease-in;
+    }
+    50% {
+        -webkit-transform: rotateX(10deg);
+    }
 }
 
-.xd-show.xd-effect-19 .xd-content {
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-    opacity: 1;
+@-moz-keyframes OpenTop2 {
+    0% {
+        -moz-animation-timing-function: ease-in;
+    }
+    50% {
+        -moz-transform: rotateX(10deg);
+        -moz-animation-timing-function: ease-out;
+    }
+}
+
+@keyframes OpenTop2 {
+    0% {
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: rotateX(10deg);
+        animation-timing-function: ease-out;
+    }
 }
 
 @media screen and (max-width: 32em) {
