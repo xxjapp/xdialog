@@ -379,17 +379,17 @@ window.xdialog = (function() {
             function showMe() {
                 // use setTimeout to enable css transition
                 setTimeout(function() {
+                    if (dialogElement.effect.perspective) {
+                        perspectiveCounter++;
+
+                        if (perspectiveCounter === 1) {
+                            document.documentElement.classList.add('xd-perspective');
+                        }
+                    }
+
                     dialogElement.classList.add('xd-show');
                     overlayElement.classList.add('xd-show-overlay');
                 }, 0);
-
-                if (dialogElement.effect.perspective) {
-                    perspectiveCounter++;
-
-                    if (perspectiveCounter === 1) {
-                        document.documentElement.classList.add('xd-perspective');
-                    }
-                }
 
                 // NOTE: fix chrome blur
                 if (options.fixChromeBlur) {

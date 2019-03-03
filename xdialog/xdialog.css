@@ -767,9 +767,15 @@ perspective effects (not including the dialogs and the overlay).
 
 /* Effect 18:  Slide from right with perspective on xd-container */
 
-.xd-show.xd-effect-18~.xd-container {
+.xd-effect-18~.xd-container {
     height: 100%;
     overflow: hidden;
+}
+
+.xd-effect-18~.xd-overlay {
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
 }
 
 .xd-show.xd-effect-18~.xd-overlay {
@@ -778,19 +784,50 @@ perspective effects (not including the dialogs and the overlay).
     transition: all 0.5s;
 }
 
-.xd-show.xd-effect-18~.xd-container, .xd-show.xd-effect-18~.xd-overlay {
+.xd-effect-18~.xd-container, .xd-effect-18~.xd-overlay {
     -webkit-transform-style: preserve-3d;
-    -webkit-transform-origin: 0% 50%;
-    -webkit-animation: rotateRightSideFirst 0.5s forwards ease-in;
     -moz-transform-style: preserve-3d;
-    -moz-transform-origin: 0% 50%;
-    -moz-animation: rotateRightSideFirst 0.5s forwards ease-in;
     transform-style: preserve-3d;
+    -webkit-transform-origin: 0% 50%;
+    -moz-transform-origin: 0% 50%;
     transform-origin: 0% 50%;
+    -webkit-animation: rotateRightSideFirst2 0.5s 0.1s backwards ease-out;
+    -moz-animation: rotateRightSideFirst2 0.5s 0.1s backwards ease-out;
+    animation: rotateRightSideFirst2 0.5s 0.1s backwards ease-out;
+}
+
+.xd-show.xd-effect-18~.xd-container, .xd-show.xd-effect-18~.xd-overlay {
+    -webkit-animation: rotateRightSideFirst 0.5s forwards ease-in;
+    -moz-animation: rotateRightSideFirst 0.5s forwards ease-in;
     animation: rotateRightSideFirst 0.5s forwards ease-in;
 }
 
+.xd-effect-18 .xd-content {
+    -webkit-transform: translateX(200%);
+    -moz-transform: translateX(200%);
+    -ms-transform: translateX(200%);
+    transform: translateX(200%);
+    opacity: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.xd-show.xd-effect-18 .xd-content {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
+}
+
 @-webkit-keyframes rotateRightSideFirst {
+    0% {
+        -webkit-transform: translateZ(0px) rotateY(0deg);
+    }
     50% {
         -webkit-transform: translateZ(-50px) rotateY(5deg);
         -webkit-animation-timing-function: ease-out;
@@ -801,6 +838,9 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 @-moz-keyframes rotateRightSideFirst {
+    0% {
+        -moz-transform: translateZ(0px) rotateY(0deg);
+    }
     50% {
         -moz-transform: translateZ(-50px) rotateY(5deg);
         -moz-animation-timing-function: ease-out;
@@ -811,6 +851,9 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 @keyframes rotateRightSideFirst {
+    0% {
+        transform: translateZ(0px) rotateY(0deg);
+    }
     50% {
         transform: translateZ(-50px) rotateY(5deg);
         animation-timing-function: ease-out;
@@ -820,23 +863,43 @@ perspective effects (not including the dialogs and the overlay).
     }
 }
 
-.xd-effect-18 .xd-content {
-    -webkit-transform: translateX(200%);
-    -moz-transform: translateX(200%);
-    -ms-transform: translateX(200%);
-    transform: translateX(200%);
-    opacity: 0;
-    -webkit-transition: all 0.5s 0.1s;
-    -moz-transition: all 0.5s 0.1s;
-    transition: all 0.5s 0.1s;
+@-webkit-keyframes rotateRightSideFirst2 {
+    0% {
+        -webkit-transform: translateZ(-200px);
+        -webkit-animation-timing-function: ease-in;
+    }
+    50% {
+        -webkit-transform: translateZ(-50px) rotateY(5deg);
+    }
+    100% {
+        -webkit-transform: translateZ(0px) rotateY(0deg);
+    }
 }
 
-.xd-show.xd-effect-18 .xd-content {
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    transform: translateX(0);
-    opacity: 1;
+@-moz-keyframes rotateRightSideFirst2 {
+    0% {
+        -moz-transform: translateZ(-200px);
+        -moz-animation-timing-function: ease-in;
+    }
+    50% {
+        -moz-transform: translateZ(-50px) rotateY(5deg);
+    }
+    100% {
+        -moz-transform: translateZ(0px) rotateY(0deg);
+    }
+}
+
+@keyframes rotateRightSideFirst2 {
+    0% {
+        transform: translateZ(-200px);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: translateZ(-50px) rotateY(5deg);
+    }
+    100% {
+        transform: translateZ(0px) rotateY(0deg);
+    }
 }
 
 
