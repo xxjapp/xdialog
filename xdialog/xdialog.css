@@ -478,9 +478,9 @@ perspective effects (not including the dialogs and the overlay).
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-animation: slit2 .7s forwards ease-out;
-    -moz-animation: slit2 .7s forwards ease-out;
-    animation: slit2 .7s forwards ease-out;
+    -webkit-animation: slit2 .7s forwards ease-in;
+    -moz-animation: slit2 .7s forwards ease-in;
+    animation: slit2 .7s forwards ease-in;
     -webkit-transition: all 0.7s;
     -moz-transition: all 0.7s;
     transition: all 0.7s;
