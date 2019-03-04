@@ -94,6 +94,8 @@ perspective effects (not including the dialogs and the overlay).
 .xd-content .xd-body {
     padding: 1em 2em;
     font-weight: 300;
+    max-height: calc(100vh - 12em);
+    overflow: auto;
 }
 
 .xd-content .xd-buttons {
