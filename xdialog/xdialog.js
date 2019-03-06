@@ -14,6 +14,16 @@
 window.xdialog = (function() {
     let dialogs = [];
     let perspectiveCounter = 0;
+    let zIndex = 10000;
+    let utils = {
+        newId: function() {
+            return 'xd-id-' + Math.random().toString(36).substring(2);
+        },
+        newZIndex: function() {
+            zIndex += 1;
+            return zIndex;
+        }
+    };
 
     function defaultOptions() {
         return {
@@ -173,24 +183,11 @@ window.xdialog = (function() {
         }
     }
 
-    function newId() {
-        return 'xd-id-' + Math.random().toString(36).substring(2);
-    }
-
-    let newZIndex = (function() {
-        let zIndex = 1000;
-
-        return function() {
-            zIndex += 1;
-            return zIndex;
-        };
-    })();
-
     function createOverlay() {
         let overlayElement = document.createElement('div');
 
         overlayElement.classList.add('xd-overlay');
-        overlayElement.style['z-index'] = newZIndex();
+        overlayElement.style['z-index'] = utils.newZIndex();
 
         document.body.insertAdjacentElement('beforeend', overlayElement);
         return overlayElement;
@@ -201,10 +198,10 @@ window.xdialog = (function() {
         let dialogElement = document.createElement('div');
         let effect = getEffect(options.effect);
 
-        dialogElement.id = newId();
+        dialogElement.id = utils.newId();
         dialogElement.effect = effect;
         dialogElement.setAttribute('class', 'xd-dialog xd-center ' + effect.clazz);
-        dialogElement.setAttribute('style', 'z-index:' + newZIndex() + ';' + options.style);
+        dialogElement.setAttribute('style', 'z-index:' + utils.newZIndex() + ';' + options.style);
 
         // create innerHTML
         let innerHTML = '<div class="xd-content">';
@@ -307,6 +304,16 @@ window.xdialog = (function() {
         html += '</div>';
 
         return html;
+    }
+
+    /**
+     * init xdialog
+     *
+     * @param {object} options
+     * @param {number} options.zIndex0
+     */
+    function init(options) {
+        zIndex = options.zIndex0 || zIndex;
     }
 
     function create(options) {
@@ -628,6 +635,10 @@ window.xdialog = (function() {
     }
 
     return {
+        // xdialog.init(options)
+        // initialize xdialog
+        init: init,
+
         // xdialog.create(options)
         // create a dialog
         create: create,
