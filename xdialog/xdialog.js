@@ -25,6 +25,9 @@ window.xdialog = (function() {
         }
     };
 
+    // all transitions should end in 1 second, then some cleanup work or fix will be done
+    let transitionTimeout = 1000;
+
     function defaultOptions() {
         return {
             // dialog title
@@ -414,10 +417,9 @@ window.xdialog = (function() {
                         });
 
                         // event transitionend not always reliable, so also use setTimeout
-                        // all transition should end in 1000 ms
                         setTimeout(function() {
                             fixChromeBlur();
-                        }, 1000);
+                        }, transitionTimeout);
                     }
                 }
             }
@@ -427,14 +429,13 @@ window.xdialog = (function() {
             restorePerspectiive();
 
             if (dialogElement.effect.perspective) {
-                // all transition should end in 1000 ms
                 setTimeout(function() {
                     if (perspectiveCounter === 1) {
                         document.documentElement.classList.remove('xd-perspective');
                     }
 
                     perspectiveCounter--;
-                }, 1000);
+                }, transitionTimeout);
             }
 
             dialogElement.classList.remove('xd-show');
@@ -507,7 +508,6 @@ window.xdialog = (function() {
 
             overlayElement.removeEventListener('click', doCancel);
 
-            // all transition should end in 1000 ms
             setTimeout(function() {
                 let index = dialogs.indexOf(dialog);
 
@@ -519,7 +519,7 @@ window.xdialog = (function() {
                 dialogs.splice(index, 1);
                 document.body.removeChild(dialogElement);
                 document.body.removeChild(overlayElement);
-            }, 1000);
+            }, transitionTimeout);
         }
 
         function close(e) {
