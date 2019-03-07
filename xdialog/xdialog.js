@@ -655,7 +655,7 @@ window.xdialog = (function() {
     function createSpin() {
         let spinElement = document.createElement('div');
 
-        spinElement.classList.add('sk-fading-circle');
+        spinElement.classList.add('sk-fading-circle', 'xd-center');
 
         let innerHTML = '';
 
