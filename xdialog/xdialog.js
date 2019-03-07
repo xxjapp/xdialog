@@ -634,6 +634,39 @@ window.xdialog = (function() {
         return open(options);
     }
 
+    let spinOverlayElement = null;
+
+    function startSpin() {
+        if (spinOverlayElement === null) {
+            spinOverlayElement = createOverlay();
+            spinOverlayElement.appendChild(createSpin());
+            spinOverlayElement.classList.add('xd-show-overlay');
+        }
+    }
+
+    function stopSpin() {
+        if (spinOverlayElement !== null) {
+            spinOverlayElement.classList.remove('xd-show-overlay');
+            document.body.removeChild(spinOverlayElement);
+            spinOverlayElement = null;
+        }
+    }
+
+    function createSpin() {
+        let spinElement = document.createElement('div');
+
+        spinElement.classList.add('sk-fading-circle');
+
+        let innerHTML = '';
+
+        for (let i = 1; i <= 12; i++) {
+            innerHTML += '<div class="sk-circle sk-circle' + i + '"></div>';
+        }
+
+        spinElement.innerHTML = innerHTML;
+        return spinElement;
+    }
+
     return {
         // xdialog.init(options)
         // initialize xdialog
@@ -657,7 +690,15 @@ window.xdialog = (function() {
 
         // xdialog.dialogs
         // access all dialog instances
-        dialogs: dialogs
+        dialogs: dialogs,
+
+        // xdialog.startSpin
+        // start spin animation
+        startSpin: startSpin,
+
+        // xdialog.stopSpin
+        // stop spin animation
+        stopSpin: stopSpin,
     };
 })();
 
