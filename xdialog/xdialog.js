@@ -639,8 +639,9 @@ window.xdialog = (function() {
     function startSpin() {
         if (spinOverlayElement === null) {
             spinOverlayElement = createOverlay();
-            spinOverlayElement.appendChild(createSpin());
             spinOverlayElement.classList.add('xd-show-overlay');
+            spinOverlayElement.classList.add('xd-center-child');
+            spinOverlayElement.appendChild(createSpin());
         }
     }
 
@@ -655,7 +656,7 @@ window.xdialog = (function() {
     function createSpin() {
         let spinElement = document.createElement('div');
 
-        spinElement.classList.add('sk-fading-circle', 'xd-center');
+        spinElement.classList.add('sk-fading-circle');
 
         let innerHTML = '';
 

@@ -44,6 +44,12 @@ perspective effects (not including the dialogs and the overlay).
     transform: translateX(-50%) translateY(-50%);
 }
 
+.xd-center-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .xd-show {
     visibility: visible;
 }
