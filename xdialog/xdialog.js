@@ -92,6 +92,9 @@ window.xdialog = (function() {
             //
             fixChromeBlur: true,
 
+            // modal or not
+            modal: true,
+
             // callback when OK button pressed
             // return false to avoid to be closed
             onok: null,
@@ -322,7 +325,9 @@ window.xdialog = (function() {
     function create(options) {
         options = Object.assign(defaultOptions(), options);
 
-        let overlayElement = createOverlay();
+        let overlayElement = null;
+        options.modal && (overlayElement = createOverlay());
+
         let dialogElement = createDialog(options);
         let okButton = dialogElement.querySelector('.xd-ok');
         let cancelButton = dialogElement.querySelector('.xd-cancel');
@@ -330,19 +335,11 @@ window.xdialog = (function() {
 
         dragElement(dialogElement)
 
-        if (okButton) {
-            okButton.addEventListener('click', doOk);
-        }
+        okButton && okButton.addEventListener('click', doOk);
+        cancelButton && cancelButton.addEventListener('click', doCancel);
+        deleteButton && deleteButton.addEventListener('click', doDelete);
 
-        if (cancelButton) {
-            cancelButton.addEventListener('click', doCancel);
-        }
-
-        if (deleteButton) {
-            deleteButton.addEventListener('click', doDelete);
-        }
-
-        overlayElement.addEventListener('click', doCancel);
+        overlayElement && overlayElement.addEventListener('click', doCancel);
 
         // load all iframes before showing
         let preparedForShow = false;
@@ -398,7 +395,7 @@ window.xdialog = (function() {
                     }
 
                     dialogElement.classList.add('xd-show');
-                    overlayElement.classList.add('xd-show-overlay');
+                    overlayElement && overlayElement.classList.add('xd-show-overlay');
                 }, 0);
 
                 // NOTE: fix chrome blur
@@ -439,7 +436,7 @@ window.xdialog = (function() {
             }
 
             dialogElement.classList.remove('xd-show');
-            overlayElement.classList.remove('xd-show-overlay');
+            overlayElement && overlayElement.classList.remove('xd-show-overlay');
         }
 
         function fixChromeBlur() {
@@ -494,19 +491,11 @@ window.xdialog = (function() {
                 return;
             }
 
-            if (okButton) {
-                okButton.removeEventListener('click', doOk);
-            }
+            okButton && okButton.removeEventListener('click', doOk);
+            cancelButton && cancelButton.removeEventListener('click', doCancel);
+            deleteButton && deleteButton.removeEventListener('click', doDelete);
 
-            if (cancelButton) {
-                cancelButton.removeEventListener('click', doCancel);
-            }
-
-            if (deleteButton) {
-                deleteButton.removeEventListener('click', doDelete);
-            }
-
-            overlayElement.removeEventListener('click', doCancel);
+            overlayElement && overlayElement.removeEventListener('click', doCancel);
 
             setTimeout(function() {
                 let index = dialogs.indexOf(dialog);
@@ -518,7 +507,7 @@ window.xdialog = (function() {
 
                 dialogs.splice(index, 1);
                 document.body.removeChild(dialogElement);
-                document.body.removeChild(overlayElement);
+                overlayElement && document.body.removeChild(overlayElement);
             }, transitionTimeout);
         }
 
