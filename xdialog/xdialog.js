@@ -236,17 +236,17 @@ window.xdialog = (function() {
             case 'ok':
                 return {
                     text: 'OK',
-                    clazz: 'xd-ok'
+                    clazz: 'xd-button xd-ok'
                 };
             case 'cancel':
                 return {
                     text: 'Cancel',
-                    clazz: 'xd-cancel'
+                    clazz: 'xd-button xd-cancel'
                 };
             case 'delete':
                 return {
                     text: 'Delete',
-                    clazz: 'xd-delete'
+                    clazz: 'xd-button xd-delete'
                 };
             default:
                 return null;

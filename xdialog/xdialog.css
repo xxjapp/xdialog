@@ -112,7 +112,7 @@ perspective effects (not including the dialogs and the overlay).
     flex-wrap: wrap;
 }
 
-.xd-content button {
+.xd-content .xd-button {
     border: none;
     padding: 0.6em 1.2em;
     background: #9e9e9e;
@@ -120,22 +120,21 @@ perspective effects (not including the dialogs and the overlay).
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
-    display: block;
     min-width: 10em;
     margin: 0.2em 1em;
     border-radius: 2px;
     outline: none;
 }
 
-.xd-content button.xd-ok {
+.xd-content .xd-button.xd-ok {
     background: #4caf50;
 }
 
-.xd-content button.xd-delete {
+.xd-content .xd-button.xd-delete {
     background: #f44336;
 }
 
-.xd-content button:hover {
+.xd-content .xd-button:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
