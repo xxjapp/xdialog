@@ -919,9 +919,9 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 .xd-effect-19~.xd-overlay {
-    -webkit-transition: all 0.5s 0.1s;
-    -moz-transition: all 0.5s 0.1s;
-    transition: all 0.5s 0.1s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 .xd-show.xd-effect-19~.xd-overlay {
@@ -937,9 +937,9 @@ perspective effects (not including the dialogs and the overlay).
     -webkit-transform-origin: 50% 100%;
     -moz-transform-origin: 50% 100%;
     transform-origin: 50% 100%;
-    -webkit-animation: OpenTop2 0.5s 0.1s backwards ease-out;
-    -moz-animation: OpenTop2 0.5s 0.1s backwards ease-out;
-    animation: OpenTop2 0.5s 0.1s backwards ease-out;
+    -webkit-animation: OpenTop2 0.5s backwards ease-out;
+    -moz-animation: OpenTop2 0.5s backwards ease-out;
+    animation: OpenTop2 0.5s backwards ease-out;
 }
 
 .xd-show.xd-effect-19~.xd-container, .xd-show.xd-effect-19~.xd-overlay {
@@ -954,9 +954,9 @@ perspective effects (not including the dialogs and the overlay).
     -ms-transform: translateY(-200%);
     transform: translateY(-200%);
     opacity: 0;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.5s 0.1s;
+    -moz-transition: all 0.5s 0.1s;
+    transition: all 0.5s 0.1s;
 }
 
 .xd-show.xd-effect-19 .xd-content {
