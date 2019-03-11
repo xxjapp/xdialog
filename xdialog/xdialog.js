@@ -516,6 +516,29 @@ window.xdialog = (function() {
             destroy();
         }
 
+        function adjust() {
+            let rect = dialogElement.getBoundingClientRect();
+            let clientWidth = document.documentElement.clientWidth;
+            let clientHeight = document.documentElement.clientHeight;
+
+            if (rect.x >= 0 && rect.y >= 0 && rect.right <= clientWidth && rect.bottom <= clientHeight) {
+                return;
+            }
+
+            if (rect.width > clientWidth) {
+                dialogElement.style['max-width'] = clientWidth + 'px';
+            }
+
+            if (rect.height > clientHeight) {
+                dialogElement.style['max-height'] = clientHeight + 'px';
+            }
+
+            let rect2 = dialogElement.getBoundingClientRect();
+
+            dialogElement.style['left'] = (clientWidth - rect2.width) / 2 + 'px';
+            dialogElement.style['top'] = (clientHeight - rect2.height) / 2 + 'px';
+        }
+
         // SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
         function dragElement(dialogElement) {
             let pos1 = 0,
@@ -597,6 +620,10 @@ window.xdialog = (function() {
             // dialog.close()
             // hide dialog and destory it
             close: close,
+
+            // dialog.adjust()
+            // adjust dialog to make whole dialog visible
+            adjust: adjust,
 
             // dialog.fixChromeBlur()
             // fix chrome blur
