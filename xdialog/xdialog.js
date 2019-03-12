@@ -525,6 +525,8 @@ window.xdialog = (function() {
                 return;
             }
 
+            dialogElement.style.transition = 'all .3s ease-in-out';
+
             if (rect.width > clientWidth) {
                 dialogElement.style['max-width'] = clientWidth + 'px';
             }
@@ -535,8 +537,13 @@ window.xdialog = (function() {
 
             let rect2 = dialogElement.getBoundingClientRect();
 
-            dialogElement.style['left'] = (clientWidth - rect2.width) / 2 + 'px';
-            dialogElement.style['top'] = (clientHeight - rect2.height) / 2 + 'px';
+            dialogElement.style.left = (clientWidth - rect2.width) / 2 + 'px';
+            dialogElement.style.top = (clientHeight - rect2.height) / 2 + 'px';
+
+            dialogElement.addEventListener('transitionend', function listener() {
+                dialogElement.removeEventListener('transitionend', listener);
+                dialogElement.style.transition = '';
+            });
         }
 
         // SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
