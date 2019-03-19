@@ -95,6 +95,12 @@ window.xdialog = (function() {
             // modal or not
             modal: true,
 
+            // callback before show
+            beforeshow: null,
+
+            // callback after show
+            aftershow: null,
+
             // callback when OK button pressed
             // return false to avoid to be closed
             onok: null,
@@ -372,7 +378,9 @@ window.xdialog = (function() {
 
             function checkStatusAndShow() {
                 if (preparedForShow) {
+                    options.beforeshow && options.beforeshow();
                     showMe();
+                    options.aftershow && options.aftershow();
                 } else {
                     // wait for preparedForShow
                     setTimeout(checkStatusAndShow, 0);
