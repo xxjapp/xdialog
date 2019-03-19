@@ -368,18 +368,14 @@ window.xdialog = (function() {
         }
 
         function show() {
-            if (preparedForShow) {
-                showMe();
-            } else {
-                // wait for preparedForShow
-                setTimeout(checkStatus, 0);
-            }
+            checkStatusAndShow();
 
-            function checkStatus() {
+            function checkStatusAndShow() {
                 if (preparedForShow) {
                     showMe();
                 } else {
-                    setTimeout(checkStatus, 0);
+                    // wait for preparedForShow
+                    setTimeout(checkStatusAndShow, 0);
                 }
             }
 
