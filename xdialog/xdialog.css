@@ -73,6 +73,12 @@ perspective effects (not including the dialogs and the overlay).
     visibility: visible;
 }
 
+.xd-spin-overlay {
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
 
 /* Content styles */
 

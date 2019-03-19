@@ -1,5 +1,38 @@
 'use strict';
 
+// Polyfills
+
+// SEE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+if (typeof Object.assign != 'function') {
+    // Must be writable: true, enumerable: false, configurable: true
+    Object.defineProperty(Object, 'assign', {
+        value: function assign(target, varArgs) { // .length of function is 2
+            'use strict';
+            if (target == null) { // TypeError if undefined or null
+                throw new TypeError('Cannot convert undefined or null to object');
+            }
+
+            let to = Object(target);
+
+            for (let index = 1; index < arguments.length; index++) {
+                let nextSource = arguments[index];
+
+                if (nextSource != null) { // Skip over if undefined or null
+                    for (let nextKey in nextSource) {
+                        // Avoid bugs when hasOwnProperty is shadowed
+                        if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
+                }
+            }
+            return to;
+        },
+        writable: true,
+        configurable: true
+    });
+}
+
 /**
  * Usage:
  *
@@ -11,7 +44,7 @@
  * dialog2.hide();
  * dialog2.destroy();
  */
-window.xdialog = (function() {
+window.xdialog = function() {
     let dialogs = [];
     let perspectiveCounter = 0;
     let zIndex = 10000;
@@ -195,11 +228,15 @@ window.xdialog = (function() {
         }
     }
 
-    function createOverlay() {
+    function createOverlay(params) {
+        params = Object.assign({
+            zIndex: utils.newZIndex()
+        }, params);
+
         let overlayElement = document.createElement('div');
 
         overlayElement.classList.add('xd-overlay');
-        overlayElement.style['z-index'] = utils.newZIndex();
+        overlayElement.style['z-index'] = params.zIndex;
 
         document.body.insertAdjacentElement('beforeend', overlayElement);
         return overlayElement;
@@ -661,38 +698,38 @@ window.xdialog = (function() {
         return open(options);
     }
 
-    let spinOverlayElement = null;
+    let spinOverlayElement = createSpin();
 
     function startSpin() {
-        if (spinOverlayElement === null) {
-            spinOverlayElement = createOverlay();
-            spinOverlayElement.classList.add('xd-show-overlay');
-            spinOverlayElement.classList.add('xd-center-child');
-            spinOverlayElement.appendChild(createSpin());
-        }
+        spinOverlayElement.classList.add('xd-show-overlay');
     }
 
     function stopSpin() {
-        if (spinOverlayElement !== null) {
-            spinOverlayElement.classList.remove('xd-show-overlay');
-            document.body.removeChild(spinOverlayElement);
-            spinOverlayElement = null;
-        }
+        spinOverlayElement.classList.remove('xd-show-overlay');
     }
 
     function createSpin() {
+        // create spin element
         let spinElement = document.createElement('div');
+        let innerHTML = '';
 
         spinElement.classList.add('sk-fading-circle');
-
-        let innerHTML = '';
 
         for (let i = 1; i <= 12; i++) {
             innerHTML += '<div class="sk-circle sk-circle' + i + '"></div>';
         }
 
         spinElement.innerHTML = innerHTML;
-        return spinElement;
+
+        // create overley element
+        let spinOverlayElement = createOverlay({
+            zIndex: 2147483647
+        });
+        spinOverlayElement.classList.add('xd-spin-overlay');
+        spinOverlayElement.classList.add('xd-center-child');
+        spinOverlayElement.appendChild(spinElement);
+
+        return spinOverlayElement;
     }
 
     return {
@@ -728,37 +765,4 @@ window.xdialog = (function() {
         // stop spin animation
         stopSpin: stopSpin,
     };
-})();
-
-// Polyfills
-
-// SEE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-if (typeof Object.assign != 'function') {
-    // Must be writable: true, enumerable: false, configurable: true
-    Object.defineProperty(Object, 'assign', {
-        value: function assign(target, varArgs) { // .length of function is 2
-            'use strict';
-            if (target == null) { // TypeError if undefined or null
-                throw new TypeError('Cannot convert undefined or null to object');
-            }
-
-            let to = Object(target);
-
-            for (let index = 1; index < arguments.length; index++) {
-                let nextSource = arguments[index];
-
-                if (nextSource != null) { // Skip over if undefined or null
-                    for (let nextKey in nextSource) {
-                        // Avoid bugs when hasOwnProperty is shadowed
-                        if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                            to[nextKey] = nextSource[nextKey];
-                        }
-                    }
-                }
-            }
-            return to;
-        },
-        writable: true,
-        configurable: true
-    });
-}
+}();
