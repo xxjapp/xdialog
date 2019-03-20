@@ -437,7 +437,7 @@ window.xdialog = function() {
 
                     dialogElement.classList.add('xd-show');
                     overlayElement && overlayElement.classList.add('xd-show-overlay');
-                }, 0);
+                }, 200);
 
                 // NOTE: fix chrome blur
                 if (options.fixChromeBlur) {
