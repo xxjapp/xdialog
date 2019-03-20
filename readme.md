@@ -10,7 +10,7 @@ This javascript dialog library is based on [nifty-modal-window-effects](https://
 let dialog1 = xdialog.open();
 dialog1.close();
 
-let dialog2 = xdialog.create();
+let dialog2 = xdialog.create({title: 'Hello dialog'});
 dialog2.show();
 dialog2.hide();
 dialog2.destroy();
@@ -127,13 +127,17 @@ ondestroy: null,
 - xdialog.confirm(text, onyes, options)
 // create a confirm dialog and show it
 
-- xdialog.dialogs
+- xdialog.dialogs()
 // access all dialog instances
+```
 
-- xdialog.startSpin
+### xdialog API: utils
+
+```js
+- xdialog.startSpin()
 // start spin animation
 
--  xdialog.stopSpin
+-  xdialog.stopSpin()
 // stop spin animation
 ```
 
