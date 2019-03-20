@@ -621,10 +621,14 @@ window.xdialog = function() {
                 // get the mouse cursor position at startup:
                 pos3 = e.clientX;
                 pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
 
                 // call a function whenever the cursor moves:
                 document.onmousemove = elementDrag;
+                document.onmouseup = closeDragElement;
+
+                // Temporarily disable mouse events for IFRAME for smooth dragging
+                // SEE: https://www.gyrocode.com/articles/how-to-detect-mousemove-event-over-iframe-element/
+                $('.xd-body iframe').css('pointer-events', 'none');
             }
 
             function elementDrag(e) {
@@ -645,6 +649,9 @@ window.xdialog = function() {
                 // stop moving when mouse button is released:
                 document.onmouseup = null;
                 document.onmousemove = null;
+
+                // // Re-enable mouse events for IFRAME
+                $('.xd-body iframe').css('pointer-events', 'auto');
             }
         }
 
