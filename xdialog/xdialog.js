@@ -695,13 +695,22 @@ window.xdialog = function() {
     }
 
     let spinOverlayElement = createSpin();
+    let spinCount = 0;
 
     function startSpin() {
-        spinOverlayElement.classList.add('xd-show-overlay');
+        if (spinCount === 0) {
+            spinOverlayElement.classList.add('xd-show-overlay');
+        }
+
+        spinCount++;
     }
 
     function stopSpin() {
-        spinOverlayElement.classList.remove('xd-show-overlay');
+        spinCount--;
+
+        if (spinCount === 0) {
+            spinOverlayElement.classList.remove('xd-show-overlay');
+        }
     }
 
     function createSpin() {
