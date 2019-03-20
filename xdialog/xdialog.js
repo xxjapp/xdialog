@@ -33,17 +33,6 @@ if (typeof Object.assign != 'function') {
     });
 }
 
-/**
- * Usage:
- *
- * let dialog = xdialog.open({effect: 'xd-effect-1'});
- * dialog.close();
- *
- * let dialog2 = xdialog.create({effect: 'xd-effect-1'});
- * dialog2.show();
- * dialog2.hide();
- * dialog2.destroy();
- */
 window.xdialog = function() {
     let dialogs = [];
     let perspectiveCounter = 0;
@@ -656,7 +645,7 @@ window.xdialog = function() {
         }
 
         let dialog = {
-            // dialog.element
+            // dialog.element()
             // dialog html element
             element: dialogElement,
 
