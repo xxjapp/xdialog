@@ -1,8 +1,10 @@
 # xdialog
 
+Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
+
 ## Background
 
-This javascript dialog library is based on [nifty-modal-window-effects](https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/)
+This javascript dialog library is based on [nifty-modal-window-effects](https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/).
 
 ## Example
 
