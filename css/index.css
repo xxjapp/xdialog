@@ -17,6 +17,28 @@ body {
     background: #fffffe;
 }
 
+.links {
+    margin-top: 1em;
+}
+
+.links a {
+    text-decoration: none;
+    padding: 0.5em 1em;
+    background: #A67563;
+    color: white;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 3px 2px;
+    border-radius: 2px;
+    min-width: 10em;
+}
+
+.links a svg {
+    margin-right: 0.5em;
+}
+
 
 /* Header Style */
 
@@ -78,4 +100,8 @@ body {
 
 .main button:focus {
     outline: none;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.7);
 }
