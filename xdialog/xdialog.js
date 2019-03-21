@@ -617,7 +617,9 @@ window.xdialog = function() {
 
                 // Temporarily disable mouse events for IFRAME for smooth dragging
                 // SEE: https://www.gyrocode.com/articles/how-to-detect-mousemove-event-over-iframe-element/
-                $('.xd-body iframe').css('pointer-events', 'none');
+                document.querySelectorAll('.xd-body iframe').forEach(function(iframe) {
+                    iframe.style['pointer-events'] = 'none';
+                });
             }
 
             function elementDrag(e) {
@@ -639,8 +641,10 @@ window.xdialog = function() {
                 document.onmouseup = null;
                 document.onmousemove = null;
 
-                // // Re-enable mouse events for IFRAME
-                $('.xd-body iframe').css('pointer-events', 'auto');
+                // Re-enable mouse events for IFRAME
+                document.querySelectorAll('.xd-body iframe').forEach(function(iframe) {
+                    iframe.style['pointer-events'] = 'auto';
+                });
             }
         }
 
@@ -737,6 +741,46 @@ window.xdialog = function() {
         return spinOverlayElement;
     }
 
+    function demo() {
+        xdialog.open({
+            title: 'Login Demo',
+            body: '\
+            <style>\
+                .demo-mb-1 { margin-bottom: 1em; }\
+                .demo-row { text-align: center; }\
+                .demo-row label { min-width: 6em; display: inline-block; }\
+                .demo-row input { padding: 0.3em; outline: none; min-width: 12em; }\
+                .demo-validated input { border: green 2px solid; }\
+                .demo-validated input:invalid { border: red 2px solid; }\
+            </style>\
+            <div id="demo-form">\
+                <div class="demo-row demo-mb-1">\
+                    <label for="uname">User Name</label>\
+                    <input type="text" id="uname" required>\
+                </div>\
+                <div class="demo-row">\
+                    <label for="psw">Password</label>\
+                    <input type="password" id="psw" required>\
+                </div>\
+            </div>',
+            buttons: { ok: 'Login', cancel: 'Cancel' },
+            style: 'width: auto',
+            effect: '3d_flip_vertical',
+            onok: function() {
+                document.getElementById('demo-form').classList.add('demo-validated');
+
+                let uname = document.getElementById('uname').value;
+                let psw = document.getElementById('psw').value;
+
+                if (!uname || !psw) {
+                    return false;
+                }
+
+                xdialog.alert('Welcome, ' + uname);
+            },
+        });
+    }
+
     return {
         // xdialog.init(options)
         // initialize xdialog
@@ -758,16 +802,20 @@ window.xdialog = function() {
         // create a confirm dialog and show it
         confirm: confirm,
 
-        // xdialog.dialogs
+        // xdialog.dialogs()
         // access all dialog instances
         dialogs: dialogs,
 
-        // xdialog.startSpin
+        // xdialog.startSpin()
         // start spin animation
         startSpin: startSpin,
 
-        // xdialog.stopSpin
+        // xdialog.stopSpin()
         // stop spin animation
         stopSpin: stopSpin,
+
+        // xdialog.demo()
+        // show a demo dialog
+        demo: demo,
     };
 }();

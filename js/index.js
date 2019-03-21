@@ -22,4 +22,28 @@
             });
         });
     });
+
+    document.getElementById('button-demo').addEventListener('click', function() {
+        xdialog.demo();
+    });
+
+    document.getElementById('button-demo-source').addEventListener('click', function() {
+        xdialog.open({
+            title: 'demo source',
+            body: '<textarea id="demo-source" style="width: 100%; height: 49em;"></textarea>',
+            style: 'width: 40em;',
+            buttons: {
+                ok: 'copy'
+            },
+            beforeshow: function() {
+                let source = xdialog.demo.toString().split('\n').slice(1, -1);
+                let spaceWidth = source[0].match(/^ */)[0].length;
+
+                source = source.map(function(line) {
+                    return line.slice(spaceWidth);
+                });
+                document.getElementById('demo-source').value = source.join('\n');
+            }
+        });
+    });
 })();

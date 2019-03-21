@@ -12,18 +12,6 @@ body, html {
     margin: 0;
 }
 
-
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
-
-.clearfix:before, .clearfix:after {
-    content: " ";
-    display: table;
-}
-
-.clearfix:after {
-    clear: both;
-}
-
 body {
     color: #000;
     background: #fffffe;
@@ -64,39 +52,13 @@ body {
     max-width: 69em;
 }
 
-.column {
-    float: left;
-    width: 50%;
-    padding: 0 2em;
-    min-height: 300px;
-    position: relative;
+.section {
+    font-size: 1.2em;
+    padding: 0.8em 0 0.5em 0;
+    border-bottom: solid 1px #b385dd;
+    margin: 0.5em 0;
 }
 
-.column:nth-child(2) {
-    box-shadow: -1px 0 0 rgba(0, 0, 0, 0.1);
-}
-
-.column p {
-    font-weight: 300;
-    font-size: 1.5em;
-    padding: 0;
-    margin: 0;
-    text-align: right;
-    line-height: 1.5;
-}
-
-@media screen and (max-width: 46.0625em) {
-    .column {
-        width: 100%;
-        min-width: auto;
-        min-height: auto;
-        padding: 1em;
-    }
-    .column p {
-        text-align: left;
-        font-size: 1.5em;
-    }
-    .column:nth-child(2) {
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-    }
+.ts-10 {
+    text-shadow: 0px 0px 10px #333;
 }
