@@ -30,10 +30,13 @@
     document.getElementById('button-demo-source').addEventListener('click', function() {
         xdialog.open({
             title: 'demo source',
-            body: '<textarea id="demo-source" style="width: 100%; height: 49em;"></textarea>',
-            style: 'width: 40em;',
+            body: '<pre><code class="js" id="demo-source"></code></pre>',
+            style: 'width: auto;',
             buttons: {
-                ok: 'copy'
+                ok: {
+                    text: 'copy',
+                    clazz: 'xd-button xd-ok demo-copy-button'
+                }
             },
             beforeshow: function() {
                 let source = xdialog.demo.toString().split('\n').slice(1, -1);
@@ -41,8 +44,17 @@
 
                 source = source.map(function(line) {
                     return line.slice(spaceWidth);
+                }).join('\n');
+
+                let sourceElement = document.getElementById('demo-source');
+                sourceElement.innerText = source;
+                hljs.highlightBlock(sourceElement);
+
+                new ClipboardJS('.demo-copy-button', {
+                    text: function() {
+                        return source;
+                    }
                 });
-                document.getElementById('demo-source').value = source.join('\n');
             }
         });
     });

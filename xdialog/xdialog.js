@@ -72,6 +72,7 @@ window.xdialog = function() {
             //     ok: {
             //         name: '削除',
             //         style: 'background:#f44336;'
+            //         clazz: 'xd-button xd-ok demo-copy-button'
             //     },
             //     delete: '削除',
             //     cancel: 'キャンセル',
@@ -754,18 +755,12 @@ window.xdialog = function() {
                 .demo-validated input:invalid { border: red 2px solid; }\
             </style>\
             <div id="demo-form">\
-                <div class="demo-row demo-mb-1">\
-                    <label for="uname">User Name</label>\
-                    <input type="text" id="uname" required>\
-                </div>\
-                <div class="demo-row">\
-                    <label for="psw">Password</label>\
-                    <input type="password" id="psw" required>\
-                </div>\
+                <div class="demo-row demo-mb-1"><label for="uname">User Name</label><input type="text" id="uname" required></div>\
+                <div class="demo-row"><label for="psw">Password</label><input type="password" id="psw" required></div>\
             </div>',
             buttons: { ok: 'Login', cancel: 'Cancel' },
             style: 'width: auto',
-            effect: '3d_flip_vertical',
+            effect: '3d_rotate_bottom',
             onok: function() {
                 document.getElementById('demo-form').classList.add('demo-validated');
 
@@ -777,7 +772,7 @@ window.xdialog = function() {
                 }
 
                 xdialog.alert('Welcome, ' + uname);
-            },
+            }
         });
     }
 
