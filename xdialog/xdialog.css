@@ -453,6 +453,7 @@ perspective effects (not including the dialogs and the overlay).
 /* Effect 12:  Just me */
 
 .xd-effect-12 .xd-content {
+    box-shadow: none;
     -webkit-transform: scale(0.8);
     -moz-transform: scale(0.8);
     -ms-transform: scale(0.8);
