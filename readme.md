@@ -57,27 +57,27 @@ buttons: ['ok', 'cancel'],
 style: '',
 
 // dialog show/hide effect, one of the following values
-// - fade_in_and_scale'
-// - slide_in_right'
-// - slide_in_bottom'
-// - newspaper'
-// - fall'
-// - side_fall'
-// - sticky_up'
-// - 3d_flip_horizontal'
-// - 3d_flip_vertical'
-// - 3d_sign'
-// - super_scaled'
-// - just_me'
-// - 3d_slit'
-// - 3d_rotate_bottom'
-// - 3d_rotate_in_left'
-// - blur'
-// - let_me_in'
-// - make_way'
-// - slip_from_top'
+// - fade_in_and_scale
+// - slide_in_right
+// - slide_in_bottom
+// - newspaper
+// - fall
+// - side_fall
+// - sticky_up
+// - 3d_flip_horizontal
+// - 3d_flip_vertical
+// - 3d_sign
+// - super_scaled
+// - just_me
+// - 3d_slit
+// - 3d_rotate_bottom
+// - 3d_rotate_in_left
+// - blur
+// - let_me_in
+// - make_way
+// - slip_from_top
 //
-// use null value to disable effect
+// use '' or null value to disable effect
 effect: 'fade_in_and_scale',
 
 // fix dialog blur for chrome browser with/without transform and/or with/without perspective
