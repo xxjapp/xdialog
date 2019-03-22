@@ -542,7 +542,7 @@ window.xdialog = function() {
             }, transitionTimeout);
         }
 
-        function close(e) {
+        function close() {
             hide();
             destroy();
         }
@@ -675,7 +675,7 @@ window.xdialog = function() {
             close: close,
 
             // dialog.adjust()
-            // adjust dialog to make whole dialog visible
+            // adjust dialog to make the whole dialog visible
             adjust: adjust,
 
             // dialog.fixChromeBlur()
@@ -749,26 +749,29 @@ window.xdialog = function() {
     return {
         // xdialog.init(options)
         // initialize xdialog
+        // options.zIndex0 - initial z index to use, default value is 10000
         init: init,
 
         // xdialog.create(options)
         // create a dialog
+        // SEE: [default options](#default_options)
         create: create,
 
         // xdialog.open(options)
         // create a dialog and show it
+        // SEE: [default options](#default_options)
         open: open,
 
         // xdialog.alert(text, options)
-        // create an alert dialog and show it
+        // display an alert dialog, please view the source for details
         alert: alert,
 
         // xdialog.confirm(text, onyes, options)
-        // create a confirm dialog and show it
+        // display a confirm dialog, please view the source for details
         confirm: confirm,
 
         // xdialog.dialogs()
-        // access all dialog instances
+        // get all dialog instances
         dialogs: dialogs,
 
         // xdialog.startSpin()
