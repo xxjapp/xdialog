@@ -8,7 +8,7 @@ Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
 
 ## Background
 
-Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindowEffects), this dialog library changed and enhanced some of the original CSS effects.
+Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindowEffects), this dialog library enhanced some of the original CSS effects.
 
 ## How to use it
 
