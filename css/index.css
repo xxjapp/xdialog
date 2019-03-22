@@ -25,7 +25,7 @@ body {
     text-decoration: none;
     padding: 0.5em 1em;
     background: #A67563;
-    color: white;
+    color: white !important;
     font-size: 0.9em;
     letter-spacing: 1px;
     cursor: pointer;
@@ -48,7 +48,7 @@ body {
 }
 
 .xd-container>header {
-    background-color: #FFC7B3;
+    background-image: linear-gradient(to right, #FFC7B3, #FFFFFF);
     text-align: center;
     padding: 3em;
 }

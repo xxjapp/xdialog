@@ -92,4 +92,12 @@
             }
         });
     }
+
+    document.getElementById('button-spin').addEventListener('click', function() {
+        xdialog.startSpin();
+
+        setTimeout(function() {
+            xdialog.stopSpin();
+        }, 5000);
+    });
 })();
