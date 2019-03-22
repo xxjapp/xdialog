@@ -148,7 +148,10 @@ ondestroy: null,
 ### dialog API
 
 ```js
-- dialog.element()
+- dialog.id
+// dialog html element id
+
+- dialog.element
 // dialog html element
 
 - dialog.show()

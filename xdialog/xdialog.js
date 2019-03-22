@@ -650,7 +650,11 @@ window.xdialog = function() {
         }
 
         let dialog = {
-            // dialog.element()
+            // dialog.id
+            // dialog html element id
+            id: dialogElement.id,
+
+            // dialog.element
             // dialog html element
             element: dialogElement,
 
