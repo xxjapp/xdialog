@@ -34,7 +34,7 @@ dialog2.destroy();
 
 ## Reference
 
-### <a name="default_options"></a>default options
+### default options
 
 Default options will be used if you **create** / **open** dialog without corresponding attributes. You can overwrite these with your own values.
 
@@ -132,69 +132,113 @@ Default options will be used if you **create** / **open** dialog without corresp
 
 ### xdialog API
 
-```js
+#### xdialog methods
+
 - xdialog.init(options)
-// initialize xdialog
-// options.zIndex0 - initial z index to use, default value is 10000
+
+    ```js
+    // initialize xdialog
+    // options.zIndex0 - initial z index to use, default value is 10000
+    ```
 
 - xdialog.create(options)
-// create a dialog
-// SEE: [default options](#default_options)
+
+    ```js
+    // create a dialog
+    ```
+
+    SEE: [default options](#default-options)
 
 - xdialog.open(options)
-// create a dialog and show it
-// SEE: [default options](#default_options)
+
+    ```js
+    // create a dialog and show it
+    ```
+
+    SEE: [default options](#default-options)
 
 - xdialog.alert(text, options)
-// display an alert dialog, please view the source for details
+
+    ```js
+    // display an alert dialog, please view the source for details
+    ```
 
 - xdialog.confirm(text, onyes, options)
-// display a confirm dialog, please view the source for details
+
+    ```js
+    // display a confirm dialog, please view the source for details
+    ```
 
 - xdialog.dialogs()
-// get all dialog instances
-```
 
-### xdialog API: utils
+    ```js
+    // get all dialog instances
+    ```
 
-```js
+#### xdialog utility methods
+
 - xdialog.startSpin()
-// start spin animation
 
--  xdialog.stopSpin()
-// stop spin animation
-```
+    ```js
+    // start spin animation
+    ```
+
+- xdialog.stopSpin()
+
+    ```js
+    // stop spin animation
+    ```
 
 ### dialog API
 
-dialog attributes:
+#### dialog attributes
 
-```js
 - dialog.id
-// dialog html element id
+
+    ```js
+    // dialog html element id
+    ```
 
 - dialog.element
-// dialog html element
-```
 
-dialog methods:
+    ```js
+    // dialog html element
+    ```
 
-```js
+#### dialog methods
+
 - dialog.show()
-// show dialog
+
+    ```js
+    // show dialog
+    ```
 
 - dialog.hide()
-// hide dialog
+
+    ```js
+    // hide dialog
+    ```
 
 - dialog.destroy()
-// destroy dialog
+
+    ```js
+    // destroy dialog
+    ```
 
 - dialog.close()
-// hide dialog and destory it
+
+    ```js
+    // hide dialog and destory it
+    ```
 
 - dialog.adjust()
-// adjust dialog to make the whole dialog visible
+
+    ```js
+    // adjust dialog to make the whole dialog visible
+    ```
 
 - dialog.fixChromeBlur()
-// fix chrome blur
-```
+
+    ```js
+    // fix chrome blur
+    ```
