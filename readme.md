@@ -136,57 +136,57 @@ Default options will be used if you **create** / **open** dialog without corresp
 
 - xdialog.init(options)
 
-    ```js
-    // initialize xdialog
-    // options.zIndex0 - initial z index to use, default value is 10000
+    ```text
+    initialize xdialog
+    options.zIndex0 - initial z index to use, default value is 10000
     ```
 
 - xdialog.create(options)
 
-    ```js
-    // create a dialog
+    ```text
+    create a dialog
     ```
 
     SEE: [default options](#default-options)
 
 - xdialog.open(options)
 
-    ```js
-    // create a dialog and show it
+    ```text
+    create a dialog and show it
     ```
 
     SEE: [default options](#default-options)
 
 - xdialog.alert(text, options)
 
-    ```js
-    // display an alert dialog, please view the source for details
+    ```text
+    display an alert dialog, please view the source for details
     ```
 
 - xdialog.confirm(text, onyes, options)
 
-    ```js
-    // display a confirm dialog, please view the source for details
+    ```text
+    display a confirm dialog, please view the source for details
     ```
 
 - xdialog.dialogs()
 
-    ```js
-    // get all dialog instances
+    ```text
+    get all dialog instances
     ```
 
 #### xdialog utility methods
 
 - xdialog.startSpin()
 
-    ```js
-    // start spin animation
+    ```text
+    start spin animation
     ```
 
 - xdialog.stopSpin()
 
-    ```js
-    // stop spin animation
+    ```text
+    stop spin animation
     ```
 
 ### dialog API
@@ -195,50 +195,50 @@ Default options will be used if you **create** / **open** dialog without corresp
 
 - dialog.id
 
-    ```js
-    // dialog html element id
+    ```text
+    dialog html element id
     ```
 
 - dialog.element
 
-    ```js
-    // dialog html element
+    ```text
+    dialog html element
     ```
 
 #### dialog methods
 
 - dialog.show()
 
-    ```js
-    // show dialog
+    ```text
+    show dialog
     ```
 
 - dialog.hide()
 
-    ```js
-    // hide dialog
+    ```text
+    hide dialog
     ```
 
 - dialog.destroy()
 
-    ```js
-    // destroy dialog
+    ```text
+    destroy dialog
     ```
 
 - dialog.close()
 
-    ```js
-    // hide dialog and destory it
+    ```text
+    hide dialog and destory it
     ```
 
 - dialog.adjust()
 
-    ```js
-    // adjust dialog to make the whole dialog visible
+    ```text
+    adjust dialog to make the whole dialog visible
     ```
 
 - dialog.fixChromeBlur()
 
-    ```js
-    // fix chrome blur
+    ```text
+    fix chrome blur
     ```
