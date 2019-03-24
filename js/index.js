@@ -53,17 +53,17 @@
                     run: '<button class="xd-button demo-button-run" style="background: #f44336;">run</button>',
                     cancel: 'cancel'
                 },
-                aftercreate: function(dialogElement) {
-                    dialogElement.querySelector('.demo-button-run').addEventListener('click', function() {
+                aftercreate: function(param) {
+                    param.element.querySelector('.demo-button-run').addEventListener('click', function() {
                         eval(source);
                     });
                 },
-                beforeshow: function(dialog) {
-                    let sourceElement = dialog.element.getElementsByClassName('demo-source')[0];
+                beforeshow: function(param) {
+                    let sourceElement = param.element.getElementsByClassName('demo-source')[0];
                     sourceElement.innerText = source;
                     hljs.highlightBlock(sourceElement);
 
-                    new ClipboardJS('#' + dialog.id + ' .demo-copy-button', {
+                    new ClipboardJS('#' + param.id + ' .demo-copy-button', {
                         text: function() {
                             return source;
                         }
@@ -128,9 +128,41 @@
             buttons: null,
             style: 'width: auto;',
             effect: 'slide_in_bottom',
-            aftercreate: function(dialogElement) {
-                dialogElement.querySelector('.xd-content .xd-body').style.padding = '0';
+            aftercreate: function(param) {
+                param.element.querySelector('.xd-content .xd-body').style.padding = '0';
             }
+        });
+    }
+
+    function openDialogDemo3() {
+        xdialog.open({
+            title: 'callback parameters',
+            body: 'open browser development console to view callback parameters',
+            buttons: ['ok', 'delete', 'cancel'],
+            beforecreate: function(param) {
+                console.info('beforecreate', param);
+            },
+            aftercreate: function(param) {
+                console.info('aftercreate', param);
+            },
+            beforeshow: function(param) {
+                console.info('beforeshow', param);
+            },
+            aftershow: function(param) {
+                console.info('aftershow', param);
+            },
+            onok: function(param) {
+                console.info('onok', param);
+            },
+            oncancel: function(param) {
+                console.info('oncancel', param);
+            },
+            ondelete: function(param) {
+                console.info('ondelete', param);
+            },
+            ondestroy: function(param) {
+                console.info('ondestroy', param);
+            },
         });
     }
 

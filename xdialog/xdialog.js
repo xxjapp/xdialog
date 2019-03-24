@@ -150,6 +150,15 @@ window.xdialog = function() {
         };
     }
 
+    function callbackParam(dialogElement, dialog, event) {
+        return {
+            id: dialogElement.id,
+            element: dialogElement,
+            dialog: dialog,
+            event: event
+        };
+    }
+
     function defaultAlertOptions(text) {
         text = text || 'alert text';
 
@@ -268,9 +277,9 @@ window.xdialog = function() {
         innerHTML += '</div>';
         dialogElement.innerHTML = innerHTML;
 
-        options.beforecreate && options.beforecreate(dialogElement);
+        options.beforecreate && options.beforecreate(callbackParam(dialogElement, null, null));
         document.body.insertAdjacentElement('afterbegin', dialogElement);
-        options.aftercreate && options.aftercreate(dialogElement);
+        options.aftercreate && options.aftercreate(callbackParam(dialogElement, null, null));
 
         return dialogElement;
     }
@@ -417,9 +426,9 @@ window.xdialog = function() {
 
             function checkStatusAndShow() {
                 if (preparedForShow) {
-                    options.beforeshow && options.beforeshow(dialog);
+                    options.beforeshow && options.beforeshow(callbackParam(dialogElement, dialog, event));
                     showMe();
-                    options.aftershow && options.aftershow(dialog);
+                    options.aftershow && options.aftershow(callbackParam(dialogElement, dialog, event));
                 } else {
                     // wait for preparedForShow
                     setTimeout(checkStatusAndShow, 0);
@@ -506,7 +515,7 @@ window.xdialog = function() {
         }
 
         function doOk(e) {
-            if (options.onok && options.onok(e) === false) {
+            if (options.onok && options.onok(callbackParam(dialogElement, dialog, e)) === false) {
                 return;
             }
 
@@ -514,7 +523,7 @@ window.xdialog = function() {
         }
 
         function doCancel(e) {
-            if (options.oncancel && options.oncancel(e) === false) {
+            if (options.oncancel && options.oncancel(callbackParam(dialogElement, dialog, e)) === false) {
                 return;
             }
 
@@ -522,7 +531,7 @@ window.xdialog = function() {
         }
 
         function doDelete(e) {
-            if (options.ondelete && options.ondelete(e) === false) {
+            if (options.ondelete && options.ondelete(callbackParam(dialogElement, dialog, e)) === false) {
                 return;
             }
 
@@ -530,7 +539,7 @@ window.xdialog = function() {
         }
 
         function destroy() {
-            if (options.ondestroy && options.ondestroy() === false) {
+            if (options.ondestroy && options.ondestroy(callbackParam(dialogElement, dialog, null)) === false) {
                 return;
             }
 

@@ -34,110 +34,6 @@ dialog2.destroy();
 
 ## Reference
 
-### default options
-
-Default options will be used if you **create** / **open** dialog without corresponding attributes. You can overwrite these with your own values.
-
-```js
-{
-    // dialog title
-    // use null value to remove title
-    title: 'Dialog Title',
-
-    // dialog body
-    // use null value to remove body
-    body: '<p>Dialog body</p>',
-
-    // dialog buttons,
-    //
-    // valid values:
-    // - null
-    //  - no buttons
-    // - array
-    //  - predefined button name or user defined button html like
-    //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
-    // - object
-    //  - button name to button text(predefined) or button html(user defined) or attribute object map like
-    // {
-    //     ok: {
-    //         name: '削除',
-    //         style: 'background:#f44336;'
-    //         clazz: 'xd-button xd-ok demo-copy-button'
-    //     },
-    //     delete: '削除',
-    //     cancel: 'キャンセル',
-    //     other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
-    // }
-    buttons: ['ok', 'cancel'],
-
-    // dialog extra style
-    // for example 'width: auto;'
-    style: '',
-
-    // dialog show/hide effect, one of the following values
-    // - fade_in_and_scale
-    // - slide_in_right
-    // - slide_in_bottom
-    // - newspaper
-    // - fall
-    // - side_fall
-    // - sticky_up
-    // - 3d_flip_horizontal
-    // - 3d_flip_vertical
-    // - 3d_sign
-    // - super_scaled
-    // - just_me
-    // - 3d_slit
-    // - 3d_rotate_bottom
-    // - 3d_rotate_in_left
-    // - blur
-    // - let_me_in
-    // - make_way
-    // - slip_from_top
-    //
-    // use '' or null value to disable effect
-    effect: 'fade_in_and_scale',
-
-    // fix dialog blur for chrome browser with/without transform and/or with/without perspective
-    //
-    // true: to fix
-    // false: not to fix
-    //
-    fixChromeBlur: true,
-
-    // modal or not
-    modal: true,
-
-    // callback when dialog element is about to be created
-    beforecreate: null,
-
-    // callback when dialog element has been created
-    aftercreate: null,
-
-    // callback before show
-    beforeshow: null,
-
-    // callback after show
-    aftershow: null,
-
-    // callback when OK button pressed
-    // return false to avoid to be closed
-    onok: null,
-
-    // callback when Cancel button pressed
-    // return false to avoid to be closed
-    oncancel: null,
-
-    // callback when Delete button pressed
-    // return false to avoid to be closed
-    ondelete: null,
-
-    // callback when dialog is about to be destroyed
-    // return false to avoid to be destroyed
-    ondestroy: null,
-}
-```
-
 ### xdialog API
 
 #### xdialog methods
@@ -250,3 +146,122 @@ Default options will be used if you **create** / **open** dialog without corresp
     ```text
     fix chrome blur
     ```
+
+### default options
+
+Default options will be used if you **create** / **open** dialog without corresponding attributes. You can overwrite these with your own values.
+
+```js
+{
+    // dialog title
+    // use null value to remove title
+    title: 'Dialog Title',
+
+    // dialog body
+    // use null value to remove body
+    body: '<p>Dialog body</p>',
+
+    // dialog buttons,
+    //
+    // valid values:
+    // - null
+    //  - no buttons
+    // - array
+    //  - predefined button name or user defined button html like
+    //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
+    // - object
+    //  - button name to button text(predefined) or button html(user defined) or attribute object map like
+    // {
+    //     ok: {
+    //         name: '削除',
+    //         style: 'background:#f44336;'
+    //         clazz: 'xd-button xd-ok demo-copy-button'
+    //     },
+    //     delete: '削除',
+    //     cancel: 'キャンセル',
+    //     other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
+    // }
+    buttons: ['ok', 'cancel'],
+
+    // dialog extra style
+    // for example 'width: auto;'
+    style: '',
+
+    // dialog show/hide effect, one of the following values
+    // - fade_in_and_scale
+    // - slide_in_right
+    // - slide_in_bottom
+    // - newspaper
+    // - fall
+    // - side_fall
+    // - sticky_up
+    // - 3d_flip_horizontal
+    // - 3d_flip_vertical
+    // - 3d_sign
+    // - super_scaled
+    // - just_me
+    // - 3d_slit
+    // - 3d_rotate_bottom
+    // - 3d_rotate_in_left
+    // - blur
+    // - let_me_in
+    // - make_way
+    // - slip_from_top
+    //
+    // use '' or null value to disable effect
+    effect: 'fade_in_and_scale',
+
+    // fix dialog blur for chrome browser with/without transform and/or with/without perspective
+    //
+    // true: to fix
+    // false: not to fix
+    //
+    fixChromeBlur: true,
+
+    // modal or not
+    modal: true,
+
+    // callback when dialog element is about to be created
+    beforecreate: null,
+
+    // callback when dialog element has been created
+    aftercreate: null,
+
+    // callback before show
+    beforeshow: null,
+
+    // callback after show
+    aftershow: null,
+
+    // callback when OK button pressed
+    // return false to avoid to be closed
+    onok: null,
+
+    // callback when Cancel button pressed
+    // return false to avoid to be closed
+    oncancel: null,
+
+    // callback when Delete button pressed
+    // return false to avoid to be closed
+    ondelete: null,
+
+    // callback when dialog is about to be destroyed
+    // return false to avoid to be destroyed
+    ondestroy: null,
+}
+```
+
+### callback function format
+
+All callback functions use the same prototype.
+
+```js
+/**
+ * @param {Object} param - callback parameter
+ * @param {String} param.id - dialog html element id
+ * @param {String} param.element - dialog html element
+ * @param {Object} param.dialog - dialog instance
+ * @param {Event} param.event - event if any
+ */
+function callback(param)
+```
