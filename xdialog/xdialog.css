@@ -62,7 +62,7 @@ perspective effects (not including the dialogs and the overlay).
     top: 0;
     left: 0;
     opacity: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.4);
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
@@ -195,10 +195,10 @@ perspective effects (not including the dialogs and the overlay).
 /* Effect 3: Slide from the bottom */
 
 .xd-effect-3 .xd-content {
-    -webkit-transform: translateY(20%);
-    -moz-transform: translateY(20%);
-    -ms-transform: translateY(20%);
-    transform: translateY(20%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
     opacity: 0;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;

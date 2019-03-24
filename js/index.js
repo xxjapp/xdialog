@@ -108,6 +108,8 @@
     }
 
     function openDialogDemo2() {
+        xdialog.startSpin();
+
         xdialog.open({
             title: '',
             body: '\
@@ -130,6 +132,11 @@
             effect: 'slide_in_bottom',
             aftercreate: function(param) {
                 param.element.querySelector('.xd-content .xd-body').style.padding = '0';
+            },
+            aftershow: function() {
+                setTimeout(function() {
+                    xdialog.stopSpin();
+                }, 700);
             }
         });
     }
