@@ -60,9 +60,11 @@ window.xdialog = function() {
             // use null value to remove body
             body: '<p>Dialog body</p>',
 
-            // dialog buttons,
+            // dialog buttons
             //
             // valid values:
+            // - null
+            //  - no buttons
             // - array
             //  - predefined button name or user defined button html like
             //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
@@ -117,6 +119,12 @@ window.xdialog = function() {
 
             // modal or not
             modal: true,
+
+            // callback when dialog element is about to be created
+            beforecreate: null,
+
+            // callback when dialog element has been created
+            aftercreate: null,
 
             // callback before show
             beforeshow: null,
@@ -260,7 +268,10 @@ window.xdialog = function() {
         innerHTML += '</div>';
         dialogElement.innerHTML = innerHTML;
 
+        options.beforecreate && options.beforecreate(dialogElement);
         document.body.insertAdjacentElement('afterbegin', dialogElement);
+        options.aftercreate && options.aftercreate(dialogElement);
+
         return dialogElement;
     }
 
@@ -356,6 +367,7 @@ window.xdialog = function() {
     }
 
     function create(options) {
+        let dialog = {};
         options = Object.assign(defaultOptions(), options);
 
         let overlayElement = null;
@@ -405,9 +417,9 @@ window.xdialog = function() {
 
             function checkStatusAndShow() {
                 if (preparedForShow) {
-                    options.beforeshow && options.beforeshow();
+                    options.beforeshow && options.beforeshow(dialog);
                     showMe();
-                    options.aftershow && options.aftershow();
+                    options.aftershow && options.aftershow(dialog);
                 } else {
                     // wait for preparedForShow
                     setTimeout(checkStatusAndShow, 0);
@@ -649,7 +661,7 @@ window.xdialog = function() {
             }
         }
 
-        let dialog = {
+        dialog = {
             // dialog.id
             // dialog html element id
             id: dialogElement.id,

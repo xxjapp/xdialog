@@ -15,7 +15,7 @@
                 title: el.textContent,
                 body: body,
                 effect: effect,
-                onok: function(e) {
+                onok: function() {
                     xdialog.alert('OK button pressed');
                     return false;
                 }
@@ -23,8 +23,54 @@
         });
     });
 
-    document.getElementById('button-demo1').addEventListener('click', function() {
-        openDialogDemo1();
+    [].slice.call(document.getElementsByClassName('button-demo')).forEach(function(el) {
+        el.addEventListener('click', function() {
+            eval(el.dataset.method + '()');
+        });
+    });
+
+    [].slice.call(document.getElementsByClassName('button-demo-source')).forEach(function(el) {
+        let method = el.dataset.method;
+
+        // prepare source
+        let source = eval(method).toString().split('\n').slice(1, -1);
+        let spaceWidth = source[0].match(/^ */)[0].length;
+
+        source = source.map(function(line) {
+            return line.slice(spaceWidth);
+        }).join('\n');
+
+        el.addEventListener('click', function() {
+            xdialog.open({
+                title: method + ' source',
+                body: '<pre><code class="js demo-source"></code></pre>',
+                style: 'width: auto;',
+                buttons: {
+                    ok: {
+                        text: 'copy',
+                        clazz: 'xd-button xd-ok demo-copy-button'
+                    },
+                    run: '<button class="xd-button demo-button-run" style="background: #f44336;">run</button>',
+                    cancel: 'cancel'
+                },
+                aftercreate: function(dialogElement) {
+                    dialogElement.querySelector('.demo-button-run').addEventListener('click', function() {
+                        eval(source);
+                    });
+                },
+                beforeshow: function(dialog) {
+                    let sourceElement = dialog.element.getElementsByClassName('demo-source')[0];
+                    sourceElement.innerText = source;
+                    hljs.highlightBlock(sourceElement);
+
+                    new ClipboardJS('#' + dialog.id + ' .demo-copy-button', {
+                        text: function() {
+                            return source;
+                        }
+                    });
+                }
+            });
+        });
     });
 
     function openDialogDemo1() {
@@ -61,37 +107,32 @@
         });
     }
 
-    document.getElementById('button-demo1-source').addEventListener('click', function() {
+    function openDialogDemo2() {
         xdialog.open({
-            title: 'demo1 source',
-            body: '<pre><code class="js" id="demo1-source"></code></pre>',
+            title: '',
+            body: '\
+            <style>\
+                .video-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }\
+                .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; }\
+            </style>\
+            <div style="width:560px">\
+                <div class="video-container">\
+                    <iframe\
+                        src="https://www.youtube.com/embed/tNkZsRW7h2c"\
+                        frameborder="0"\
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"\
+                        allowfullscreen>\
+                    </iframe>\
+                </div>\
+            </div>',
+            buttons: null,
             style: 'width: auto;',
-            buttons: {
-                ok: {
-                    text: 'copy',
-                    clazz: 'xd-button xd-ok demo1-copy-button'
-                }
-            },
-            beforeshow: function() {
-                let source = openDialogDemo1.toString().split('\n').slice(1, -1);
-                let spaceWidth = source[0].match(/^ */)[0].length;
-
-                source = source.map(function(line) {
-                    return line.slice(spaceWidth);
-                }).join('\n');
-
-                let sourceElement = document.getElementById('demo1-source');
-                sourceElement.innerText = source;
-                hljs.highlightBlock(sourceElement);
-
-                new ClipboardJS('.demo1-copy-button', {
-                    text: function() {
-                        return source;
-                    }
-                });
+            effect: 'slide_in_bottom',
+            aftercreate: function(dialogElement) {
+                dialogElement.querySelector('.xd-content .xd-body').style.padding = '0';
             }
         });
-    });
+    }
 
     document.getElementById('button-spin').addEventListener('click', function() {
         xdialog.startSpin();

@@ -51,6 +51,8 @@ Default options will be used if you **create** / **open** dialog without corresp
     // dialog buttons,
     //
     // valid values:
+    // - null
+    //  - no buttons
     // - array
     //  - predefined button name or user defined button html like
     //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
@@ -105,6 +107,12 @@ Default options will be used if you **create** / **open** dialog without corresp
 
     // modal or not
     modal: true,
+
+    // callback when dialog element is about to be created
+    beforecreate: null,
+
+    // callback when dialog element has been created
+    aftercreate: null,
 
     // callback before show
     beforeshow: null,
