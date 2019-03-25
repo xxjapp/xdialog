@@ -120,7 +120,7 @@
             <div style="width:560px">\
                 <div class="video-container">\
                     <iframe\
-                        src="https://www.youtube.com/embed/tNkZsRW7h2c"\
+                        src="https://www.youtube.com/embed/3NycM9lYdRI"\
                         frameborder="0"\
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"\
                         allowfullscreen>\
@@ -135,7 +135,7 @@
 
                 let hintElement = document.createElement('div');
                 hintElement.innerHTML = 'Click here to close dialog, drag here to move dialog';
-                hintElement.style = 'position:fixed;bottom:0;left:0;right:0;color:white;font-size:3em;margin:2em;text-align:center;'
+                hintElement.setAttribute('style', 'position:fixed;bottom:0;left:0;right:0;color:white;font-size:3em;margin:2em;text-align:center;');
                 param.overlay.appendChild(hintElement);
             },
             aftershow: function() {
