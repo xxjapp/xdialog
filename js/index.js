@@ -132,6 +132,11 @@
             effect: 'slide_in_bottom',
             aftercreate: function(param) {
                 param.element.querySelector('.xd-content .xd-body').style.padding = '0';
+
+                let hintElement = document.createElement('div');
+                hintElement.innerHTML = 'Click here to close dialog, drag here to move dialog';
+                hintElement.style = 'position:fixed;bottom:0;left:0;right:0;color:white;font-size:3em;margin:2em;text-align:center;'
+                param.overlay.appendChild(hintElement);
             },
             aftershow: function() {
                 setTimeout(function() {
