@@ -448,6 +448,8 @@ window.xdialog = function() {
 
                     dialogElement.classList.add('xd-show');
                     overlayElement && overlayElement.classList.add('xd-show-overlay');
+
+                    listenEscKey();
                 }, 200);
 
                 // NOTE: fix chrome blur
@@ -475,6 +477,7 @@ window.xdialog = function() {
         }
 
         function hide() {
+            unlistenEscKey();
             restorePerspectiive();
 
             if (dialogElement.effect.perspective) {
@@ -489,6 +492,23 @@ window.xdialog = function() {
 
             dialogElement.classList.remove('xd-show');
             overlayElement && overlayElement.classList.remove('xd-show-overlay');
+        }
+
+        function listenEscKey() {
+            dialogElement.escKeyListener = function listener(ev) {
+                let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
+
+                if (topMostDialogElement === dialogElement) {
+                    doCancel(ev);
+                }
+            };
+
+            document.addEventListener('keyup', dialogElement.escKeyListener);
+        }
+
+        function unlistenEscKey() {
+            document.removeEventListener('keyup', dialogElement.escKeyListener);
+            dialogElement.escKeyListener = null;
         }
 
         function fixChromeBlur() {
