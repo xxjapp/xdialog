@@ -429,11 +429,13 @@ window.xdialog = function() {
 
         dragElement(dialogElement)
 
+        if (overlayElement) {
+            dragElement(dialogElement, overlayElement);
+        }
+
         okButton && okButton.addEventListener('click', doOk);
         cancelButton && cancelButton.addEventListener('click', doCancel);
         deleteButton && deleteButton.addEventListener('click', doDelete);
-
-        overlayElement && overlayElement.addEventListener('click', doCancel);
 
         // load all iframes before showing
         let preparedForShow = false;
@@ -647,8 +649,6 @@ window.xdialog = function() {
             okButton && okButton.removeEventListener('click', doOk);
             cancelButton && cancelButton.removeEventListener('click', doCancel);
             deleteButton && deleteButton.removeEventListener('click', doDelete);
-
-            overlayElement && overlayElement.removeEventListener('click', doCancel);
 
             setTimeout(function() {
                 let index = dialogs.indexOf(dialog);
