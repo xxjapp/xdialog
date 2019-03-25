@@ -53,6 +53,11 @@ window.xdialog = function() {
     let spinOverlayElement = createSpin();
     let spinCount = 0;
 
+    let dragAsClick = {
+        timeout: 300,
+        distance: 5
+    }
+
     return {
         // xdialog.init(options)
         // initialize xdialog
@@ -430,7 +435,7 @@ window.xdialog = function() {
         dragElement(dialogElement)
 
         if (overlayElement) {
-            dragElement(dialogElement, overlayElement);
+            dragElement(dialogElement, overlayElement, doCancel);
         }
 
         okButton && okButton.addEventListener('click', doOk);
@@ -759,12 +764,13 @@ window.xdialog = function() {
     /**
      * drag on srcElement to move destElement
      *
-     * @param {*} destElement - element to be moved
-     * @param {*} srcElement - element to drag on
+     * @param {Element} destElement - element to be moved
+     * @param {Element} srcElement - element to drag on
+     * @param {Function} onclick - callback function when user clicked
      *
      * SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
      */
-    function dragElement(destElement, srcElement) {
+    function dragElement(destElement, srcElement, onclick) {
         // use destElement as srcElement if srcElement not supplied
         srcElement = srcElement || destElement;
 
@@ -774,6 +780,7 @@ window.xdialog = function() {
             pos2 = 0,
             pos3 = 0,
             pos4 = 0;
+        let mouseDownEvent = null;
 
         function isDraggableElement(element) {
             // do not start drag when click on inputs
@@ -790,6 +797,8 @@ window.xdialog = function() {
         }
 
         function dragMouseDown(e) {
+            mouseDownEvent = e;
+
             if (!isDraggableElement(e.target)) {
                 return;
             }
@@ -825,7 +834,12 @@ window.xdialog = function() {
             destElement.style.left = (destElement.offsetLeft - pos1) + 'px';
         }
 
-        function closeDragElement() {
+        function closeDragElement(e) {
+            // trigger click when dragging a litter quickly
+            if (Math.abs(e.clientX - mouseDownEvent.clientX) + Math.abs(e.clientY - mouseDownEvent.clientY) < dragAsClick.distance && e.timeStamp - mouseDownEvent.timeStamp < dragAsClick.timeout) {
+                onclick && onclick(e);
+            }
+
             // stop moving when mouse button is released:
             document.removeEventListener('mousemove', elementDrag);
             document.removeEventListener('mouseup', closeDragElement);
