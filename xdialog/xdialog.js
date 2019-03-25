@@ -496,6 +496,10 @@ window.xdialog = function() {
 
         function listenEscKey() {
             dialogElement.escKeyListener = function listener(ev) {
+                if (ev.key !== 'Escape' && ev.key !== 'Esc') {
+                    return;
+                }
+
                 let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
 
                 if (topMostDialogElement === dialogElement) {
