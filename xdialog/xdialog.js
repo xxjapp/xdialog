@@ -659,7 +659,7 @@ window.xdialog = function() {
 
                 // Temporarily disable mouse events for IFRAME for smooth dragging
                 // SEE: https://www.gyrocode.com/articles/how-to-detect-mousemove-event-over-iframe-element/
-                document.querySelectorAll('.xd-body iframe').forEach(function(iframe) {
+                [].slice.call(dialogElement.querySelectorAll('.xd-body iframe')).forEach(function(iframe) {
                     iframe.style['pointer-events'] = 'none';
                 });
             }
@@ -684,7 +684,7 @@ window.xdialog = function() {
                 document.onmousemove = null;
 
                 // Re-enable mouse events for IFRAME
-                document.querySelectorAll('.xd-body iframe').forEach(function(iframe) {
+                [].slice.call(dialogElement.querySelectorAll('.xd-body iframe')).forEach(function(iframe) {
                     iframe.style['pointer-events'] = 'auto';
                 });
             }
