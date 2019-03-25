@@ -8,7 +8,7 @@ Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
 
 ## Background
 
-Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindowEffects), this dialog library enhanced some of the original CSS effects.
+Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindowEffects), this dialog library enhanced some of the original CSS effects, and added many convenient functions.
 
 ## How to use it
 
@@ -257,11 +257,12 @@ All callback functions use the same prototype.
 
 ```js
 /**
- * @param {Object} param - callback parameter
- * @param {String} param.id - dialog html element id
- * @param {String} param.element - dialog html element
- * @param {Object} param.dialog - dialog instance
- * @param {Event} param.event - event if any
+ * @param {Object}  param           - callback parameter
+ * @param {String}  param.id        - dialog html element id
+ * @param {Element} param.element   - dialog html element
+ * @param {Object}  param.dialog    - dialog instance
+ * @param {Element} param.overlay   - dialog overlay element
+ * @param {Event}   param.event     - event if any
  */
 function callback(param)
 ```

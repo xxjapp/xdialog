@@ -195,11 +195,12 @@ window.xdialog = function() {
         };
     }
 
-    function callbackParam(dialogElement, dialog, event) {
+    function callbackParam(dialogElement, dialog, overlayElement, event) {
         return {
             id: dialogElement.id,
             element: dialogElement,
             dialog: dialog,
+            overlay: overlayElement,
             event: event
         };
     }
@@ -294,7 +295,7 @@ window.xdialog = function() {
         return overlayElement;
     }
 
-    function createDialog(options) {
+    function createDialog(options, overlayElement) {
         // create element
         let dialogElement = document.createElement('div');
         let effect = getEffect(options.effect);
@@ -322,9 +323,9 @@ window.xdialog = function() {
         innerHTML += '</div>';
         dialogElement.innerHTML = innerHTML;
 
-        options.beforecreate && options.beforecreate(callbackParam(dialogElement, null, null));
+        options.beforecreate && options.beforecreate(callbackParam(dialogElement, null, overlayElement, null));
         document.body.insertAdjacentElement('afterbegin', dialogElement);
-        options.aftercreate && options.aftercreate(callbackParam(dialogElement, null, null));
+        options.aftercreate && options.aftercreate(callbackParam(dialogElement, null, overlayElement, null));
 
         return dialogElement;
     }
@@ -427,7 +428,7 @@ window.xdialog = function() {
         let overlayElement = null;
         options.modal && (overlayElement = createOverlay());
 
-        let dialogElement = createDialog(options);
+        let dialogElement = createDialog(options, overlayElement);
         let okButton = dialogElement.querySelector('.xd-ok');
         let cancelButton = dialogElement.querySelector('.xd-cancel');
         let deleteButton = dialogElement.querySelector('.xd-delete');
@@ -510,9 +511,9 @@ window.xdialog = function() {
 
             function checkStatusAndShow() {
                 if (preparedForShow) {
-                    options.beforeshow && options.beforeshow(callbackParam(dialogElement, dialog, event));
+                    options.beforeshow && options.beforeshow(callbackParam(dialogElement, dialog, overlayElement, event));
                     showMe();
-                    options.aftershow && options.aftershow(callbackParam(dialogElement, dialog, event));
+                    options.aftershow && options.aftershow(callbackParam(dialogElement, dialog, overlayElement, event));
                 } else {
                     // wait for preparedForShow
                     setTimeout(checkStatusAndShow, 0);
@@ -623,7 +624,7 @@ window.xdialog = function() {
         }
 
         function doOk(e) {
-            if (options.onok && options.onok(callbackParam(dialogElement, dialog, e)) === false) {
+            if (options.onok && options.onok(callbackParam(dialogElement, dialog, overlayElement, e)) === false) {
                 return;
             }
 
@@ -631,7 +632,7 @@ window.xdialog = function() {
         }
 
         function doCancel(e) {
-            if (options.oncancel && options.oncancel(callbackParam(dialogElement, dialog, e)) === false) {
+            if (options.oncancel && options.oncancel(callbackParam(dialogElement, dialog, overlayElement, e)) === false) {
                 return;
             }
 
@@ -639,7 +640,7 @@ window.xdialog = function() {
         }
 
         function doDelete(e) {
-            if (options.ondelete && options.ondelete(callbackParam(dialogElement, dialog, e)) === false) {
+            if (options.ondelete && options.ondelete(callbackParam(dialogElement, dialog, overlayElement, e)) === false) {
                 return;
             }
 
@@ -647,7 +648,7 @@ window.xdialog = function() {
         }
 
         function destroy() {
-            if (options.ondestroy && options.ondestroy(callbackParam(dialogElement, dialog, null)) === false) {
+            if (options.ondestroy && options.ondestroy(callbackParam(dialogElement, dialog, overlayElement, null)) === false) {
                 return;
             }
 
