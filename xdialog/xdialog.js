@@ -634,7 +634,7 @@ window.xdialog = function() {
             // otherwise, move the dialog from anywhere inside the dialog
             let dragTarget = titleElement || dialogElement;
 
-            dragTarget.onmousedown = dragMouseDown;
+            dragTarget.addEventListener('mousedown', dragMouseDown);
             dragTarget.style.cursor = 'move';
 
             function isDraggableElement(element) {
@@ -658,8 +658,8 @@ window.xdialog = function() {
                 pos4 = e.clientY;
 
                 // call a function whenever the cursor moves:
-                document.onmousemove = elementDrag;
-                document.onmouseup = closeDragElement;
+                document.addEventListener('mousemove', elementDrag);
+                document.addEventListener('mouseup', closeDragElement);
 
                 // Temporarily disable mouse events for IFRAME for smooth dragging
                 // SEE: https://www.gyrocode.com/articles/how-to-detect-mousemove-event-over-iframe-element/
@@ -684,8 +684,8 @@ window.xdialog = function() {
 
             function closeDragElement() {
                 // stop moving when mouse button is released:
-                document.onmouseup = null;
-                document.onmousemove = null;
+                document.removeEventListener('mousemove', elementDrag);
+                document.removeEventListener('mouseup', closeDragElement);
 
                 // Re-enable mouse events for IFRAME
                 [].slice.call(dialogElement.querySelectorAll('.xd-body iframe')).forEach(function(iframe) {
