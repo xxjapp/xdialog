@@ -756,28 +756,37 @@ window.xdialog = function() {
         }
     }
 
-    // SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
-    function dragElement(dialogElement) {
+    /**
+     * drag on srcElement to move destElement
+     *
+     * @param {*} destElement - element to be moved
+     * @param {*} srcElement - element to drag on
+     *
+     * SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
+     */
+    function dragElement(destElement, srcElement) {
+        // use destElement as srcElement if srcElement not supplied
+        srcElement = srcElement || destElement;
+
+        srcElement.addEventListener('mousedown', dragMouseDown);
+
         let pos1 = 0,
             pos2 = 0,
             pos3 = 0,
             pos4 = 0;
-        let titleElement = dialogElement.querySelector('.xd-title');
-
-        // if titleElement present, the header is where you move the dialog,
-        // otherwise, move the dialog from anywhere inside the dialog
-        let dragTarget = titleElement || dialogElement;
-
-        dragTarget.addEventListener('mousedown', dragMouseDown);
-        dragTarget.style.cursor = 'move';
 
         function isDraggableElement(element) {
-            // do not start drag when click on buttons and ...
-            if (element.tagName === 'BUTTON') {
+            // do not start drag when click on inputs
+            if (element instanceof HTMLInputElement) {
                 return false;
             }
 
-            return dragTarget.contains(element);
+            // do not start drag when click on buttons and ...
+            if (['BUTTON'].indexOf(element.tagName) >= 0) {
+                return false;
+            }
+
+            return srcElement.contains(element);
         }
 
         function dragMouseDown(e) {
@@ -797,7 +806,7 @@ window.xdialog = function() {
 
             // Temporarily disable mouse events for IFRAME for smooth dragging
             // SEE: https://www.gyrocode.com/articles/how-to-detect-mousemove-event-over-iframe-element/
-            [].slice.call(dialogElement.querySelectorAll('.xd-body iframe')).forEach(function(iframe) {
+            [].slice.call(srcElement.querySelectorAll('iframe')).forEach(function(iframe) {
                 iframe.style['pointer-events'] = 'none';
             });
         }
@@ -811,9 +820,9 @@ window.xdialog = function() {
             pos3 = e.clientX;
             pos4 = e.clientY;
 
-            // set the dialogElement's new position:
-            dialogElement.style.top = (dialogElement.offsetTop - pos2) + 'px';
-            dialogElement.style.left = (dialogElement.offsetLeft - pos1) + 'px';
+            // set the destElement's new position:
+            destElement.style.top = (destElement.offsetTop - pos2) + 'px';
+            destElement.style.left = (destElement.offsetLeft - pos1) + 'px';
         }
 
         function closeDragElement() {
@@ -822,7 +831,7 @@ window.xdialog = function() {
             document.removeEventListener('mouseup', closeDragElement);
 
             // Re-enable mouse events for IFRAME
-            [].slice.call(dialogElement.querySelectorAll('.xd-body iframe')).forEach(function(iframe) {
+            [].slice.call(srcElement.querySelectorAll('iframe')).forEach(function(iframe) {
                 iframe.style['pointer-events'] = 'auto';
             });
         }
