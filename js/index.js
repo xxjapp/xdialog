@@ -178,6 +178,52 @@
         });
     }
 
+    function openDialogDemo4() {
+        xdialog.open({
+            title: 'inputs',
+            body: '\
+            <style>\
+                .demo4-items {display:flex;flex-direction:column;align-items:center;}\
+                .demo4-item {display:block;height:30px;width:80%;margin:3px;padding:1px;}\
+            </style>\
+            <div class="demo4-items">\
+                <input class="demo4-item" type="button" value="Input Button">\
+                <input class="demo4-item" type="checkbox">\
+                <input class="demo4-item" type="file">\
+                <input class="demo4-item" type="hidden">\
+                <input class="demo4-item" type="image">\
+                <input class="demo4-item" type="password">\
+                <input class="demo4-item" type="radio">\
+                <input class="demo4-item" type="reset">\
+                <input class="demo4-item" type="submit">\
+                <input class="demo4-item" type="text">\
+                <select class="demo4-item">\
+                    <option>Option</option>\
+                </select>\
+                <textarea class="demo4-item"></textarea>\
+                <button class="demo4-item">Button</button>\
+            </div>\
+            <p>inputs, buttons, selects and textareas not allowed to be dragged on by default</p>',
+            beforeshow: function(param) {
+                [].slice.call(param.element.querySelectorAll('.xd-body *')).forEach(function(el) {
+                    let border = false;
+
+                    if (el instanceof HTMLInputElement) {
+                        border = true;
+                    }
+
+                    if (['BUTTON', 'SELECT', 'TEXTAREA'].indexOf(el.tagName) >= 0) {
+                        border = true;
+                    }
+
+                    if (border) {
+                        el.style = 'border: 2px solid green;'
+                    }
+                });
+            }
+        });
+    }
+
     document.getElementById('button-spin').addEventListener('click', function() {
         xdialog.startSpin();
 

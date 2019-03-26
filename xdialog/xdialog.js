@@ -783,18 +783,19 @@ window.xdialog = function() {
             pos4 = 0;
         let mouseDownEvent = null;
 
+        // SEE: https://api.jquery.com/input-selector/
         function isDraggableElement(element) {
             // do not start drag when click on inputs
             if (element instanceof HTMLInputElement) {
                 return false;
             }
 
-            // do not start drag when click on buttons and ...
-            if (['BUTTON'].indexOf(element.tagName) >= 0) {
+            // do not start drag when click on buttons, selects and textareas
+            if (['BUTTON', 'SELECT', 'TEXTAREA'].indexOf(element.tagName) >= 0) {
                 return false;
             }
 
-            return srcElement.contains(element);
+            return true;
         }
 
         function dragMouseDown(e) {
