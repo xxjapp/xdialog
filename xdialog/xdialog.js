@@ -516,9 +516,9 @@ window.xdialog = function() {
 
             function checkStatusAndShow() {
                 if (preparedForShow) {
-                    options.beforeshow && options.beforeshow(callbackParam(dialogElement, dialog, overlayElement, event));
+                    options.beforeshow && options.beforeshow(callbackParam(dialogElement, dialog, overlayElement, null));
                     showMe();
-                    options.aftershow && options.aftershow(callbackParam(dialogElement, dialog, overlayElement, event));
+                    options.aftershow && options.aftershow(callbackParam(dialogElement, dialog, overlayElement, null));
                 } else {
                     // wait for preparedForShow
                     setTimeout(checkStatusAndShow, 0);
