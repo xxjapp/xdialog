@@ -685,7 +685,7 @@ window.xdialog = function() {
             let clientWidth = document.documentElement.clientWidth;
             let clientHeight = document.documentElement.clientHeight;
 
-            if (rect.x >= 0 && rect.y >= 0 && rect.right <= clientWidth && rect.bottom <= clientHeight) {
+            if (rect.left >= 0 && rect.top >= 0 && rect.right <= clientWidth && rect.bottom <= clientHeight) {
                 return;
             }
 
