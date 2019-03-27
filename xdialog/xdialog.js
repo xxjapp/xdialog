@@ -192,6 +192,11 @@ window.xdialog = function() {
             // callback when dialog is about to be destroyed
             // return false to avoid to be destroyed
             ondestroy: null,
+
+            // callback when drag will start
+            // return false to avoid being dragged by default process
+            // return true to allow being dragged
+            ondrag: null,
         };
     }
 
@@ -433,10 +438,10 @@ window.xdialog = function() {
         let cancelButton = dialogElement.querySelector('.xd-cancel');
         let deleteButton = dialogElement.querySelector('.xd-delete');
 
-        dragElement(dialogElement)
+        dragElement(options.ondrag, dialogElement)
 
         if (overlayElement) {
-            dragElement(dialogElement, overlayElement, doCancel);
+            dragElement(options.ondrag, dialogElement, overlayElement, doCancel);
         }
 
         okButton && okButton.addEventListener('click', doOk);
@@ -771,7 +776,7 @@ window.xdialog = function() {
      *
      * SEE: https://www.w3schools.com/howto/howto_js_draggable.asp
      */
-    function dragElement(destElement, srcElement, onclick) {
+    function dragElement(ondrag, destElement, srcElement, onclick) {
         // use destElement as srcElement if srcElement not supplied
         srcElement = srcElement || destElement;
 
@@ -785,6 +790,10 @@ window.xdialog = function() {
 
         // SEE: https://api.jquery.com/input-selector/
         function isDraggableElement(element) {
+            if (ondrag) {
+                return ondrag(element, destElement, srcElement);
+            }
+
             // do not start drag when click on inputs
             if (element instanceof HTMLInputElement) {
                 return false;
@@ -801,7 +810,7 @@ window.xdialog = function() {
         function dragMouseDown(e) {
             mouseDownEvent = e;
 
-            if (!isDraggableElement(e.target)) {
+            if (isDraggableElement(e.target) === false) {
                 return;
             }
 

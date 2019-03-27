@@ -248,12 +248,19 @@ Default options will be used if you **create** / **open** dialog without corresp
     // callback when dialog is about to be destroyed
     // return false to avoid to be destroyed
     ondestroy: null,
+
+    // callback when drag will start
+    // return false to avoid being dragged by default process
+    // return true to allow being dragged
+    ondrag: null,
 }
 ```
 
 ### callback function format
 
-All callback functions use the same prototype.
+#### default
+
+All callback functions use the same prototype, except the ones with special instruction.
 
 ```js
 /**
@@ -265,4 +272,25 @@ All callback functions use the same prototype.
  * @param {Event}   param.event     - event if any
  */
 function callback(param)
+```
+
+#### callback for ondrag
+
+```js
+/**
+ * @param {Element} element         - element clicked
+ * @param {Element} destElement     - element to be moved
+ * @param {Element} srcElement      - element to drag on
+ */
+function ondrag(element, destElement, srcElement)
+```
+
+Example: let jquery Sortable to handle some element's dragging.
+
+SEE: [https://jqueryui.com/sortable/](https://jqueryui.com/sortable/)
+
+```js
+ondrag: function(element) {
+    return $(element).closest('.ui-sortable').length === 0;
+}
 ```
