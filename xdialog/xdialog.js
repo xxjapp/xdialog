@@ -166,12 +166,14 @@ window.xdialog = function() {
             modal: true,
 
             // callback when dialog element is about to be created
+            // return false to stop creating process
             beforecreate: null,
 
             // callback when dialog element has been created
             aftercreate: null,
 
             // callback before show
+            // return false to stop showing process
             beforeshow: null,
 
             // callback after show
@@ -328,7 +330,12 @@ window.xdialog = function() {
         innerHTML += '</div>';
         dialogElement.innerHTML = innerHTML;
 
-        options.beforecreate && options.beforecreate(callbackParam(dialogElement, null, overlayElement, null));
+        if (options.beforecreate) {
+            if (options.beforecreate(callbackParam(dialogElement, null, overlayElement, null)) === false) {
+                return null;
+            }
+        }
+
         document.body.insertAdjacentElement('afterbegin', dialogElement);
         options.aftercreate && options.aftercreate(callbackParam(dialogElement, null, overlayElement, null));
 
@@ -434,6 +441,11 @@ window.xdialog = function() {
         options.modal && (overlayElement = createOverlay());
 
         let dialogElement = createDialog(options, overlayElement);
+
+        if (dialogElement === null) {
+            return null;
+        }
+
         let okButton = dialogElement.querySelector('.xd-ok');
         let cancelButton = dialogElement.querySelector('.xd-cancel');
         let deleteButton = dialogElement.querySelector('.xd-delete');
@@ -516,7 +528,12 @@ window.xdialog = function() {
 
             function checkStatusAndShow() {
                 if (preparedForShow) {
-                    options.beforeshow && options.beforeshow(callbackParam(dialogElement, dialog, overlayElement, null));
+                    if (options.beforeshow) {
+                        if (options.beforeshow(callbackParam(dialogElement, dialog, overlayElement, null)) === false) {
+                            return;
+                        }
+                    }
+
                     showMe();
                     options.aftershow && options.aftershow(callbackParam(dialogElement, dialog, overlayElement, null));
                 } else {
@@ -712,9 +729,14 @@ window.xdialog = function() {
     }
 
     function open(options) {
-        let dialogElement = create(options);
-        dialogElement.show();
-        return dialogElement;
+        let dialog = create(options);
+
+        if (dialog) {
+            dialog.show();
+            return dialog;
+        }
+
+        return null;
     }
 
     function alert(text, options) {

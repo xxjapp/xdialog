@@ -222,12 +222,14 @@ Default options will be used if you **create** / **open** dialog without corresp
     modal: true,
 
     // callback when dialog element is about to be created
+    // return false to stop creating process
     beforecreate: null,
 
     // callback when dialog element has been created
     aftercreate: null,
 
     // callback before show
+    // return false to stop showing process
     beforeshow: null,
 
     // callback after show
