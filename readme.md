@@ -4,7 +4,7 @@ xdialog is a simple JavaScript library to create beautiful modern dialogs with l
 
 Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
 
-![preview.png](images/preview.png)
+![preview.jpg](images/preview.jpg)
 
 ## Background
 
