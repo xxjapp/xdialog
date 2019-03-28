@@ -254,6 +254,7 @@ Default options will be used if you **create** / **open** dialog without corresp
     // callback when drag will start
     // return false to avoid being dragged by default process
     // return true to allow being dragged
+    // otherwise to go default process
     ondrag: null,
 }
 ```
@@ -293,6 +294,10 @@ SEE: [https://jqueryui.com/sortable/](https://jqueryui.com/sortable/)
 
 ```js
 ondrag: function(element) {
-    return $(element).closest('.ui-sortable').length === 0;
+    if ($(element).closest('.ui-sortable').length > 0) {
+        return false;
+    }
+
+    // otherwise let go default process
 }
 ```

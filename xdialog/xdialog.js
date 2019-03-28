@@ -198,6 +198,7 @@ window.xdialog = function() {
             // callback when drag will start
             // return false to avoid being dragged by default process
             // return true to allow being dragged
+            // otherwise to go default process
             ondrag: null,
         };
     }
@@ -813,7 +814,11 @@ window.xdialog = function() {
         // SEE: https://api.jquery.com/input-selector/
         function isDraggableElement(element) {
             if (ondrag) {
-                return ondrag(element, destElement, srcElement);
+                let res = ondrag(element, destElement, srcElement);
+
+                if (res === false || res === true) {
+                    return res;
+                }
             }
 
             // do not start drag when click on inputs
