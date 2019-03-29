@@ -6,6 +6,19 @@ Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
 
 ![preview.jpg](images/preview.jpg)
 
+## Main features of xdialog
+
+- Using vanilla JavaScript and CSS
+- No dependency
+- Modern and beautiful default UI
+- Simple usage
+- Lots of cool open/close effects
+- Lots of options and callbacks can be used to customize easily
+- ESC key to cancel
+- Click overlay to cancel
+- Drag dialog/overlay to move dialog
+- Supports iframe content such as YouTube videos
+
 ## Background
 
 Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindowEffects), this dialog library enhanced some of the original CSS effects, and added many convenient functions.
