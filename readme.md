@@ -13,11 +13,20 @@ Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindow
 ## How to use it
 
 - Download xdialog library js and css files from [release page](https://github.com/xxjapp/xdialog/releases/latest).
-- Insert the Stylesheet **xdialog.min.css** and JavaScript **xdialog.min.js** into the html file. Insert development non-min files if you like.
+- Insert the Stylesheet **xdialog.min.css** and JavaScript **xdialog.min.js** into the html file. Insert development non-min version if you like.
 
 ```html
-<link rel="stylesheet" href="xdialog/xdialog.min.css" />
-<script src="xdialog/xdialog.min.js"></script>
+<link rel="stylesheet" href="path/to/xdialog.min.css">
+<script src="path/to/xdialog.min.js"></script>
+```
+
+Thanks to [jsdelivr](https://www.jsdelivr.com), jsdelivr CDN works like magic.
+
+If you want to use **CDN version**, insert the following code into your html file, min or non-min version both supported.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@2/xdialog/xdialog.min.css">
+<script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@2/xdialog/xdialog.min.js"></script>
 ```
 
 - Call xdialog API to open or create dialogs, like the following

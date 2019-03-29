@@ -73,7 +73,7 @@
         });
     });
 
-    function openDialogDemo1() {
+    function xdialogDemo1() {
         xdialog.open({
             title: 'Login Demo',
             body: '\
@@ -107,7 +107,7 @@
         });
     }
 
-    function openDialogDemo2() {
+    function xdialogDemo2() {
         xdialog.startSpin();
 
         xdialog.open({
@@ -146,7 +146,7 @@
         });
     }
 
-    function openDialogDemo3() {
+    function xdialogDemo3() {
         xdialog.open({
             title: 'callback parameters',
             body: 'open browser development console to view callback parameters',
@@ -178,7 +178,7 @@
         });
     }
 
-    function openDialogDemo4() {
+    function xdialogDemo4() {
         xdialog.open({
             title: 'inputs',
             body: '\
@@ -222,6 +222,10 @@
                 });
             }
         });
+    }
+
+    function xdialogDemo5() {
+        window.open('demo5.html');
     }
 
     document.getElementById('button-spin').addEventListener('click', function() {
