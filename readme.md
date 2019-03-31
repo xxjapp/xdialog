@@ -38,8 +38,8 @@ Thanks to [jsdelivr](https://www.jsdelivr.com), jsdelivr CDN works like magic.
 If you want to use **CDN version**, insert the following code into your html file, min or non-min version both supported.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@2/xdialog/xdialog.min.css">
-<script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@2/xdialog/xdialog.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@2/xdialog.min.css">
+<script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@2/xdialog.min.js"></script>
 ```
 
 - Call xdialog API to open or create dialogs, like the following
