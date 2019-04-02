@@ -228,6 +228,16 @@
         window.open('demo5.html');
     }
 
+    function xdialogDemo6() {
+        xdialog.open({
+            title: 'inline',
+            body: {
+                src: '#demo6-content'
+            },
+            style: 'width:420px'
+        });
+    }
+
     document.getElementById('button-spin').addEventListener('click', function() {
         xdialog.startSpin();
 

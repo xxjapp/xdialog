@@ -44,6 +44,12 @@ window.xdialog = function() {
         newZIndex: function() {
             zIndex += 1;
             return zIndex;
+        },
+        isString: function(v) {
+            return typeof v === 'string' || v instanceof String;
+        },
+        isArray: function(v) {
+            return Array.isArray(v)
         }
     };
 
@@ -102,29 +108,44 @@ window.xdialog = function() {
             title: 'Dialog Title',
 
             // dialog body
-            // use null value to remove body
+            //
+            // valid values:
+            // - null
+            //      no body
+            //
+            // - string
+            //      body html
+            //
+            // - object
+            //      src: body source selector
+            //      example:
+            //      {
+            //          src: '#demo6-content'
+            //      }
             body: '<p>Dialog body</p>',
 
             // dialog buttons
             //
             // valid values:
             // - null
-            //  - no buttons
+            //      no buttons
+            //
             // - array
-            //  - predefined button name or user defined button html like
-            //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
+            //      predefined button name or user defined button html like
+            //      example: ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
+            //
             // - object
-            //  - button name to button text(predefined) or button html(user defined) or attribute object map like
-            // {
-            //     ok: {
-            //         name: '削除',
-            //         style: 'background:#f44336;'
-            //         clazz: 'xd-button xd-ok demo-copy-button'
-            //     },
-            //     delete: '削除',
-            //     cancel: 'キャンセル',
-            //     other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
-            // }
+            //      button name to button text(predefined) or button html(user defined) or attribute object map like
+            //      example: {
+            //          ok: {
+            //              name: '削除',
+            //              style: 'background:#f44336;'
+            //              clazz: 'xd-button xd-ok demo-copy-button'
+            //          },
+            //          delete: '削除',
+            //          cancel: 'キャンセル',
+            //          other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
+            //      }
             buttons: ['ok', 'cancel'],
 
             // dialog extra style
@@ -321,7 +342,20 @@ window.xdialog = function() {
         }
 
         if (options.body) {
-            innerHTML += '<div class="xd-body">' + options.body + '</div>';
+            if (utils.isString(options.body)) {
+                innerHTML += '<div class="xd-body">' + options.body + '</div>';
+            } else {
+                let srcElement = document.querySelector(options.body.src);
+
+                if (srcElement) {
+                    dialogElement.srcOriginalParent = srcElement.parentElement;
+                    dialogElement.srcElement = srcElement;
+
+                    innerHTML += '<div class="xd-body"></div>';
+                } else {
+                    console.warn('Element of selector not found: ' + options.body.src);
+                }
+            }
         }
 
         if (options.buttons) {
@@ -330,6 +364,10 @@ window.xdialog = function() {
 
         innerHTML += '</div>';
         dialogElement.innerHTML = innerHTML;
+
+        if (dialogElement.srcElement) {
+            dialogElement.querySelector('.xd-body').appendChild(dialogElement.srcElement);
+        }
 
         if (options.beforecreate) {
             if (options.beforecreate(callbackParam(dialogElement, null, overlayElement, null)) === false) {
@@ -369,7 +407,7 @@ window.xdialog = function() {
         let html = '';
         let buttonInfos = {};
 
-        if (Array.isArray(options.buttons)) {
+        if (utils.isArray(options.buttons)) {
             options.buttons.forEach(function(name, i) {
                 let buttonInfo = predefinedButtonInfo(name);
 
@@ -390,7 +428,7 @@ window.xdialog = function() {
 
                 if (buttonInfo) {
                     // predefined
-                    if (typeof value === 'string' || value instanceof String) {
+                    if (utils.isString(value)) {
                         // value is a string, set text attribute
                         buttonInfo.text = value;
                         buttonInfos[name] = buttonInfo;
@@ -487,7 +525,7 @@ window.xdialog = function() {
             destroy: destroy,
 
             // dialog.close()
-            // hide dialog and destory it
+            // hide dialog and destroy it
             close: close,
 
             // dialog.adjust()
@@ -685,6 +723,10 @@ window.xdialog = function() {
                 if (index === -1) {
                     // user may call destroy() or click OK/Cancle/Delete button multi times
                     return;
+                }
+
+                if (dialogElement.srcElement) {
+                    dialogElement.srcOriginalParent.appendChild(dialogElement.srcElement);
                 }
 
                 dialogs.splice(index, 1);

@@ -154,7 +154,7 @@ dialog2.destroy();
 - dialog.close()
 
     ```text
-    hide dialog and destory it
+    hide dialog and destroy it
     ```
 
 - dialog.adjust()
@@ -180,29 +180,44 @@ Default options will be used if you **create** / **open** dialog without corresp
     title: 'Dialog Title',
 
     // dialog body
-    // use null value to remove body
-    body: '<p>Dialog body</p>',
-
-    // dialog buttons,
     //
     // valid values:
     // - null
-    //  - no buttons
-    // - array
-    //  - predefined button name or user defined button html like
-    //  ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
+    //      no body
+    //
+    // - string
+    //      body html
+    //
     // - object
-    //  - button name to button text(predefined) or button html(user defined) or attribute object map like
-    // {
-    //     ok: {
-    //         name: '削除',
-    //         style: 'background:#f44336;'
-    //         clazz: 'xd-button xd-ok demo-copy-button'
-    //     },
-    //     delete: '削除',
-    //     cancel: 'キャンセル',
-    //     other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
-    // }
+    //      src: body source selector
+    //      example:
+    //      {
+    //          src: '#demo6-content'
+    //      }
+    body: '<p>Dialog body</p>',
+
+    // dialog buttons
+    //
+    // valid values:
+    // - null
+    //      no buttons
+    //
+    // - array
+    //      predefined button name or user defined button html like
+    //      example: ['ok', 'cancel', 'delete', '<button id="my-button-id" class="my-button-class">Button-text</button>']
+    //
+    // - object
+    //      button name to button text(predefined) or button html(user defined) or attribute object map like
+    //      example: {
+    //          ok: {
+    //              name: '削除',
+    //              style: 'background:#f44336;'
+    //              clazz: 'xd-button xd-ok demo-copy-button'
+    //          },
+    //          delete: '削除',
+    //          cancel: 'キャンセル',
+    //          other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
+    //      }
     buttons: ['ok', 'cancel'],
 
     // dialog extra style
