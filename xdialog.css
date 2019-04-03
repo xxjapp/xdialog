@@ -112,7 +112,7 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 .xd-content .xd-buttons {
-    padding: 0em 3em 2em 3em;
+    padding: 0em 2em 2em 2em;
     display: flex;
     justify-content: center;
 }
