@@ -713,10 +713,6 @@ window.xdialog = function() {
                 return;
             }
 
-            okButton && okButton.removeEventListener('click', doOk);
-            cancelButton && cancelButton.removeEventListener('click', doCancel);
-            deleteButton && deleteButton.removeEventListener('click', doDelete);
-
             setTimeout(function() {
                 let index = dialogs.indexOf(dialog);
 
@@ -725,14 +721,31 @@ window.xdialog = function() {
                     return;
                 }
 
-                if (dialogElement.srcElement) {
-                    dialogElement.srcOriginalParent.appendChild(dialogElement.srcElement);
-                }
+                doDestroy(index);
+            }, transitionTimeout);
+
+            function doDestroy(index) {
+                okButton && okButton.removeEventListener('click', doOk);
+                cancelButton && cancelButton.removeEventListener('click', doCancel);
+                deleteButton && deleteButton.removeEventListener('click', doDelete);
 
                 dialogs.splice(index, 1);
+
                 document.body.removeChild(dialogElement);
                 overlayElement && document.body.removeChild(overlayElement);
-            }, transitionTimeout);
+
+                if (dialogElement.srcElement) {
+                    checkAndReturnSrcElement();
+                }
+            }
+
+            function checkAndReturnSrcElement() {
+                if (dialogElement.contains(dialogElement.srcElement)) {
+                    dialogElement.srcOriginalParent.appendChild(dialogElement.srcElement);
+                } else {
+                    setTimeout(checkAndReturnSrcElement, 1000);
+                }
+            }
         }
 
         function close() {
