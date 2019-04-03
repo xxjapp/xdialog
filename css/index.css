@@ -107,3 +107,10 @@ body {
 .hover-shadow:hover {
     box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.7);
 }
+
+
+/* xdialog body content */
+
+.xd-body pre {
+    margin: 0;
+}

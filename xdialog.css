@@ -112,9 +112,13 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 .xd-content .xd-buttons {
-    padding: 0em 2em 2em 2em;
+    padding: 2em;
     display: flex;
     justify-content: center;
+}
+
+.xd-content .xd-body+.xd-buttons {
+    padding-top: 0em;
 }
 
 .xd-content .xd-button {
@@ -141,10 +145,6 @@ perspective effects (not including the dialogs and the overlay).
 
 .xd-content .xd-button:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.xd-content .xd-title+.xd-buttons {
-    padding-top: 1em;
 }
 
 
