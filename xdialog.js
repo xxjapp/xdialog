@@ -489,15 +489,7 @@ window.xdialog = function() {
         let cancelButton = dialogElement.querySelector('.xd-cancel');
         let deleteButton = dialogElement.querySelector('.xd-delete');
 
-        dragElement(options.ondrag, dialogElement)
-
-        if (overlayElement) {
-            dragElement(options.ondrag, dialogElement, overlayElement, doCancel);
-        }
-
-        okButton && okButton.addEventListener('click', doOk);
-        cancelButton && cancelButton.addEventListener('click', doCancel);
-        deleteButton && deleteButton.addEventListener('click', doDelete);
+        addEventListeners();
 
         // load all iframes before showing
         let preparedForShow = false;
@@ -560,6 +552,18 @@ window.xdialog = function() {
                     }
                 })
             });
+        }
+
+        function addEventListeners() {
+            okButton && okButton.addEventListener('click', doOk);
+            cancelButton && cancelButton.addEventListener('click', doCancel);
+            deleteButton && deleteButton.addEventListener('click', doDelete);
+
+            dragElement(options.ondrag, dialogElement)
+
+            if (overlayElement) {
+                dragElement(options.ondrag, dialogElement, overlayElement, doCancel);
+            }
         }
 
         function show() {
