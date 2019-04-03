@@ -151,6 +151,7 @@
             title: 'callback parameters',
             body: 'open browser development console to view callback parameters',
             buttons: ['ok', 'delete', 'cancel'],
+            style: 'min-width:38em;',
             beforecreate: function(param) {
                 console.info('beforecreate', param);
             },

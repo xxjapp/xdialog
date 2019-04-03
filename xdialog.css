@@ -26,8 +26,8 @@ perspective effects (not including the dialogs and the overlay).
 
 .xd-dialog {
     position: fixed;
-    min-width: 320px;
     width: 50%;
+    min-width: 320px;
     height: auto;
     visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -1031,7 +1031,7 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 @media screen and (max-width: 32em) {
-    body {
+    body, button {
         font-size: 75%;
     }
 }
