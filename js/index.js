@@ -176,6 +176,9 @@
             ondestroy: function(param) {
                 console.info('ondestroy', param);
             },
+            ondrag: function(element, destElement, srcElement) {
+                console.info('ondrag', element, destElement, srcElement);
+            },
         });
     }
 
