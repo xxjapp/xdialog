@@ -647,7 +647,7 @@ window.xdialog = function() {
 
         function hide() {
             unlistenEscKey();
-            restorePerspectiive();
+            restorePerspective();
 
             if (dialogElement.effect.perspective) {
                 setTimeout(function() {
@@ -701,7 +701,7 @@ window.xdialog = function() {
         }
 
         // restore perspective to enable 3D transform
-        function restorePerspectiive() {
+        function restorePerspective() {
             // remove inline perspective
             // NOTE: do not remove 'top', 'left' and 'transform' to keep dialog position after user's drag
             dialogElement.style.removeProperty('perspective');
