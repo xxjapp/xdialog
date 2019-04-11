@@ -278,6 +278,13 @@ Default options will be used if you **create** / **open** dialog without corresp
     // callback after show
     aftershow: null,
 
+    // callback before hide
+    // return false to stop hidding process
+    beforehide: null,
+
+    // callback after hide
+    afterhide: null,
+
     // callback when OK button pressed
     // return false to avoid to be closed
     onok: null,

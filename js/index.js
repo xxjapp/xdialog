@@ -164,6 +164,12 @@
             aftershow: function(param) {
                 console.info('aftershow', param);
             },
+            beforehide: function(param) {
+                console.info('beforehide', param);
+            },
+            afterhide: function(param) {
+                console.info('afterhide', param);
+            },
             onok: function(param) {
                 console.info('onok', param);
             },

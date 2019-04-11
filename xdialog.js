@@ -204,6 +204,13 @@ window.xdialog = function() {
             // callback after show
             aftershow: null,
 
+            // callback before hide
+            // return false to stop hidding process
+            beforehide: null,
+
+            // callback after hide
+            afterhide: null,
+
             // callback when OK button pressed
             // return false to avoid to be closed
             onok: null,
@@ -277,7 +284,10 @@ window.xdialog = function() {
             effect: null,
             ondrag: function() {
                 return false;
-            }
+            },
+            beforehide: function() {
+                return false;
+            },
         };
     }
 
@@ -646,6 +656,12 @@ window.xdialog = function() {
         }
 
         function hide() {
+            if (options.beforehide) {
+                if (options.beforehide(callbackParam(dialogElement, dialog, overlayElement, null)) === false) {
+                    return false;
+                }
+            }
+
             unlistenEscKey();
             restorePerspective();
 
@@ -661,6 +677,8 @@ window.xdialog = function() {
 
             dialogElement.classList.remove('xd-show');
             overlayElement && overlayElement.classList.remove('xd-show-overlay');
+
+            options.afterhide && options.afterhide(callbackParam(dialogElement, dialog, overlayElement, null));
         }
 
         function listenEscKey() {
@@ -772,8 +790,11 @@ window.xdialog = function() {
         }
 
         function close() {
-            hide();
-            destroy();
+            let hideOk = hide();
+
+            if (hideOk !== false) {
+                destroy();
+            }
         }
 
         function adjust() {
