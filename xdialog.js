@@ -275,6 +275,9 @@ window.xdialog = function() {
             buttons: null,
             style: 'width:auto;',
             effect: null,
+            ondrag: function() {
+                return false;
+            }
         };
     }
 
