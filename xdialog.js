@@ -88,6 +88,10 @@ window.xdialog = function() {
         // display a confirm dialog, please view the source for details
         confirm: confirm,
 
+        // xdialog.fatal(text, options)
+        // display a fatal error dialog, please view the source for details
+        fatal: fatal,
+
         // xdialog.dialogs()
         // get all dialog instances
         dialogs: dialogs,
@@ -259,6 +263,18 @@ window.xdialog = function() {
             style: 'width:auto;',
             effect: '3d_sign',
             onok: onyes,
+        };
+    }
+
+    function defaultFatalOptions(text) {
+        text = text || 'Fatal error occured!';
+
+        return {
+            title: 'Fatal Error',
+            body: '<p style="text-align:center;">' + text + '</p>',
+            buttons: null,
+            style: 'width:auto;',
+            effect: null,
         };
     }
 
@@ -806,6 +822,11 @@ window.xdialog = function() {
 
     function confirm(text, onyes, options) {
         options = Object.assign(defaultConfirmOptions(text, onyes), options);
+        return open(options);
+    }
+
+    function fatal(text, options) {
+        options = Object.assign(defaultFatalOptions(text), options);
         return open(options);
     }
 
