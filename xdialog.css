@@ -148,6 +148,32 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 
+/* fatal styles */
+
+.xd-fatal.xd-dialog {
+    width: 100%;
+    max-width: unset;
+}
+
+.xd-fatal .xd-title {
+    background: #430000;
+    color: white;
+    border-bottom: #C46258 1px solid;
+    opacity: 1;
+    border-radius: 0;
+}
+
+.xd-fatal .xd-content {
+    background: #580000;
+    color: white;
+    opacity: 0.9;
+}
+
+.xd-fatal~.xd-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
 /* Individual dialog styles with animations/transitions */
 
 

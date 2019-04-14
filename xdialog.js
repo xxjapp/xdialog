@@ -278,13 +278,13 @@ window.xdialog = function() {
     }
 
     function defaultFatalOptions(text) {
-        text = text || 'Fatal error occured!';
+        text = text || 'A fatal error occured!';
 
         return {
             title: 'Fatal Error',
             body: '<p style="text-align:center;">' + text + '</p>',
             buttons: null,
-            style: 'width:auto;',
+            extraClass: 'xd-fatal',
             effect: null,
             ondrag: function() {
                 return false;
