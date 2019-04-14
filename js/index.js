@@ -227,7 +227,7 @@
                     }
 
                     if (border) {
-                        el.style = 'border: 2px solid green;'
+                        el.setAttribute('style', 'border: 2px solid green;');
                     }
                 });
             }
