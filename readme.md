@@ -231,7 +231,7 @@ Default options will be used if you **create** / **open** dialog without corresp
     extraClass: '',
 
     // dialog extra style
-    // for example 'width: auto;'
+    // for example 'width: 640px;'
     style: '',
 
     // dialog show/hide effect, one of the following values

@@ -157,7 +157,7 @@ window.xdialog = function() {
             extraClass: '',
 
             // dialog extra style
-            // for example 'width: auto;'
+            // for example 'width: 640px;'
             style: '',
 
             // dialog show/hide effect, one of the following values
@@ -256,7 +256,6 @@ window.xdialog = function() {
             title: null,
             body: '<p style="text-align:center;">' + text + '</p>',
             buttons: ['ok'],
-            style: 'width:auto;',
             effect: 'sticky_up',
         };
     }
@@ -271,7 +270,6 @@ window.xdialog = function() {
                 ok: 'Yes',
                 cancel: 'No'
             },
-            style: 'width:auto;',
             effect: '3d_sign',
             onok: onyes,
         };

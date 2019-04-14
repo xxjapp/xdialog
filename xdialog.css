@@ -26,9 +26,11 @@ perspective effects (not including the dialogs and the overlay).
 
 .xd-dialog {
     position: fixed;
-    width: 50%;
+    width: auto;
+    max-width: 100%;
     min-width: 320px;
     height: auto;
+    max-height: 100%;
     visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -106,14 +108,13 @@ perspective effects (not including the dialogs and the overlay).
 .xd-content .xd-body {
     padding: 1em 2em;
     font-weight: 300;
-    max-width: calc(100vw - 4em);
-    max-height: calc(100vh - 12em);
     overflow: auto;
 }
 
 .xd-content .xd-buttons {
     padding: 2em;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -152,7 +153,6 @@ perspective effects (not including the dialogs and the overlay).
 
 .xd-fatal.xd-dialog {
     width: 100%;
-    max-width: unset;
 }
 
 .xd-fatal .xd-title {

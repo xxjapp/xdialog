@@ -15,6 +15,7 @@
                 title: el.textContent,
                 body: body,
                 effect: effect,
+                style: 'width: 640px;',
                 onok: function() {
                     xdialog.alert('OK button pressed');
                     return false;
@@ -44,7 +45,7 @@
             xdialog.open({
                 title: method + ' source',
                 body: '<pre><code class="js demo-source"></code></pre>',
-                style: 'width: auto;',
+                style: 'min-width:36em',
                 buttons: {
                     ok: {
                         text: 'copy',
@@ -80,7 +81,7 @@
             <style>\
                 .demo1-mb-1 { margin-bottom: 1em; }\
                 .demo1-row { text-align: center; }\
-                .demo1-row label { min-width: 6em; display: inline-block; }\
+                .demo1-row label { min-width: 6em; display: inline-block; text-align: right; margin-right: 0.5em; }\
                 .demo1-row input { padding: 0.3em; outline: none; min-width: 12em; }\
                 .demo1-validated input { border: green 2px solid; }\
                 .demo1-validated input:invalid { border: red 2px solid; }\
@@ -90,7 +91,6 @@
                 <div class="demo1-row"><label for="psw">Password</label><input type="password" id="psw" required></div>\
             </div>',
             buttons: { ok: 'Login', cancel: 'Cancel' },
-            style: 'width: auto',
             effect: '3d_rotate_bottom',
             onok: function() {
                 document.getElementById('demo1-form').classList.add('demo1-validated');
@@ -117,7 +117,7 @@
                 .video-container { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; }\
                 .video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; }\
             </style>\
-            <div style="width:560px">\
+            <div style="width: 560px; max-width: 100%;">\
                 <div class="video-container">\
                     <iframe\
                         src="https://www.youtube.com/embed/3NycM9lYdRI"\
@@ -128,7 +128,6 @@
                 </div>\
             </div>',
             buttons: null,
-            style: 'width: auto;',
             effect: 'slide_in_bottom',
             aftercreate: function(param) {
                 param.element.querySelector('.xd-content .xd-body').style.padding = '0';
@@ -214,6 +213,7 @@
                 <button class="demo4-item">Button</button>\
             </div>\
             <p>inputs, buttons, selects and textareas not allowed to be dragged on by default</p>',
+            style: 'width: 640px;',
             beforeshow: function(param) {
                 [].slice.call(param.element.querySelectorAll('.xd-body *')).forEach(function(el) {
                     let border = false;
