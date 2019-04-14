@@ -152,6 +152,10 @@ window.xdialog = function() {
             //      }
             buttons: ['ok', 'cancel'],
 
+            // dialog extra classes
+            // for example 'xd-fatal my-dialog-class'
+            extraClass: '',
+
             // dialog extra style
             // for example 'width: auto;'
             style: '',
@@ -360,7 +364,7 @@ window.xdialog = function() {
 
         dialogElement.id = utils.newId();
         dialogElement.effect = effect;
-        dialogElement.setAttribute('class', 'xd-dialog xd-center ' + effect.clazz);
+        dialogElement.setAttribute('class', 'xd-dialog xd-center ' + effect.clazz + ' ' + options.extraClass);
         dialogElement.setAttribute('style', 'z-index:' + utils.newZIndex() + ';' + options.style);
 
         // create innerHTML

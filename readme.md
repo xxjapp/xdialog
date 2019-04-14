@@ -226,6 +226,10 @@ Default options will be used if you **create** / **open** dialog without corresp
     //      }
     buttons: ['ok', 'cancel'],
 
+    // dialog extra classes
+    // for example 'xd-fatal my-dialog-class'
+    extraClass: '',
+
     // dialog extra style
     // for example 'width: auto;'
     style: '',
