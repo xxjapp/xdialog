@@ -74,6 +74,18 @@
         });
     });
 
+    let buttonSpin = document.getElementById('button-spin');
+
+    if (buttonSpin) {
+        buttonSpin.addEventListener('click', function() {
+            xdialog.startSpin();
+
+            setTimeout(function() {
+                xdialog.stopSpin();
+            }, 5000);
+        });
+    }
+
     function xdialogDemo1() {
         xdialog.open({
             title: 'Login Demo',
@@ -268,12 +280,4 @@
             style: 'width: 60%;'
         });
     }
-
-    document.getElementById('button-spin').addEventListener('click', function() {
-        xdialog.startSpin();
-
-        setTimeout(function() {
-            xdialog.stopSpin();
-        }, 5000);
-    });
 })();
