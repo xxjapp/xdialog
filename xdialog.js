@@ -374,7 +374,7 @@ window.xdialog = function() {
 
         if (options.body) {
             if (utils.isString(options.body)) {
-                innerHTML += '<div class="xd-body">' + options.body + '</div>';
+                innerHTML += '<div class="xd-body"><div class="xd-body-inner">' + options.body + '</div></div>';
             } else {
                 let srcElement = document.querySelector(options.body.src);
 
@@ -382,7 +382,7 @@ window.xdialog = function() {
                     dialogElement.srcOriginalParent = srcElement.parentElement;
                     dialogElement.srcElement = srcElement;
 
-                    innerHTML += '<div class="xd-body"></div>';
+                    innerHTML += '<div class="xd-body"><div class="xd-body-inner"></div></div>';
                 } else {
                     console.warn('Element of selector not found: ' + options.body.src);
                 }
@@ -397,7 +397,7 @@ window.xdialog = function() {
         dialogElement.innerHTML = innerHTML;
 
         if (dialogElement.srcElement) {
-            dialogElement.querySelector('.xd-body').appendChild(dialogElement.srcElement);
+            dialogElement.querySelector('.xd-body-inner').appendChild(dialogElement.srcElement);
         }
 
         if (options.beforecreate) {
