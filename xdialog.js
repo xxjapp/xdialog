@@ -808,6 +808,7 @@ window.xdialog = function() {
                 return;
             }
 
+            let old = dialogElement.style.transition;
             dialogElement.style.transition = 'all .3s ease-in-out';
 
             if (rect.width > clientWidth) {
@@ -825,7 +826,7 @@ window.xdialog = function() {
 
             dialogElement.addEventListener('transitionend', function listener() {
                 dialogElement.removeEventListener('transitionend', listener);
-                dialogElement.style.transition = '';
+                dialogElement.style.transition = old;
             });
         }
     }
