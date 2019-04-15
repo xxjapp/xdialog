@@ -941,6 +941,14 @@ window.xdialog = function() {
         }
 
         function dragMouseDown(e) {
+            // NOTE: In IE 11 clicking on scrollbars does not fire 'mouseup' event
+            // see also: http://help.dimsemenov.com/discussions/problems/65378-in-ie11-the-mouseup-event-not-fired-when-clicking-on-a-scrollbar-causes-sliding-to-stick
+            //
+            // To avoid dragging when clicking on IE 11 scrollbar, do nothing when clicking on scrollbar detected
+            if (e.offsetX > e.target.clientWidth || e.offsetY > e.target.clientHeight) {
+                return;
+            }
+
             mouseDownEvent = e;
 
             if (isDraggableElement(e.target) === false) {
