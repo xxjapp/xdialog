@@ -30,7 +30,6 @@ perspective effects (not including the dialogs and the overlay).
     max-width: 100%;
     min-width: 320px;
     height: auto;
-    max-height: 100%;
     visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -112,6 +111,7 @@ perspective effects (not including the dialogs and the overlay).
 
 .xd-content .xd-body .xd-body-inner {
     overflow: auto;
+    max-height: calc(100vh - 11em);
 }
 
 .xd-content .xd-buttons {

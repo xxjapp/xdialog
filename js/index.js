@@ -253,8 +253,19 @@
             title: 'very wide content',
             body: '\
             <div style="width: 120vw; border: 1px solid green; padding: 0.5em;">\
-                This paragraph is too wide to show. You can scroll the scrollbar under to view other content.\
+                This paragraph is too wide to show. You can scroll the scrollbar to view other content.\
             </div>'
+        });
+    }
+
+    function xdialogDemo8() {
+        xdialog.open({
+            title: 'very high content',
+            body: '\
+            <div style="height: 120vh; border: 1px solid green; padding: 0.5em;">\
+                This paragraph is too hight to show. You can scroll the scrollbar to view other content.\
+            </div>',
+            style: 'width: 60%;'
         });
     }
 
