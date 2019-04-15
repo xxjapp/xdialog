@@ -280,7 +280,7 @@ window.xdialog = function() {
 
         return {
             title: 'Fatal Error',
-            body: '<p style="text-align:center;">' + text + '</p>',
+            body: '<div style="text-align:center;">' + text + '</div>',
             buttons: null,
             extraClass: 'xd-fatal',
             effect: null,
