@@ -828,6 +828,11 @@ window.xdialog = function() {
                 dialogElement.removeEventListener('transitionend', listener);
                 dialogElement.style.transition = old;
             });
+
+            // event transitionend not always reliable, so also use setTimeout
+            setTimeout(function() {
+                dialogElement.style.transition = old;
+            }, transitionTimeout);
         }
     }
 
