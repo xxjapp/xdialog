@@ -70,7 +70,7 @@ Just call xdialog API to open or create dialogs, like the following. See [Refere
 let dialog1 = xdialog.open();   // open is a shortcut of create + show
 dialog1.close();                // close is a shortcut of hide + destroy
 
-let dialog2 = xdialog.create({title: 'Hello dialog'});
+let dialog2 = xdialog.create({title: 'Hello, xdialog', body: 'This is a message.'});
 dialog2.show();
 dialog2.hide();
 dialog2.destroy();
