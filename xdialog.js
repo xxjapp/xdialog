@@ -142,12 +142,12 @@ window.xdialog = function() {
             //      button name to button text(predefined) or button html(user defined) or attribute object map like
             //      example: {
             //          ok: {
-            //              name: '削除',
+            //              name: 'OK',
             //              style: 'background:#f44336;'
             //              clazz: 'xd-button xd-ok demo-copy-button'
             //          },
-            //          delete: '削除',
-            //          cancel: 'キャンセル',
+            //          delete: 'Delete',
+            //          cancel: 'Cancel',
             //          other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
             //      }
             buttons: ['ok', 'cancel'],

@@ -23,26 +23,48 @@ Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
 
 Inspired by codrops' [ModalWindowEffects](https://github.com/codrops/ModalWindowEffects), this dialog library enhanced some of the original CSS effects, and added many convenient functions.
 
-## How to use it
+## Installation
 
-- Download xdialog library js and css files from [release page](https://github.com/xxjapp/xdialog/releases/latest).
-- Insert the Stylesheet **xdialog.min.css** and JavaScript **xdialog.min.js** into the html file. Insert development non-min version if you like.
+You can use CDN or local method to install.
 
-```html
-<link rel="stylesheet" href="path/to/xdialog.min.css">
-<script src="path/to/xdialog.min.js"></script>
-```
+1. CDN
 
-Thanks to [jsdelivr](https://www.jsdelivr.com), jsdelivr CDN works like magic.
+    Insert the following code into your html file.
 
-If you want to use **CDN version**, insert the following code into your html file, min or non-min version both supported.
+    ```html
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.js"></script>
+    ```
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.css">
-<script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.min.js"></script>
-```
+    Or for non-min version, use this.
 
-- Call xdialog API to open or create dialogs, like the following
+    ```html
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.css">
+    <script src="https://cdn.jsdelivr.net/gh/xxjapp/xdialog@3/xdialog.js"></script>
+    ```
+
+    Thanks to [jsdelivr](https://www.jsdelivr.com), jsdelivr CDN works like magic. For more details, please refer [https://www.jsdelivr.com/package/gh/xxjapp/xdialog](https://www.jsdelivr.com/package/gh/xxjapp/xdialog).
+
+2. Local
+
+    - Download xdialog library file xdialog.x.y.z.min.zip or xdialog.x.y.z.zip from [release page](https://github.com/xxjapp/xdialog/releases/latest) and unzip it.
+    - Insert the Stylesheet **xdialog.min.css** and JavaScript **xdialog.min.js** into the html file.
+
+    ```html
+    <link rel="stylesheet" href="path/to/xdialog.min.css">
+    <script src="path/to/xdialog.min.js"></script>
+    ```
+
+    Or insert non-min version files if you like.
+
+    ```html
+    <link rel="stylesheet" href="path/to/xdialog.css">
+    <script src="path/to/xdialog.js"></script>
+    ```
+
+## Usage
+
+Just call xdialog API to open or create dialogs, like the following. See [Reference](#reference) for more details.
 
 ```js
 let dialog1 = xdialog.open();   // open is a shortcut of create + show
@@ -216,12 +238,12 @@ Default options will be used if you **create** / **open** dialog without corresp
     //      button name to button text(predefined) or button html(user defined) or attribute object map like
     //      example: {
     //          ok: {
-    //              name: '削除',
+    //              name: 'OK',
     //              style: 'background:#f44336;'
     //              clazz: 'xd-button xd-ok demo-copy-button'
     //          },
-    //          delete: '削除',
-    //          cancel: 'キャンセル',
+    //          delete: 'Delete',
+    //          cancel: 'Cancel',
     //          other: '<button id="my-button-id" class="my-button-class">Button-text</button>'
     //      }
     buttons: ['ok', 'cancel'],
