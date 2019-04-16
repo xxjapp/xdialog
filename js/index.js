@@ -104,6 +104,7 @@
             </div>',
             buttons: { ok: 'Login', cancel: 'Cancel' },
             effect: '3d_rotate_bottom',
+            style: 'width: 25em;',
             onok: function() {
                 document.getElementById('demo1-form').classList.add('demo1-validated');
 
