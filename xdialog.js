@@ -800,6 +800,11 @@ window.xdialog = function() {
         }
 
         function adjust() {
+            if (dialog.status === 'adjusting') {
+                // do nothing on adjusting to avoid set style.transition incorrectly
+                return;
+            }
+
             let rect = dialogElement.getBoundingClientRect();
             let clientWidth = document.documentElement.clientWidth;
             let clientHeight = document.documentElement.clientHeight;
@@ -807,6 +812,8 @@ window.xdialog = function() {
             if (rect.left >= 0 && rect.top >= 0 && rect.right <= clientWidth && rect.bottom <= clientHeight) {
                 return;
             }
+
+            dialog.status = 'adjusting';
 
             let old = dialogElement.style.transition;
             dialogElement.style.transition = 'all .3s ease-in-out';
@@ -827,12 +834,8 @@ window.xdialog = function() {
             dialogElement.addEventListener('transitionend', function listener() {
                 dialogElement.removeEventListener('transitionend', listener);
                 dialogElement.style.transition = old;
+                dialog.status = 'adjusted';
             });
-
-            // event transitionend not always reliable, so also use setTimeout
-            setTimeout(function() {
-                dialogElement.style.transition = old;
-            }, transitionTimeout);
         }
     }
 
