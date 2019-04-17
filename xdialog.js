@@ -925,6 +925,7 @@ window.xdialog = function() {
             pos3 = 0,
             pos4 = 0;
         let mouseDownEvent = null;
+        let oldTransition = null;
 
         // SEE: https://api.jquery.com/input-selector/
         function isDraggableElement(element) {
@@ -966,6 +967,11 @@ window.xdialog = function() {
 
             e.preventDefault();
 
+            // save current destElement transition
+            // clear transition to make sure smooth dragging
+            oldTransition = destElement.style.transition;
+            destElement.style.transition = '';
+
             // get the mouse cursor position at startup:
             pos3 = e.clientX;
             pos4 = e.clientY;
@@ -996,6 +1002,9 @@ window.xdialog = function() {
         }
 
         function closeDragElement(e) {
+            // restore destElement transition
+            destElement.style.transition = oldTransition;
+
             // trigger click when dragging a litter quickly
             if (Math.abs(e.clientX - mouseDownEvent.clientX) + Math.abs(e.clientY - mouseDownEvent.clientY) < dragAsClick.distance && e.timeStamp - mouseDownEvent.timeStamp < dragAsClick.timeout) {
                 onclick && onclick(e);
