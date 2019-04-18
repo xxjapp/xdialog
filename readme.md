@@ -1,5 +1,7 @@
 # xdialog: A simple and beautiful JavaScript dialog library
 
+<a href="https://github.com/xxjapp/xdialog/releases/latest"><img src="https://flat.badgen.net/github/release/xxjapp/xdialog"></a> [![](https://data.jsdelivr.com/v1/package/gh/xxjapp/xdialog/badge)](https://www.jsdelivr.com/package/gh/xxjapp/xdialog)
+
 xdialog is a simple JavaScript library to create beautiful modern dialogs with lots of cool effects using CSS3 transitions and transforms.
 
 Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
