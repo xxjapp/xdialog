@@ -7,7 +7,8 @@ Note that we need a xd-container wrapping all content on the page for the
 perspective effects (not including the dialogs and the overlay).
 */
 
-.xd-perspective, .xd-perspective body {
+.xd-perspective,
+.xd-perspective body {
     height: 100%;
     overflow: hidden;
 }
@@ -256,7 +257,8 @@ perspective effects (not including the dialogs and the overlay).
     opacity: 0;
 }
 
-.xd-show.xd-effect-4~.xd-overlay, .xd-effect-4 .xd-content {
+.xd-show.xd-effect-4~.xd-overlay,
+.xd-effect-4 .xd-content {
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
@@ -500,7 +502,8 @@ perspective effects (not including the dialogs and the overlay).
     background: #fffffe;
 }
 
-.xd-effect-12 .xd-content .xd-title, .xd-effect-12 .xd-content {
+.xd-effect-12 .xd-content .xd-title,
+.xd-effect-12 .xd-content {
     background: transparent;
 }
 
@@ -732,7 +735,8 @@ perspective effects (not including the dialogs and the overlay).
     opacity: 0;
 }
 
-.xd-show.xd-effect-16~.xd-container, .xd-effect-16 .xd-content {
+.xd-show.xd-effect-16~.xd-container,
+.xd-effect-16 .xd-content {
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
@@ -757,7 +761,8 @@ perspective effects (not including the dialogs and the overlay).
     transition: transform 0.3s 0.2s;
 }
 
-.xd-effect-17~.xd-container, .xd-effect-17~.xd-overlay {
+.xd-effect-17~.xd-container,
+.xd-effect-17~.xd-overlay {
     -webkit-transform: rotateX(0deg);
     -moz-transform: rotateX(0deg);
     -ms-transform: rotateX(0deg);
@@ -793,7 +798,8 @@ perspective effects (not including the dialogs and the overlay).
     transition: transform 0.3s;
 }
 
-.xd-show.xd-effect-17~.xd-container, .xd-show.xd-effect-17~.xd-overlay {
+.xd-show.xd-effect-17~.xd-container,
+.xd-show.xd-effect-17~.xd-overlay {
     -webkit-transform: rotateX(-2deg);
     -moz-transform: rotateX(-2deg);
     -ms-transform: rotateX(-2deg);
@@ -831,7 +837,8 @@ perspective effects (not including the dialogs and the overlay).
     transition: all 0.5s;
 }
 
-.xd-effect-18~.xd-container, .xd-effect-18~.xd-overlay {
+.xd-effect-18~.xd-container,
+.xd-effect-18~.xd-overlay {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -843,7 +850,8 @@ perspective effects (not including the dialogs and the overlay).
     animation: rotateRightSideFirst2 0.5s 0.1s backwards ease-out;
 }
 
-.xd-show.xd-effect-18~.xd-container, .xd-show.xd-effect-18~.xd-overlay {
+.xd-show.xd-effect-18~.xd-container,
+.xd-show.xd-effect-18~.xd-overlay {
     -webkit-animation: rotateRightSideFirst 0.5s forwards ease-in;
     -moz-animation: rotateRightSideFirst 0.5s forwards ease-in;
     animation: rotateRightSideFirst 0.5s forwards ease-in;
@@ -969,7 +977,8 @@ perspective effects (not including the dialogs and the overlay).
     transition: all 0.5s;
 }
 
-.xd-effect-19~.xd-container, .xd-effect-19~.xd-overlay {
+.xd-effect-19~.xd-container,
+.xd-effect-19~.xd-overlay {
     -webkit-transform-style: preserve-3d;
     -moz-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -981,7 +990,8 @@ perspective effects (not including the dialogs and the overlay).
     animation: OpenTop2 0.5s backwards ease-out;
 }
 
-.xd-show.xd-effect-19~.xd-container, .xd-show.xd-effect-19~.xd-overlay {
+.xd-show.xd-effect-19~.xd-container,
+.xd-show.xd-effect-19~.xd-overlay {
     -webkit-animation: OpenTop 0.5s forwards ease-in;
     -moz-animation: OpenTop 0.5s forwards ease-in;
     animation: OpenTop 0.5s forwards ease-in;
@@ -1060,7 +1070,8 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 @media screen and (max-width: 32em) {
-    body, button {
+    body,
+    button {
         font-size: 75%;
     }
 }
@@ -1219,7 +1230,9 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 @-webkit-keyframes sk-circleFadeDelay {
-    0%, 39%, 100% {
+    0%,
+    39%,
+    100% {
         opacity: 0;
     }
     40% {
@@ -1228,7 +1241,9 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 @keyframes sk-circleFadeDelay {
-    0%, 39%, 100% {
+    0%,
+    39%,
+    100% {
         opacity: 0;
     }
     40% {
