@@ -88,6 +88,10 @@ window.xdialog = function() {
         // display a confirm dialog, please view the source for details
         confirm: confirm,
 
+        // xdialog.error(text, options)
+        // display an error dialog, please view the source for details
+        error: error,
+
         // xdialog.fatal(text, options)
         // display a fatal error dialog, please view the source for details
         fatal: fatal,
@@ -272,6 +276,18 @@ window.xdialog = function() {
             },
             effect: '3d_sign',
             onok: onyes,
+        };
+    }
+
+    function defaultErrorOptions(text) {
+        text = text || 'An error occured!';
+
+        return {
+            title: 'Error',
+            body: '<div style="text-align:center;">' + text + '</div>',
+            buttons: ['ok'],
+            extraClass: 'xd-error',
+            effect: 'slide_in_bottom'
         };
     }
 
@@ -857,6 +873,11 @@ window.xdialog = function() {
 
     function confirm(text, onyes, options) {
         options = Object.assign(defaultConfirmOptions(text, onyes), options);
+        return open(options);
+    }
+
+    function error(text, options) {
+        options = Object.assign(defaultErrorOptions(text), options);
         return open(options);
     }
 

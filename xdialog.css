@@ -153,6 +153,26 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 
+/* error styles */
+
+.xd-error .xd-title {
+    background: #670000;
+    color: white;
+    border-bottom: #C46258 1px solid;
+    opacity: 1;
+}
+
+.xd-error .xd-content {
+    background: #7C0000;
+    color: white;
+    opacity: 0.9;
+}
+
+.xd-error .xd-content .xd-button {
+    background: #A44238;
+}
+
+
 /* fatal styles */
 
 .xd-fatal.xd-dialog {

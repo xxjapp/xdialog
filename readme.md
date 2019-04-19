@@ -119,6 +119,12 @@ dialog2.destroy();
     display a confirm dialog, please view the source for details
     ```
 
+- xdialog.error(text, options)
+
+    ```text
+    display an error dialog, please view the source for details
+    ```
+
 - xdialog.fatal(text, options)
 
     ```text

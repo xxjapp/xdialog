@@ -141,7 +141,7 @@
                 </div>\
             </div>',
             buttons: null,
-            effect: 'slide_in_bottom',
+            effect: '3d_rotate_bottom',
             aftercreate: function(param) {
                 param.element.querySelector('.xd-content .xd-body').style.padding = '0';
 
