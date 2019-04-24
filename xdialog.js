@@ -206,6 +206,10 @@ window.xdialog = function() {
             // modal or not
             modal: true,
 
+            // timeout in seconds to close dialog automatically
+            // use 0 value to disable closing dialog automatically
+            timeout: 0,
+
             // callback when dialog element is about to be created
             // return false to stop creating process
             beforecreate: null,
@@ -296,7 +300,8 @@ window.xdialog = function() {
             buttons: null,
             extraClass: 'xd-info',
             effect: 'sticky_up',
-            modal: false
+            modal: false,
+            timeout: 10
         };
     }
 
@@ -309,7 +314,8 @@ window.xdialog = function() {
             buttons: null,
             extraClass: 'xd-warn',
             effect: 'sticky_up',
-            modal: false
+            modal: false,
+            timeout: 10
         };
     }
 
@@ -681,6 +687,12 @@ window.xdialog = function() {
                     overlayElement && overlayElement.classList.add('xd-show-overlay');
 
                     listenEscKey();
+
+                    if (options.timeout > 0) {
+                        dialogElement.addEventListener('mouseenter', stopCloseTimer);
+                        dialogElement.addEventListener('mouseleave', startCloseTimer);
+                        startCloseTimer();
+                    }
                 }, 200);
 
                 // NOTE: fix chrome blur
@@ -715,6 +727,12 @@ window.xdialog = function() {
             }
 
             unlistenEscKey();
+
+            if (options.timeout > 0) {
+                dialogElement.removeEventListener('mouseenter', stopCloseTimer);
+                dialogElement.removeEventListener('mouseleave', startCloseTimer);
+            }
+
             restorePerspective();
 
             if (dialogElement.effect.perspective) {
@@ -752,6 +770,22 @@ window.xdialog = function() {
         function unlistenEscKey() {
             document.removeEventListener('keyup', dialogElement.escKeyListener);
             dialogElement.escKeyListener = null;
+        }
+
+        function startCloseTimer() {
+            stopCloseTimer();
+
+            dialog.closeTimerId = setTimeout(function() {
+                dialog.closeTimerId = null;
+                close();
+            }, options.timeout * 1000);
+        }
+
+        function stopCloseTimer() {
+            if (dialog.closeTimerId) {
+                clearTimeout(dialog.closeTimerId);
+                dialog.closeTimerId = null;
+            }
         }
 
         function fixChromeBlur() {

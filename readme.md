@@ -310,6 +310,10 @@ Default options will be used if you **create** / **open** dialog without corresp
     // modal or not
     modal: true,
 
+    // timeout in seconds to close dialog automatically
+    // use 0 value to disable closing dialog automatically
+    timeout: 0,
+
     // callback when dialog element is about to be created
     // return false to stop creating process
     beforecreate: null,
