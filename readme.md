@@ -119,6 +119,18 @@ dialog2.destroy();
     display a confirm dialog, please view the source for details
     ```
 
+- xdialog.info(text, options)
+
+    ```text
+    display an information dialog, please view the source for details
+    ```
+
+- xdialog.warn(text, options)
+
+    ```text
+    display a warning dialog, please view the source for details
+    ```
+
 - xdialog.error(text, options)
 
     ```text

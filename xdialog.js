@@ -88,6 +88,14 @@ window.xdialog = function() {
         // display a confirm dialog, please view the source for details
         confirm: confirm,
 
+        // xdialog.info(text, options)
+        // display an information dialog, please view the source for details
+        info: info,
+
+        // xdialog.warn(text, options)
+        // display a warning dialog, please view the source for details
+        warn: warn,
+
         // xdialog.error(text, options)
         // display an error dialog, please view the source for details
         error: error,
@@ -276,6 +284,32 @@ window.xdialog = function() {
             },
             effect: '3d_sign',
             onok: onyes,
+        };
+    }
+
+    function defaultInfoOptions(text) {
+        text = text || 'some information';
+
+        return {
+            title: null,
+            body: '<div style="text-align:center;">' + text + '</div>',
+            buttons: null,
+            extraClass: 'xd-info',
+            effect: 'sticky_up',
+            modal: false
+        };
+    }
+
+    function defaultWarnOptions(text) {
+        text = text || 'Some warning';
+
+        return {
+            title: null,
+            body: '<div style="text-align:center;">' + text + '</div>',
+            buttons: null,
+            extraClass: 'xd-warn',
+            effect: 'sticky_up',
+            modal: false
         };
     }
 
@@ -873,6 +907,16 @@ window.xdialog = function() {
 
     function confirm(text, onyes, options) {
         options = Object.assign(defaultConfirmOptions(text, onyes), options);
+        return open(options);
+    }
+
+    function info(text, options) {
+        options = Object.assign(defaultInfoOptions(text), options);
+        return open(options);
+    }
+
+    function warn(text, options) {
+        options = Object.assign(defaultWarnOptions(text), options);
         return open(options);
     }
 
