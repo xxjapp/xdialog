@@ -155,6 +155,10 @@ perspective effects (not including the dialogs and the overlay).
 
 /* info styles */
 
+.xd-info.xd-dialog {
+    top: 12px;
+}
+
 .xd-info .xd-content {
     background: #73B573;
     color: white;
@@ -164,6 +168,10 @@ perspective effects (not including the dialogs and the overlay).
 
 
 /* warn styles */
+
+.xd-warn.xd-dialog {
+    top: 12px;
+}
 
 .xd-warn .xd-content {
     background: #f89406;
