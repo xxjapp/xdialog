@@ -258,8 +258,8 @@ Default options will be used if you **create** / **open** dialog without corresp
     //      button name to button text(predefined) or button html(user defined) or attribute object map like
     //      example: {
     //          ok: {
-    //              name: 'OK',
-    //              style: 'background:#f44336;'
+    //              text: 'okay',
+    //              style: 'background:#4336f4;',
     //              clazz: 'xd-button xd-ok demo-copy-button'
     //          },
     //          delete: 'Delete',
