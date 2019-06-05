@@ -238,9 +238,14 @@ Default options will be used if you **create** / **open** dialog without corresp
     //
     // - object
     //      src: body source selector
+    //      element: body source dom element
+    //
+    //      please use element when selector not usable
+    //
     //      example:
     //      {
     //          src: '#demo6-content'
+    //          element: document.getElementById('demo6-content')
     //      }
     body: '<p>Dialog body</p>',
 

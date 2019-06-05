@@ -134,9 +134,14 @@ window.xdialog = function() {
             //
             // - object
             //      src: body source selector
+            //      element: body source dom element
+            //
+            //      please use element when selector not usable
+            //
             //      example:
             //      {
             //          src: '#demo6-content'
+            //          element: document.getElementById('demo6-content')
             //      }
             body: '<p>Dialog body</p>',
 
@@ -432,7 +437,13 @@ window.xdialog = function() {
             if (utils.isString(options.body)) {
                 innerHTML += '<div class="xd-body"><div class="xd-body-inner">' + options.body + '</div></div>';
             } else {
-                let srcElement = document.querySelector(options.body.src);
+                let srcElement = null;
+
+                if (options.body.src) {
+                    srcElement = document.querySelector(options.body.src);
+                } else if (options.body.element) {
+                    srcElement = options.body.element;
+                }
 
                 if (srcElement) {
                     dialogElement.srcOriginalParent = srcElement.parentElement;
