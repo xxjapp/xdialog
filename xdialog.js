@@ -851,6 +851,11 @@ window.xdialog = function() {
                 return;
             }
 
+            if (dialogElement.srcElement) {
+                // return src element earlier as soon as animation end
+                setTimeout(checkAndReturnSrcElement, 300);
+            }
+
             setTimeout(function() {
                 let index = dialogs.indexOf(dialog);
 
@@ -871,10 +876,6 @@ window.xdialog = function() {
 
                 document.body.removeChild(dialogElement);
                 overlayElement && document.body.removeChild(overlayElement);
-
-                if (dialogElement.srcElement) {
-                    checkAndReturnSrcElement();
-                }
             }
 
             function checkAndReturnSrcElement() {
