@@ -1076,8 +1076,6 @@ window.xdialog = function() {
                 return;
             }
 
-            e.preventDefault();
-
             // save current destElement transition
             // clear transition to make sure smooth dragging
             oldTransition = destElement.style.transition;
