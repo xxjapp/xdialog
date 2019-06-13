@@ -50,6 +50,16 @@ window.xdialog = function() {
         },
         isArray: function(v) {
             return Array.isArray(v)
+        },
+        getCenterPosition: function(element) {
+            return {
+                x: element.offsetLeft + element.offsetWidth / 2,
+                y: element.offsetTop + element.offsetHeight / 2
+            }
+        },
+        setCenterPosition: function(element, pos) {
+            element.style.left = (pos.x - element.offsetWidth / 2) + 'px';
+            element.style.top = (pos.y - element.offsetHeight / 2) + 'px';
         }
     };
 
@@ -737,6 +747,9 @@ window.xdialog = function() {
                 }
             }
 
+            // save center position for after adjusting
+            dialog.centerPosition = utils.getCenterPosition(dialogElement);
+
             unlistenEscKey();
 
             if (options.timeout > 0) {
@@ -899,6 +912,11 @@ window.xdialog = function() {
             if (dialog.status === 'adjusting') {
                 // do nothing on adjusting to avoid set style.transition incorrectly
                 return;
+            }
+
+            if (dialog.centerPosition) {
+                // restore dialog center postion before hidding
+                utils.setCenterPosition(dialogElement, dialog.centerPosition);
             }
 
             let rect = dialogElement.getBoundingClientRect();
