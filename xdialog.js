@@ -923,7 +923,7 @@ window.xdialog = function() {
             let clientWidth = document.documentElement.clientWidth;
             let clientHeight = document.documentElement.clientHeight;
 
-            if (rect.left >= 0 && rect.top >= 0 && rect.right <= clientWidth && rect.bottom <= clientHeight) {
+            if (rect.left >= 0 && rect.top >= 0 && rect.right < clientWidth && rect.bottom < clientHeight) {
                 return;
             }
 
@@ -942,8 +942,13 @@ window.xdialog = function() {
 
             let rect2 = dialogElement.getBoundingClientRect();
 
-            dialogElement.style.left = (clientWidth - rect2.width) / 2 + 'px';
-            dialogElement.style.top = (clientHeight - rect2.height) / 2 + 'px';
+            if (!(rect.left >= 0 && rect.right < clientWidth)) {
+                dialogElement.style.left = (clientWidth - rect2.width) / 2 + 'px';
+            }
+
+            if (!(rect.top >= 0 && rect.bottom < clientHeight)) {
+                dialogElement.style.top = (clientHeight - rect2.height) / 2 + 'px';
+            }
 
             dialogElement.addEventListener('transitionend', function listener() {
                 dialogElement.removeEventListener('transitionend', listener);
