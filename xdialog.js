@@ -707,7 +707,7 @@ window.xdialog = function() {
                     dialogElement.classList.add('xd-show');
                     overlayElement && overlayElement.classList.add('xd-show-overlay');
 
-                    listenEscKey();
+                    listenEnterAndEscKey();
 
                     if (options.timeout > 0) {
                         dialogElement.addEventListener('mouseenter', stopCloseTimer);
@@ -750,7 +750,7 @@ window.xdialog = function() {
             // save center position for after adjusting
             dialog.centerPosition = utils.getCenterPosition(dialogElement);
 
-            unlistenEscKey();
+            unlistenEnterAndEscKey();
 
             if (options.timeout > 0) {
                 dialogElement.removeEventListener('mouseenter', stopCloseTimer);
@@ -775,7 +775,19 @@ window.xdialog = function() {
             options.afterhide && options.afterhide(callbackParam(dialogElement, dialog, overlayElement, null));
         }
 
-        function listenEscKey() {
+        function listenEnterAndEscKey() {
+            dialogElement.enterKeyListener = function listener(ev) {
+                if (ev.key !== 'Enter') {
+                    return;
+                }
+
+                let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
+
+                if (topMostDialogElement === dialogElement) {
+                    doOk(ev);
+                }
+            };
+
             dialogElement.escKeyListener = function listener(ev) {
                 if (ev.key !== 'Escape' && ev.key !== 'Esc') {
                     return;
@@ -788,10 +800,14 @@ window.xdialog = function() {
                 }
             };
 
+            document.addEventListener('keyup', dialogElement.enterKeyListener);
             document.addEventListener('keyup', dialogElement.escKeyListener);
         }
 
-        function unlistenEscKey() {
+        function unlistenEnterAndEscKey() {
+            document.removeEventListener('keyup', dialogElement.enterKeyListener);
+            dialogElement.enterKeyListener = null;
+
             document.removeEventListener('keyup', dialogElement.escKeyListener);
             dialogElement.escKeyListener = null;
         }

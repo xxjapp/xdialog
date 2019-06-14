@@ -16,6 +16,7 @@ Online demo is here [xdialog demo](https://xxjapp.github.io/xdialog/)
 - Simple usage
 - Lots of cool open/close effects
 - Lots of options and callbacks can be used to customize easily
+- Enter key to ok
 - ESC key to cancel
 - Click overlay to cancel
 - Drag dialog/overlay to move dialog
