@@ -694,6 +694,9 @@ window.xdialog = function() {
             }
 
             function showMe() {
+                // remove foucs from original active element to avoid it response to enter key pressing
+                document.activeElement.blur();
+
                 // use setTimeout to enable css transition
                 setTimeout(function() {
                     if (dialogElement.effect.perspective) {
