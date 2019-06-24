@@ -320,6 +320,12 @@ Default options will be used if you **create** / **open** dialog without corresp
     // use 0 value to disable closing dialog automatically
     timeout: 0,
 
+    // listen enter key press or not
+    listenEnterKey: true,
+
+    // listen ESC key press or not
+    listenESCKey: true,
+
     // callback when dialog element is about to be created
     // return false to stop creating process
     beforecreate: null,

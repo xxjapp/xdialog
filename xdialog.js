@@ -225,6 +225,12 @@ window.xdialog = function() {
             // use 0 value to disable closing dialog automatically
             timeout: 0,
 
+            // listen enter key press or not
+            listenEnterKey: true,
+
+            // listen ESC key press or not
+            listenESCKey: true,
+
             // callback when dialog element is about to be created
             // return false to stop creating process
             beforecreate: null,
@@ -779,40 +785,49 @@ window.xdialog = function() {
         }
 
         function listenEnterAndEscKey() {
-            dialogElement.enterKeyListener = function listener(ev) {
-                if (ev.key !== 'Enter') {
-                    return;
-                }
+            if (options.listenEnterKey) {
+                dialogElement.enterKeyListener = function listener(ev) {
+                    if (ev.key !== 'Enter') {
+                        return;
+                    }
 
-                let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
+                    let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
 
-                if (topMostDialogElement === dialogElement) {
-                    doOk(ev);
-                }
-            };
+                    if (topMostDialogElement === dialogElement) {
+                        doOk(ev);
+                    }
+                };
 
-            dialogElement.escKeyListener = function listener(ev) {
-                if (ev.key !== 'Escape' && ev.key !== 'Esc') {
-                    return;
-                }
+                document.addEventListener('keyup', dialogElement.enterKeyListener);
+            }
 
-                let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
+            if (options.listenESCKey) {
+                dialogElement.escKeyListener = function listener(ev) {
+                    if (ev.key !== 'Escape' && ev.key !== 'Esc') {
+                        return;
+                    }
 
-                if (topMostDialogElement === dialogElement) {
-                    doCancel(ev);
-                }
-            };
+                    let topMostDialogElement = document.querySelector('.xd-dialog.xd-show');
 
-            document.addEventListener('keyup', dialogElement.enterKeyListener);
-            document.addEventListener('keyup', dialogElement.escKeyListener);
+                    if (topMostDialogElement === dialogElement) {
+                        doCancel(ev);
+                    }
+                };
+
+                document.addEventListener('keyup', dialogElement.escKeyListener);
+            }
         }
 
         function unlistenEnterAndEscKey() {
-            document.removeEventListener('keyup', dialogElement.enterKeyListener);
-            dialogElement.enterKeyListener = null;
+            if (options.listenEnterKey) {
+                document.removeEventListener('keyup', dialogElement.enterKeyListener);
+                dialogElement.enterKeyListener = null;
+            }
 
-            document.removeEventListener('keyup', dialogElement.escKeyListener);
-            dialogElement.escKeyListener = null;
+            if (options.listenESCKey) {
+                document.removeEventListener('keyup', dialogElement.escKeyListener);
+                dialogElement.escKeyListener = null;
+            }
         }
 
         function startCloseTimer() {
