@@ -717,6 +717,7 @@ window.xdialog = function() {
                     overlayElement && overlayElement.classList.add('xd-show-overlay');
 
                     listenEnterAndEscKey();
+                    fixEnterKeyEventInTextarea();
 
                     if (options.timeout > 0) {
                         dialogElement.addEventListener('mouseenter', stopCloseTimer);
@@ -760,6 +761,7 @@ window.xdialog = function() {
             dialog.centerPosition = utils.getCenterPosition(dialogElement);
 
             unlistenEnterAndEscKey();
+            cleanEnterKeyEventInTextarea();
 
             if (options.timeout > 0) {
                 dialogElement.removeEventListener('mouseenter', stopCloseTimer);
@@ -815,6 +817,25 @@ window.xdialog = function() {
                 };
 
                 document.addEventListener('keyup', dialogElement.escKeyListener);
+            }
+        }
+
+        function fixEnterKeyEventInTextarea() {
+            [].slice.call(dialogElement.querySelectorAll('textarea')).forEach(function(textarea) {
+                textarea.addEventListener('keypress', fixEnterKeyEvent);
+            });
+        }
+
+        function cleanEnterKeyEventInTextarea() {
+            [].slice.call(dialogElement.querySelectorAll('textarea')).forEach(function(textarea) {
+                textarea.removeEventListener('keypress', fixEnterKeyEvent);
+            });
+        }
+
+        // SEE: https://stackoverflow.com/a/14020398/1440174
+        function fixEnterKeyEvent(ev) {
+            if (ev.which === 13) {
+                ev.stopPropagation();
             }
         }
 
