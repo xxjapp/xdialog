@@ -227,6 +227,7 @@
             </div>\
             <p>inputs, buttons, selects and textareas not allowed to be dragged on by default</p>',
             style: 'width: 640px;',
+            listenEnterKey: false,
             beforeshow: function(param) {
                 [].slice.call(param.element.querySelectorAll('.xd-body *')).forEach(function(el) {
                     let border = false;
