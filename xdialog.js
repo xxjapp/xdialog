@@ -701,7 +701,8 @@ window.xdialog = function() {
 
             function showMe() {
                 // remove foucs from original active element to avoid it response to enter key pressing
-                if (document.activeElement) {
+                // 'blur not supported in IE 11' occurred, so check it
+                if (document.activeElement && document.activeElement.blur) {
                     document.activeElement.blur();
                 }
 
