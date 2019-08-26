@@ -111,6 +111,7 @@ perspective effects (not including the dialogs and the overlay).
 }
 
 .xd-content .xd-body .xd-body-inner {
+    line-height: initial;
     overflow: auto;
     max-height: calc(100vh - 11em);
 }
