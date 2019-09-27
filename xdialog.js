@@ -60,6 +60,19 @@ window.xdialog = function() {
         setCenterPosition: function(element, pos) {
             element.style.left = (pos.x - element.offsetWidth / 2) + 'px';
             element.style.top = (pos.y - element.offsetHeight / 2) + 'px';
+        },
+        debugTrace: function() {
+            let trace = ''
+
+            try {
+                throw new Error()
+            } catch (e) {
+                trace = e.stack
+            }
+
+            trace = trace.replace(/^Error/, 'Trace')
+
+            return trace
         }
     };
 
@@ -1070,6 +1083,10 @@ window.xdialog = function() {
 
         spinElement.innerHTML = innerHTML;
 
+        // create debug info element
+        let debugInfoElement = document.createElement('div');
+        debugInfoElement.classList.add('xd-debug-info');
+
         // create overley element
         let spinOverlayElement = createOverlay({
             zIndex: 2147483647
@@ -1077,11 +1094,28 @@ window.xdialog = function() {
         spinOverlayElement.classList.add('xd-spin-overlay');
         spinOverlayElement.classList.add('xd-center-child');
         spinOverlayElement.appendChild(spinElement);
+        spinOverlayElement.appendChild(debugInfoElement);
 
         return spinOverlayElement;
     }
 
+    /**
+     * start a spin
+     *
+     * NOTE: use localStorage for debugging, set in browser console, for example:
+     *
+     *      localStorage['x-debug-info'] = 1    // show debug info
+     *      localStorage['x-debug-info'] = 0    // hide debug info
+     */
     function startSpin() {
+        let debugInfoElement = spinOverlayElement.querySelector('.xd-debug-info')
+
+        if (localStorage['x-debug-info'] === '1') {
+            debugInfoElement.innerHTML = '<pre>' + utils.debugTrace() + '</pre>'
+        } else {
+            debugInfoElement.innerHTML = ''
+        }
+
         if (spinCount === 0) {
             spinOverlayElement.classList.add('xd-show-overlay');
         }
@@ -1089,6 +1123,9 @@ window.xdialog = function() {
         spinCount++;
     }
 
+    /**
+     * stop a spin
+     */
     function stopSpin() {
         spinCount--;
 

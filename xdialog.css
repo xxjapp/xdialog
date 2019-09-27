@@ -1299,3 +1299,13 @@ perspective effects (not including the dialogs and the overlay).
         opacity: 1;
     }
 }
+
+.xd-debug-info {
+    padding-left: 1rem;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+}
