@@ -33,6 +33,8 @@ if (typeof Object.assign != 'function') {
     });
 }
 
+Error.stackTraceLimit = 50
+
 window.xdialog = function() {
     let dialogs = [];
     let perspectiveCounter = 0;
