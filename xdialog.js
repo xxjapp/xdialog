@@ -337,7 +337,7 @@ window.xdialog = function() {
             extraClass: 'xd-info',
             effect: 'sticky_up',
             modal: false,
-            timeout: 10
+            timeout: 5
         };
     }
 
